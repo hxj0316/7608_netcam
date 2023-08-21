@@ -1,7 +1,7 @@
-SDK_TOP     = /home/wanghs/work/7608_netcam/platform/sdk
-ROOTFS_PARENT_DIRECTORY = /home/xieqianqian/nfs_7608
+SDK_TOP     = /home/huxinjie/7608_netcam/platform/sdk
+ROOTFS_PARENT_DIRECTORY = /home/huxinjie/nfs_7608
 TOOLCHAIN_PARENT_DIRECTORY = /opt/linux/x86-arm/aarch64-mix210-linux/bin
-INSTALL_DIR = /home/wanghs/work/7608_netcam/install
+INSTALL_DIR = /home/huxinjie/7608_netcam/install
 DECODER     = gk7605v100
 CHIP        = gk7605v100
 CUSTOM_BOARD_SENSOR = CUS_GK7605V100_GC4653_1916M_V2

@@ -336,6 +336,9 @@ static int web_time(HTTP_OPS* ops, void* arg)
 			runSystemCfg.ntpCfg.enable485 = cJSON_GetObjectItem(ret,"switch_485")->valueint;
 			runSystemCfg.ntpCfg.enableAI = cJSON_GetObjectItem(ret,"AI_enable")->valueint;
 	//		runSystemCfg.ntpCfg.modelNum = cJSON_GetObjectItem(ret,"AI_ModelNum")->valuestring;
+          	//	strncpy(runSystemCfg.ntpCfg.AIplat, cJSON_GetObjectItem(ret,"AI_str")->valuestring, sizeof(runSystemCfg.ntpCfg.AI_str)-1);
+		//	printf("runSystemCfg.ntpCfg.AI_str ================= %s\n", runSystemCfg.ntpCfg.AI_str);
+
 
 			if(runSystemCfg.ntpCfg.enable485)
 			{
@@ -386,6 +389,7 @@ static int web_time(HTTP_OPS* ops, void* arg)
     }
     return HPE_RET_SUCCESS;
 }
+
 #ifdef MODULE_SUPPORT_GB28181
 static int get_gb28181(HTTP_OPS* ops, void* arg)
 {

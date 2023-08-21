@@ -31,266 +31,211 @@
 <script src="js/swfupload.js" type="text/javascript"></script>
 <script src="js/jquery.qrcode.min.js" type="text/javascript"></script>
 <script src="js/select2.min.js" type="text/javascript"></script>
+</script>
 <!--<script src="js/string.js" type="text/javascript"></script>-->
 <!--<script src="js/handler.js" type="text/javascript"></script>-->
 <title>IPCAM</title>
-
+    <script type="text/javascript" src="vxgplayer-1.8.40.min.js">
+    </script>
+    <link href="vxgplayer-1.8.40.min.css" rel="stylesheet" />
 </head>
 <body onload="viewload()" onunload="htmlclose()">
 <!--网页main-->
 <!--<div id="load_div" align=center style="background-color:#FFF; width:2000px; height:1000px; z-index:9999; display:block;">
-	<font style="margin-top:45%;">页面加载中......</font>
-	<div align="center">
-		<form method=post name=proccess>
-		<script language=javascript>
-			for(i=0;i<30;i++)document.write("<input class=\"proccess\">")
+<font style="margin-top:45%;">页面加载中......</font>
+<div align="center">
+	<form method=post name=proccess>
+	<script language=javascript>
+		for(i=0;i<30;i++)document.write("<input class=\"proccess\">")
+	</script>
+	</form>
+</div>
+<div align="center">
+<script language=JavaScript>var p=0,j=0;
+	var c=new Array("lightskyblue","white")
+	setInterval('proccess();',100)
+	function proccess(){
+		document.forms.proccess.elements[p].style.background=c[j];
+		p+=1;
+		if(p==30){p=0;j=1-j;}}
 		</script>
-		</form>
-	</div>
-	<div align="center">
-	<script language=JavaScript>var p=0,j=0;
-		var c=new Array("lightskyblue","white")
-		setInterval('proccess();',100)
-		function proccess(){
-			document.forms.proccess.elements[p].style.background=c[j];
-			p+=1;
-			if(p==30){p=0;j=1-j;}}
-			</script>
-	</div>
+</div>
 </div>-->
 
 <div id="content_div" class="content" style="border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; position:relative; z-index:2; behavior:url(js/ie-css3.htc);">
-    <div id="top">
-        <div id="log_top" style="float:left; height:100%; margin-left:5px;">
-        <table>
-        	<tr>
-            	<td width="110px"><h3>IPCamera</h3></td>
-                <td id="menu_view" width="60px" align="center" onclick="menucontrol('View')">
-                    <table class="menu_table">
-						<tr>
-							<td>
-								<img src="image/preview2.png" id="img_menu_view" onmouseover="$('#img_menu_view').attr('src','image/preview2_hover.png');" onmouseout="$('#img_menu_view').attr('src','image/preview2.png');" />
-							</td>
-						</tr>
-						<tr>
-							<td align="center" style="font-size:12px;">
-								<script>document.write(str_preview_now);</script>
-							</td>
-						</tr>
-                    </table>
-                </td>
-                <td id="menu_set" width="60px" align="center" onclick="menucontrol('Setting')">
-				<table class="menu_table">
+<div id="top">
+<div id="log_top" style="float:left; height:100%; margin-left:5px;">
+<table>
+	<tr>
+	<td width="110px"><h3>IPCamera</h3></td>
+	<td id="menu_view" width="60px" align="center" onclick="menucontrol('View')">
+	    <table class="menu_table">
 					<tr>
 						<td>
-							<img src="image/systemSet2.png" id="img_menu_set" onmouseover="$('#img_menu_set').attr('src','image/systemSet1_hover.png');" onmouseout="$('#img_menu_set').attr('src','image/systemSet2.png');" />
+							<img src="image/preview2.png" id="img_menu_view" onmouseover="$('#img_menu_view').attr('src','image/preview2_hover.png');" onmouseout="$('#img_menu_view').attr('src','image/preview2.png');" />
 						</td>
 					</tr>
 					<tr>
-						<td align="center" style="font-size:12px;"><script>document.write(str_menu_setting);</script></td>
+						<td align="center" style="font-size:12px;">
+							<script>document.write(str_preview_now);</script>
+						</td>
 					</tr>
-				</table>
-                </td>
-            </tr>
-        </table>
-        </div>
+	    </table>
+	</td>
+	<td id="menu_set" width="60px" align="center" onclick="menucontrol('Setting')">
+			<table class="menu_table">
+				<tr>
+					<td>
+						<img src="image/systemSet2.png" id="img_menu_set" onmouseover="$('#img_menu_set').attr('src','image/systemSet1_hover.png');" onmouseout="$('#img_menu_set').attr('src','image/systemSet2.png');" />
+					</td>
+				</tr>
+				<tr>
+					<td align="center" style="font-size:12px;"><script>document.write(str_menu_setting);</script></td>
+				</tr>
+			</table>
+	</td>
+    </tr>
+</table>
+</div>
 
-        <div style="float:right; margin-top:10px; margin-right:5px;">
-			<img id="menu_logout" src="image/logout.png" onclick="logout()" onmouseover="$('#menu_logout').attr('src','image/logout_hover.png');"
-            onmouseout="$('#menu_logout').attr('src','image/logout.png');" />
-        </div>
-    </div>
-	<div id="View" class="content_top">
-    	<div id="Video" style=" height:543px;">
-        	<div style="height:20px; float:top;">
-				<label id="lb_malv" style="float:left; height:20px; margin-top:5px; margin-left:10px"></label>
-				<label id="lb_fenbilv" style="float:right; margin-top:5px; margin-right:10px;"></label>
-			</div>
-			<div id="View_Tips" style="display:none;">
-				<a id="Tips" style="color:#666; text-decoration:underline;" href="http://goke.lpwei.com/IPCSetup.exe">
-						<!--Tips:请下载并安装播放插件！-->
-				</a>
-			</div>
-			<div id="View_object" style=" height:515px; margin-left:4px; margin-top:0px;">
-			</div>
-		</div>
-        <div>
-			<div id="view_ctr" >
-				<table style="width:110px; height:110px; margin-left:auto; margin-right:auto; margin-top:8px; background-image:url('image/PTZnormal_11.png')" border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td id="ptz_leftup" style="width:35px; height:35px;" onmouseover="$('#ptz_leftup').css('background-image','url(../image/PTZnormal_leftup_1.png)');" onmouseout="$('#ptz_leftup').css('background-image','');"></td>
-						<td id="ptz_up" style="width:40px; height:35px;"  onmouseover="$('#ptz_up').css('background-image','url(../image/PTZnormal_up_1.png)');" onmouseout="$('#ptz_up').css('background-image','');"></td>
-						<td id="ptz_rightup" style="width:35px; height:35px;" onmouseover="$('#ptz_rightup').css('background-image','url(../image/PTZnormal_rightup_1.png)');" onmouseout="$('#ptz_rightup').css('background-image','');"></td>
-					</tr>
-					<tr>
-						<td id="ptz_left" style="width:35px; height:40px;" onmouseover="$('#ptz_left').css('background-image','url(../image/PTZnormal_left_1.png)');" onmouseout="$('#ptz_left').css('background-image','');" ></td>
-						<td id="ptz_center" style="width:40px; height:40px;" onmouseover="$('#ptz_center').css('background-image','url(../image/PTZnormal_center.png)');" onmouseout="$('#ptz_center').css('background-image','');"></td>
-						<td id="ptz_right" style="width:35px; height:40px;" onmouseover="$('#ptz_right').css('background-image','url(../image/PTZnormal_right_1.png)');" onmouseout="$('#ptz_right').css('background-image','');"></td>
-					</tr>
-					<tr>
-						<td id="ptz_leftdown" style="width:35px; height:35px;" onmouseover="$('#ptz_leftdown').css('background-image','url(../image/PTZnormal_leftdown_1.png)');" onmouseout="$('#ptz_leftdown').css('background-image','');"></td>
-						<td id="ptz_down" style="width:40px; height:35px;" onmouseover="$('#ptz_down').css('background-image','url(../image/PTZnormal_down_1.png)');" onmouseout="$('#ptz_down').css('background-image','');"></td>
-						<td id="ptz_rightdown" style="width:35px; height:35px;" onmouseover="$('#ptz_rightdown').css('background-image','url(../image/PTZnormal_rightdown_1.png)');" onmouseout="$('#ptz_rightdown').css('background-image','');"></td>
-					</tr>
-				</table>
-				<table width="140px" style="margin-left:auto; margin-right:auto;">
-					<tr>
-						<td width="40px"><script>document.write(str_step);</script></td>
-						<td>
-						<select id="select_step" style="width:80px; height:20px;">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3" selected="selected">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
+<div style="float:right; margin-top:10px; margin-right:5px;">
+		<img id="menu_logout" src="image/logout.png" onclick="logout()" onmouseover="$('#menu_logout').attr('src','image/logout_hover.png');"
+    onmouseout="$('#menu_logout').attr('src','image/logout.png');" />
+</div>
+</div>
+<div id="View" class="content_top">
+<div id="Video" style=" height:570px;">
+	<div style="height:0px; float:top;">
+		<label id="lb_malv" style="float:left; height:20px; margin-top:5px; margin-left:10px"></label>
+			<label id="lb_fenbilv" style="float:right; margin-top:5px; margin-right:10px;"></label>
+	</div> 
+		    <div class="vxgplayer" id="vxg_media_player1" url="rtsp_url" autostart controls
+avsync nmf-src="pnacl/Release/media_player.nmf" nmf-path="media_player.nmf"></div>
+	</div>
+<div>
+		<div id="view_ctr" >
+			<table style="width:110px; height:110px; margin-left:auto; margin-right:auto; margin-top:8px; background-image:url('image/PTZnormal_11.png')" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td id="ptz_leftup" style="width:35px; height:35px;" onmouseover="$('#ptz_leftup').css('background-image','url(../image/PTZnormal_leftup_1.png)');" onmouseout="$('#ptz_leftup').css('background-image','');"></td>
+					<td id="ptz_up" style="width:40px; height:35px;"  onmouseover="$('#ptz_up').css('background-image','url(../image/PTZnormal_up_1.png)');" onmouseout="$('#ptz_up').css('background-image','');"></td>
+					<td id="ptz_rightup" style="width:35px; height:35px;" onmouseover="$('#ptz_rightup').css('background-image','url(../image/PTZnormal_rightup_1.png)');" onmouseout="$('#ptz_rightup').css('background-image','');"></td>
+				</tr>
+				<tr>
+					<td id="ptz_left" style="width:35px; height:40px;" onmouseover="$('#ptz_left').css('background-image','url(../image/PTZnormal_left_1.png)');" onmouseout="$('#ptz_left').css('background-image','');" ></td>
+					<td id="ptz_center" style="width:40px; height:40px;" onmouseover="$('#ptz_center').css('background-image','url(../image/PTZnormal_center.png)');" onmouseout="$('#ptz_center').css('background-image','');"></td>
+					<td id="ptz_right" style="width:35px; height:40px;" onmouseover="$('#ptz_right').css('background-image','url(../image/PTZnormal_right_1.png)');" onmouseout="$('#ptz_right').css('background-image','');"></td>
+				</tr>
+				<tr>
+					<td id="ptz_leftdown" style="width:35px; height:35px;" onmouseover="$('#ptz_leftdown').css('background-image','url(../image/PTZnormal_leftdown_1.png)');" onmouseout="$('#ptz_leftdown').css('background-image','');"></td>
+					<td id="ptz_down" style="width:40px; height:35px;" onmouseover="$('#ptz_down').css('background-image','url(../image/PTZnormal_down_1.png)');" onmouseout="$('#ptz_down').css('background-image','');"></td>
+					<td id="ptz_rightdown" style="width:35px; height:35px;" onmouseover="$('#ptz_rightdown').css('background-image','url(../image/PTZnormal_rightdown_1.png)');" onmouseout="$('#ptz_rightdown').css('background-image','');"></td>
+				</tr>
+			</table>
+			<table width="140px" style="margin-left:auto; margin-right:auto;">
+				<tr>
+					<td width="40px"><script>document.write(str_step);</script></td>
+					<td>
+					<select id="select_step" style="width:80px; height:20px;">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3" selected="selected">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+				    <td>
+					<script>document.write(str_language_select);</script><!--语言选择-->
+					</td>
+					<td>
+					<select id="language_select" name="" style="width:80px;" onchange="language_select_change()">
+						<option value="0">简体中文</option>
+						<!--<option value="1">Spanish</option>
+						<option value="2">Deutsch</option>
+						<option value="3">French</option>
+						<option value="4">Italian</option>
+						<option value="5">Polski</option>
+						<option value="6">한국의</option>-->
+						<option value="7">English</option>
+						<!--<option value="8">繁体中文</option>-->
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<script>document.write(str_stream_select);</script>
+					</td>
+					<td>
+						<select name="Stream_change" id="select_view_stream" style="float:left; width:80px;" onchange="view_stream_change(this.id)">
+							<option value="0"><script>document.write(str_mainstream);</script><!--主码流--></option>
+							<option value="1"><script>document.write(str_second_stream);</script><!--次码流--></option>
 						</select>
-						</td>
-					</tr>
-					<tr>
-					    <td>
-						<script>document.write(str_language_select);</script><!--语言选择-->
-						</td>
-						<td>
-						<select id="language_select" name="" style="width:80px;" onchange="language_select_change()">
-							<option value="0">简体中文</option>
-							<!--<option value="1">Spanish</option>
-							<option value="2">Deutsch</option>
-							<option value="3">French</option>
-							<option value="4">Italian</option>
-							<option value="5">Polski</option>
-							<option value="6">한국의</option>-->
-							<option value="7">English</option>
-							<!--<option value="8">繁体中文</option>-->
-						</select>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<script>document.write(str_stream_select);</script>
-						</td>
-						<td>
-							<select name="Stream_change" id="select_view_stream" style="float:left; width:80px;" onchange="view_stream_change(this.id)">
-								<option value="0"><script>document.write(str_mainstream);</script><!--主码流--></option>
-								<option value="1"><script>document.write(str_second_stream);</script><!--次码流--></option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td width="40px" align="center"><img id="view_con" src="image/contrast.png" /><!--对比度--> </td>
-						<td height="20px" width="90px;">
-							<!--<script language="javascript">
-							var A_TPL =
-							{
-								'b_vertical' : false,
-								'b_watch': true,
-								'n_controlWidth': 93,
-								'n_controlHeight': 16,
-								'n_sliderWidth': 10,
-								'n_sliderHeight': 15,
-								'n_pathLeft' : -5,
-								'n_pathTop' : 3,
-								'n_pathLength' : 90,
-								's_imgControl': 'image/ColorSlider.png',
-								's_imgSlider': 'image/SpeedNormal.png',
-								'n_zIndex': 1
-							}
-							var A_INIT6 =
-							{
-								's_name': 'sliderValue_con_view',
-								'n_minValue' : 0,
-								'n_maxValue' : 100,
-								'n_value' : 50,
-								'n_step' : 1
-							}
-							slider_con_view=new slider(A_INIT6,A_TPL);
-							</script>
-						-->
-                        <script>
-						$(function(){
-								$("#slider_con_view").slider({
-									range:"max",
-									min:0,
-									max:100,
-									value:20,
-									slide:function(event,ui)
-									{
-										$("#slider_con_view").val(ui.value);
-									},
-									stop:function(event,ui)
-									{
-										image_content_change('slider_con_view');
-									}
-									});
-									$("#slider_con_view").val($("#slider_con_view").slider("value"));
-
-
-								});
-
-							</script>
-							<div id="slider_con_view" style=""></div>
-						</td>
-					</tr>
-					<tr>
-						<td height="20px" align="center"><img id="view_bgt" src="image/brightness_24px.png" /><!--亮度--></td>
-						<td height="20px">
-								<!--<script language="javascript">
-								var A_TPL =
+					</td>
+				</tr>
+				<tr>
+					<td width="40px" align="center"><img id="view_con" src="image/contrast.png" /><!--对比度--> </td>
+					<td height="20px" width="90px;">
+						<!--<script language="javascript">
+						var A_TPL =
+						{
+							'b_vertical' : false,
+							'b_watch': true,
+							'n_controlWidth': 93,
+							'n_controlHeight': 16,
+							'n_sliderWidth': 10,
+							'n_sliderHeight': 15,
+							'n_pathLeft' : -5,
+							'n_pathTop' : 3,
+							'n_pathLength' : 90,
+							's_imgControl': 'image/ColorSlider.png',
+							's_imgSlider': 'image/SpeedNormal.png',
+							'n_zIndex': 1
+						}
+						var A_INIT6 =
+						{
+							's_name': 'sliderValue_con_view',
+							'n_minValue' : 0,
+							'n_maxValue' : 100,
+							'n_value' : 50,
+							'n_step' : 1
+						}
+						slider_con_view=new slider(A_INIT6,A_TPL);
+						</script>
+					-->
+		<script>
+					$(function(){
+							$("#slider_con_view").slider({
+								range:"max",
+								min:0,
+								max:100,
+								value:20,
+								slide:function(event,ui)
 								{
-									'b_vertical' : false,
-									'b_watch': true,
-									'n_controlWidth': 93,
-									'n_controlHeight': 16,
-									'n_sliderWidth': 10,
-									'n_sliderHeight': 15,
-									'n_pathLeft' : -5,
-									'n_pathTop' : 3,
-									'n_pathLength' : 90,
-									's_imgControl': 'image/ColorSlider.png',
-									's_imgSlider': 'image/SpeedNormal.png',
-									'n_zIndex': 1
-								}
-								var A_INIT7 =
+									$("#slider_con_view").val(ui.value);
+								},
+								stop:function(event,ui)
 								{
-									's_name': 'sliderValue_bgt_view',
-									'n_minValue' : 0,
-									'n_maxValue' : 100,
-									'n_value' : 50,
-									'n_step' : 1
+									image_content_change('slider_con_view');
 								}
-								slider_bgt_view=new slider(A_INIT7,A_TPL);
-								</script>-->
-						<script>
-						$(function(){
-								$("#slider_bgt_view").slider({
-									range:"max",
-									min:0,
-									max:100,
-									value:20,
-									slide:function(event,ui)
-									{
-										$("#slider_bgt_view").val(ui.value);
-									},
-									stop:function(event,ui)
-									{
-										image_content_change('slider_bgt_view');
-									}
-									});
-									$("#slider_bgt_view").val($("#slider_bgt_view").slider("value"));
-
 								});
-							</script>
-							<div id="slider_bgt_view" style=""></div>
-						</td>
+								$("#slider_con_view").val($("#slider_con_view").slider("value"));
 
-					</tr>
-					<tr>
-						<td height="20px" align="center"><img id="view_chorma" src="image/Color_Pallette.png" /><!--色度--></td>
-						<td height="20px">
+
+							});
+
+						</script>
+						<div id="slider_con_view" style=""></div>
+					</td>
+				</tr>
+				<tr>
+					<td height="20px" align="center"><img id="view_bgt" src="image/brightness_24px.png" /><!--亮度--></td>
+					<td height="20px">
 							<!--<script language="javascript">
 							var A_TPL =
 							{
@@ -307,798 +252,919 @@
 								's_imgSlider': 'image/SpeedNormal.png',
 								'n_zIndex': 1
 							}
-							var A_INIT8 =
+							var A_INIT7 =
 							{
-								's_name': 'sliderValue_hue_view',
+								's_name': 'sliderValue_bgt_view',
 								'n_minValue' : 0,
 								'n_maxValue' : 100,
 								'n_value' : 50,
 								'n_step' : 1
 							}
-							slider_hue_view=new slider(A_INIT8,A_TPL);
+							slider_bgt_view=new slider(A_INIT7,A_TPL);
 							</script>-->
-                            <script>
-						$(function(){
-								$("#slider_hue_view").slider({
-									range:"max",
-									min:0,
-									max:100,
-									value:20,
-									slide:function(event,ui)
-									{
-										$("#slider_hue_view").val(ui.value);
-									},
-									stop:function(event,ui)
-									{
-										image_content_change('slider_hue_view');
-									}
-									});
-									$("#slider_hue_view").val($("#slider_hue_view").slider("value"));
-
+					<script>
+					$(function(){
+							$("#slider_bgt_view").slider({
+								range:"max",
+								min:0,
+								max:100,
+								value:20,
+								slide:function(event,ui)
+								{
+									$("#slider_bgt_view").val(ui.value);
+								},
+								stop:function(event,ui)
+								{
+									image_content_change('slider_bgt_view');
+								}
 								});
-							</script>
-							<div id="slider_hue_view" style=""></div>
-						</td>
-					</tr>
-					<tr>
-						<td height="20px" align="center"><img id="view_saturation" src="image/Video_SaturationStatic.png" /><!--饱和度--></td>
-						<td height="20px">
-							<!--<script language="javascript">
-							var A_TPL =
-							{
-								'b_vertical' : false,
-								'b_watch': true,
-							   'n_controlWidth': 93,
-								'n_controlHeight': 16,
-								'n_sliderWidth': 10,
-								'n_sliderHeight': 15,
-								'n_pathLeft' : -5,
-								'n_pathTop' : 3,
-								'n_pathLength' : 90,
-								's_imgControl': 'image/ColorSlider.png',
-								's_imgSlider': 'image/SpeedNormal.png',
-								'n_zIndex': 1
-							}
-							var A_INIT9 =
-							{
-								's_name': 'sliderValue_saturation_view',
-								'n_minValue' : 0,
-								'n_maxValue' : 100,
-								'n_value' : 50,
-								'n_step' : 1
-							}
-							slider_saturation_view=new slider(A_INIT9,A_TPL);
-							</script>-->
-                                  <script>
-						$(function(){
-								$("#slider_saturation_view").slider({
-									range:"max",
-									min:0,
-									max:100,
-									value:20,
-									slide:function(event,ui)
-									{
-										$("#slider_saturation_view").val(ui.value);
-									},
-									stop:function(event,ui)
-									{
-										image_content_change('slider_saturation_view');
-									}
-									});
-									$("#slider_saturation_view").val($("#slider_saturation_view").slider("value"));
+								$("#slider_bgt_view").val($("#slider_bgt_view").slider("value"));
 
+							});
+						</script>
+						<div id="slider_bgt_view" style=""></div>
+					</td>
+
+				</tr>
+				<tr>
+					<td height="20px" align="center"><img id="view_chorma" src="image/Color_Pallette.png" /><!--色度--></td>
+					<td height="20px">
+						<!--<script language="javascript">
+						var A_TPL =
+						{
+							'b_vertical' : false,
+							'b_watch': true,
+							'n_controlWidth': 93,
+							'n_controlHeight': 16,
+							'n_sliderWidth': 10,
+							'n_sliderHeight': 15,
+							'n_pathLeft' : -5,
+							'n_pathTop' : 3,
+							'n_pathLength' : 90,
+							's_imgControl': 'image/ColorSlider.png',
+							's_imgSlider': 'image/SpeedNormal.png',
+							'n_zIndex': 1
+						}
+						var A_INIT8 =
+						{
+							's_name': 'sliderValue_hue_view',
+							'n_minValue' : 0,
+							'n_maxValue' : 100,
+							'n_value' : 50,
+							'n_step' : 1
+						}
+						slider_hue_view=new slider(A_INIT8,A_TPL);
+						</script>-->
+		    <script>
+					$(function(){
+							$("#slider_hue_view").slider({
+								range:"max",
+								min:0,
+								max:100,
+								value:20,
+								slide:function(event,ui)
+								{
+									$("#slider_hue_view").val(ui.value);
+								},
+								stop:function(event,ui)
+								{
+									image_content_change('slider_hue_view');
+								}
 								});
-							</script>
-							<div id="slider_saturation_view" style=""></div>
-						</td>
-					</tr>
-					<tr>
-						<td height="20px" align="center"><img id="view_sharpen" src="image/Video_HueStatic.png" /><!--锐度--></td>
-						<td height="20px">
-							<!--<script language="javascript">
-							var A_TPL =
-							{
-								'b_vertical' : false,
-								'b_watch': true,
-								'n_controlWidth': 93,
-								'n_controlHeight': 16,
-								'n_sliderWidth': 10,
-								'n_sliderHeight': 15,
-								'n_pathLeft' : -5,
-								'n_pathTop' : 3,
-								'n_pathLength' : 90,
-								's_imgControl': 'image/ColorSlider.png',
-								's_imgSlider': 'image/SpeedNormal.png',
-								'n_zIndex': 1
-							}
-							var A_INIT10 =
-							{
-								's_name': 'sliderValue_sharpen_view',
-								'n_minValue' : 0,
-								'n_maxValue' : 100,
-								'n_value' : 50,
-								'n_step' : 1
-							}
-							slider_sharpen_view=new slider(A_INIT10,A_TPL);
-							</script>
-                            -->       <script>
-						$(function(){
-								$("#slider_sharpen_view").slider({
-									range:"max",
-									min:0,
-									max:100,
-									value:20,
-									slide:function(event,ui)
-									{
-										$("#slider_sharpen_view").val(ui.value);
-									},
-									stop:function(event,ui)
-									{
-										image_content_change('slider_sharpen_view');
-									}
-									});
-									$("#slider_sharpen_view").val($("#slider_sharpen_view").slider("value"));
+								$("#slider_hue_view").val($("#slider_hue_view").slider("value"));
 
+							});
+						</script>
+						<div id="slider_hue_view" style=""></div>
+					</td>
+				</tr>
+				<tr>
+					<td height="20px" align="center"><img id="view_saturation" src="image/Video_SaturationStatic.png" /><!--饱和度--></td>
+					<td height="20px">
+						<!--<script language="javascript">
+						var A_TPL =
+						{
+							'b_vertical' : false,
+							'b_watch': true,
+						   'n_controlWidth': 93,
+							'n_controlHeight': 16,
+							'n_sliderWidth': 10,
+							'n_sliderHeight': 15,
+							'n_pathLeft' : -5,
+							'n_pathTop' : 3,
+							'n_pathLength' : 90,
+							's_imgControl': 'image/ColorSlider.png',
+							's_imgSlider': 'image/SpeedNormal.png',
+							'n_zIndex': 1
+						}
+						var A_INIT9 =
+						{
+							's_name': 'sliderValue_saturation_view',
+							'n_minValue' : 0,
+							'n_maxValue' : 100,
+							'n_value' : 50,
+							'n_step' : 1
+						}
+						slider_saturation_view=new slider(A_INIT9,A_TPL);
+						</script>-->
+			  <script>
+					$(function(){
+							$("#slider_saturation_view").slider({
+								range:"max",
+								min:0,
+								max:100,
+								value:20,
+								slide:function(event,ui)
+								{
+									$("#slider_saturation_view").val(ui.value);
+								},
+								stop:function(event,ui)
+								{
+									image_content_change('slider_saturation_view');
+								}
 								});
-							</script>
-							<div id="slider_sharpen_view" style=""></div>
-						</td>
-					</tr>
-				</table>
-				<table width="140px" style="margin-left:auto; margin-right:auto;">
-					<tr>
-						<td align="center"><input type="image" style="" id="img_snashot" src="image/screenshot.png" onclick="Snapshot()" /></td>
-						<td align="center" style="display:none;"><input type="image" style="margin-top:2px;" id="img_record" src="image/record.png" onclick="record()"/></td>
-						<td align="center">
-							<input type="image" id="img_voice_on" style="display:none;" src="image/voice_on.png" onclick="voice_ctr(this.id)"/>
-							<input type="image" id="img_voice_close" style="" src="image/voice_close.png" onclick="voice_ctr(this.id)"/>
-						</td>
-						<td align="center">
-							<input type="image" id="img_voicetalk_on" style="display:none;" src="image/voicetalk_on.png" onclick="voicetalk_ctr(this.id)"/>
-							<input type="image" id="img_voicetalk_off" style="" src="image/voicetalk_off.png" onclick="voicetalk_ctr(this.id)"/>
-						</td>
-						<td align="center">
-							<input type="image" id="img_pcrecord_on" style="display:none;" src="image/pcrecord_on.png" onclick="pcrecord_ctr(this.id)"/>
-							<input type="image" id="img_pcrecord_off" style="" src="image/pcrecord_off.png" onclick="pcrecord_ctr(this.id)"/>
-						</td>
-						<td align="center"><img id="view_ctr_reset" src="image/Refresh_24px.png" onclick="image_content_change(this.id)"/></td>
+								$("#slider_saturation_view").val($("#slider_saturation_view").slider("value"));
 
-					</tr>
-				</table>
-			</div>
+							});
+						</script>
+						<div id="slider_saturation_view" style=""></div>
+					</td>
+				</tr>
+				<tr>
+					<td height="20px" align="center"><img id="view_sharpen" src="image/Video_HueStatic.png" /><!--锐度--></td>
+					<td height="20px">
+						<!--<script language="javascript">
+						var A_TPL =
+						{
+							'b_vertical' : false,
+							'b_watch': true,
+							'n_controlWidth': 93,
+							'n_controlHeight': 16,
+							'n_sliderWidth': 10,
+							'n_sliderHeight': 15,
+							'n_pathLeft' : -5,
+							'n_pathTop' : 3,
+							'n_pathLength' : 90,
+							's_imgControl': 'image/ColorSlider.png',
+							's_imgSlider': 'image/SpeedNormal.png',
+							'n_zIndex': 1
+						}
+						var A_INIT10 =
+						{
+							's_name': 'sliderValue_sharpen_view',
+							'n_minValue' : 0,
+							'n_maxValue' : 100,
+							'n_value' : 50,
+							'n_step' : 1
+						}
+						slider_sharpen_view=new slider(A_INIT10,A_TPL);
+						</script>
+		    -->       <script>
+					$(function(){
+							$("#slider_sharpen_view").slider({
+								range:"max",
+								min:0,
+								max:100,
+								value:20,
+								slide:function(event,ui)
+								{
+									$("#slider_sharpen_view").val(ui.value);
+								},
+								stop:function(event,ui)
+								{
+									image_content_change('slider_sharpen_view');
+								}
+								});
+								$("#slider_sharpen_view").val($("#slider_sharpen_view").slider("value"));
+
+							});
+						</script>
+						<div id="slider_sharpen_view" style=""></div>
+					</td>
+				</tr>
+			</table>
+			<table width="140px" style="margin-left:auto; margin-right:auto;">
+				<tr>
+					<td align="center"><input type="image" style="" id="img_snashot" src="image/screenshot.png" onclick="Snapshot()" /></td>
+					<td align="center" style="display:none;"><input type="image" style="margin-top:2px;" id="img_record" src="image/record.png" onclick="record()"/></td>
+					<td align="center">
+						<input type="image" id="img_voice_on" style="display:none;" src="image/voice_on.png" onclick="voice_ctr(this.id)"/>
+						<input type="image" id="img_voice_close" style="" src="image/voice_close.png" onclick="voice_ctr(this.id)"/>
+					</td>
+					<td align="center">
+						<input type="image" id="img_voicetalk_on" style="display:none;" src="image/voicetalk_on.png" onclick="voicetalk_ctr(this.id)"/>
+						<input type="image" id="img_voicetalk_off" style="" src="image/voicetalk_off.png" onclick="voicetalk_ctr(this.id)"/>
+					</td>
+					<td align="center">
+						<input type="image" id="img_pcrecord_on" style="display:none;" src="image/pcrecord_on.png" onclick="pcrecord_ctr(this.id)"/>
+						<input type="image" id="img_pcrecord_off" style="" src="image/pcrecord_off.png" onclick="pcrecord_ctr(this.id)"/>
+					</td>
+					<td align="center"><img id="view_ctr_reset" src="image/Refresh_24px.png" onclick="image_content_change(this.id)"/></td>
+
+				</tr>
+			</table>
 		</div>
 	</div>
-	<script type="text/javascript">
-		$(function () {
-			$(".ny_zblb1 ul li").click(function(){
-				var thisSpan=$(this);
-				$(".ny_zblb1 ul li ul").prev("a").removeClass("cur");
-				$("ul", this).prev("a").addClass("cur");
-				$(this).children("ul").slideDown("fast");
-				$(this).siblings().children("ul").slideUp("fast");
-			});
+</div>
+<script type="text/javascript">
+	$(function () {
+		$(".ny_zblb1 ul li").click(function(){
+			var thisSpan=$(this);
+			$(".ny_zblb1 ul li ul").prev("a").removeClass("cur");
+			$("ul", this).prev("a").addClass("cur");
+			$(this).children("ul").slideDown("fast");
+			$(this).siblings().children("ul").slideUp("fast");
 		});
-    </script>
-	<div id="Setting" class="content_top" style="display:none;">
-        <div id="Set_Menu" class="mid_left">
-            <div class="ny_zblb1">
-				<ul class="clearfix">
-					<li class="li_first">
-						<a id="a_first" href="javascript:void(0)"><script>document.write(str_video_parameter);</script><!--视频参数--></a>
-						<ul style="display:block;">
-							<li><a href="javascript:void(0)" onclick="Div_ShoworHidden('Set_Image')"><script>document.write(str_image);</script><!--图像--></a></li>
-							<li><a href="javascript:void(0)" onclick="Div_ShoworHidden('Set_Video')"><script>document.write(str_video);</script><!--视频--></a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:void(0)"><script>document.write(str_network);</script><!--网络--></a>
-						<ul>
-							<li><a href="javascript:void(0)"  onclick="Div_ShoworHidden('Net_Access')"><script>document.write(str_network_access);</script><!--访问--></a></li>
-							<li><a href="javascript:void(0)" onclick="Div_ShoworHidden('Platform_Access')"><script>document.write(str_platform_access);</script><!--平台接入--></a></li>
-							<li id='gb28181_li'><a href="javascript:void(0)" onclick="Div_ShoworHidden('gb28181')"><script>document.write(str_gb28181);</script><!--GB28181--></a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="javascript:void(0)"><script>document.write(str_system_parameter);</script><!--系统参数--></a>
-						<ul>
-							<li><a id="user_manage" href="javascript:void(0)" onclick="Div_ShoworHidden('UserManage')"><script>document.write(str_user_manage);</script><!--用户管理--></a></li>
-							<li><a href="javascript:void(0)" onclick="Div_ShoworHidden('SystemSetting')"><script>document.write(str_system_manage);</script><!--系统管理--></a></li>
-						</ul>
-					</li>
-				</ul>
-            </div>
-            <div id="tipMessage">
-            </div>
-        </div>
-        <div id="Set_Conten" class="mid_right">
-        <div id="Set_Image">
-			<div id="TabbedPanels1" class="TabbedPanels">
-                <ul class="TabbedPanelsTabGroup">
-                    <li class="TabbedPanelsTab" tabindex="0"><script>document.write(str_basic_parameter);</script><!--基本参数--></li>
-                </ul>
-                <div class="TabbedPanelsContentGroup">
-                    <div class="TabbedPanelsContent">
-                        <div id="View_Image_Basic" class="div_obj">
-                        </div>
-                        <div class="div_ctr">
-							<table width="290" border="0">
-								<tr class="noneStyle">
-									<td width="100" height="20px" align="right"><script>document.write(str_pwm_control);</script><!--PWM控制--></td>
-									<td width="190" height="20px" align="left">
-									<select name="select_pwm_control" id="select_pwm_control" style="width:150px; height:20px; margin-left:10px;" onchange="pwm_iso_control(this.id)">
-										<option value="0" selected="selected"><script>document.write(str_pwm_close);</script></option>
-										<option value="1"><script>document.write(str_pwm_open);</script></option>
-										<option value="2"><script>document.write(str_pwm_auto);</script></option>
-									</select>
-									</td>
-								</tr>
-								<tr class="noneStyle">
-									<td width="100" height="20px" align="right"><script>document.write(str_pwm_iso);</script><!--PWM控制ISO阀值--></td>
-									<td width="190" height="20px" align="left">
-									<select name="select_pwm_iso" id="select_pwm_iso" style="width:150px; height:20px; margin-left:10px;" onchange="pwm_iso_control(this.id)">
-										<option value="0" selected="selected">ISO1</option>
-										<option value="1">ISO2</option>
-										<option value="2">ISO3</option>
-										<option value="3">ISO4</option>
-										<option value="4">ISO5</option>
-									</select>
-									</td>
-								</tr>
-								<tr class="noneStyle">
-									<td height="20px" align="right"> <script>document.write(str_pwm_duty);</script><!--PWM占空比-->
-									<td>
-										<table>
-											<tr>
-												<td width="20px" height="20px"><img id="pwm_duty_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" /></td>
-												<td width="110px">
-													<script>
-													$(function(){
-														$("#slider_pwm_duty").slider({
-															range:"max",
-															min:1,
-															max:99,
-															value:20,
-															slide:function(event,ui)
-															{
-																$("#sliderValue_pwm_duty").val(ui.value);
-															},
-															stop:function(event,ui)
-															{
-																pwm_iso_control('slider_pwm_duty');
-															}
-															});
-															$("#sliderValue_pwm_duty").val($("#slider_pwm_duty").slider("value"));
-														});
-													</script>
-													<div id="slider_pwm_duty" style=""></div>
-												</td>
-												<td width="20px">
-													<img id="pwm_duty_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
-												</td>
-												<td width="20px"><input name="text" id="sliderValue_pwm_duty" type="Text" style="width:25px;" disabled="disabled"/></td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								
-								<tr class="noneStyle">
-									<td width="100" height="20px" align="right"><script>document.write(str_power_frequency);</script><!--电源频率--></td>
-									<td width="190" height="20px" align="left">
-									<select name="select_power_frequency" id="select_power_frequency" style="width:150px; height:20px; margin-left:10px;" onchange="image_content_change(this.id)">
-										<option value="50" selected="selected">50HZ</option>
-										<option value="60">60HZ</option>
-									</select>
-									</td>
-								</tr>
-								<tr>
-                                <td height="20px" align="right"> <script>document.write(str_contrast);</script><!--对比度-->
-                                <td>
-                                	<table>
-                                    <tr>
-									<td width="20px" height="20px"><img id="con_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" /></td>
-									<td width="110px">
-									<script>
-									$(function(){
-										$("#slider_con").slider({
-											range:"max",
-											min:0,
-											max:100,
-											value:20,
-											slide:function(event,ui)
-											{
-												$("#sliderValue_con").val(ui.value);
-											},
-											stop:function(event,ui)
-											{
-												image_content_change('slider_con');
-											}
-											});
-											$("#sliderValue_con").val($("#slider_con").slider("value"));
-										});
-									</script>
-									<div id="slider_con" style=""></div>
-									</td>
-									<td width="20px">
-										<img id="con_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
-									</td>
-									<td width="20px"><input name="text" id="sliderValue_con" type="Text" style="width:25px;" disabled="disabled"/></td>
-                                    </tr>
-                                    </table>
+	});
+</script>
+<div id="Setting" class="content_top" style="display:none;">
+<div id="Set_Menu" class="mid_left">
+    <div class="ny_zblb1">
+			<ul class="clearfix">
+				<li class="li_first">
+					<a id="a_first" href="javascript:void(0)"><script>document.write(str_video_parameter);</script><!--视频参数--></a>
+					<ul style="display:block;">
+						<li><a href="javascript:void(0)" onclick="Div_ShoworHidden('Set_Image')"><script>document.write(str_image);</script><!--图像--></a></li>
+						<li><a href="javascript:void(0)" onclick="Div_ShoworHidden('Set_Video')"><script>document.write(str_video);</script><!--视频--></a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:void(0)"><script>document.write(str_network);</script><!--网络--></a>
+					<ul>
+						<li><a href="javascript:void(0)"  onclick="Div_ShoworHidden('Net_Access')"><script>document.write(str_network_access);</script><!--访问--></a></li>
+						<li><a href="javascript:void(0)" onclick="Div_ShoworHidden('Platform_Access')"><script>document.write(str_platform_access);</script><!--平台接入--></a></li>
+						<li id='gb28181_li'><a href="javascript:void(0)" onclick="Div_ShoworHidden('gb28181')"><script>document.write(str_gb28181);</script><!--GB28181--></a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:void(0)"><script>document.write(str_system_parameter);</script><!--系统参数--></a>
+					<ul>
+						<li><a id="user_manage" href="javascript:void(0)" onclick="Div_ShoworHidden('UserManage')"><script>document.write(str_user_manage);</script><!--用户管理--></a></li>
+						<li><a href="javascript:void(0)" onclick="Div_ShoworHidden('SystemSetting')"><script>document.write(str_system_manage);</script><!--系统管理--></a></li>
+					</ul>
+				</li>
+			</ul>
+    </div>
+    <div id="tipMessage">
+    </div>
+</div>
+<div id="Set_Conten" class="mid_right">
+<div id="Set_Image">
+		<div id="TabbedPanels1" class="TabbedPanels">
+	<ul class="TabbedPanelsTabGroup">
+	    <li class="TabbedPanelsTab" tabindex="0"><script>document.write(str_basic_parameter);</script><!--基本参数--></li>
+	</ul>
+      <div class="TabbedPanelsContentGroup">
+	    <div class="TabbedPanelsContent">
+		      <div id="View_Image_Basic" class="div_obj"> 
+      <div class="vxgplayer" style="height:484px;width:644px;margin-left:0px;margin-top:0px" id="vxg_media_player1" url="rtsp_url" autostart controls avsync nmf-src="pnacl/Release/media_player.nmf" nmf-path="media_player.nmf"></div>
 
+		      </div> 
+		<div class="div_ctr">
+						<table width="290" border="0">
+							<tr class="noneStyle">
+								<td width="100" height="20px" align="right"><script>document.write(str_pwm_control);</script><!--PWM控制--></td>
+								<td width="190" height="20px" align="left">
+								<select name="select_pwm_control" id="select_pwm_control" style="width:150px; height:20px; margin-left:10px;" onchange="pwm_iso_control(this.id)">
+									<option value="0" selected="selected"><script>document.write(str_pwm_close);</script></option>
+									<option value="1"><script>document.write(str_pwm_open);</script></option>
+									<option value="2"><script>document.write(str_pwm_auto);</script></option>
+								</select>
 								</td>
-								</tr>
-								<!--<tr>
-									<td height="20px" align="right"> <script>document.write(str_contrast);</script></td>
-									<td height="20px" width="190px">
-										<table width="190px" height="20px" border="0">
+							</tr>
+							<tr class="noneStyle">
+								<td width="100" height="20px" align="right"><script>document.write(str_pwm_iso);</script><!--PWM控制ISO阀值--></td>
+								<td width="190" height="20px" align="left">
+								<select name="select_pwm_iso" id="select_pwm_iso" style="width:150px; height:20px; margin-left:10px;" onchange="pwm_iso_control(this.id)">
+									<option value="0" selected="selected">ISO1</option>
+									<option value="1">ISO2</option>
+									<option value="2">ISO3</option>
+									<option value="3">ISO4</option>
+									<option value="4">ISO5</option>
+								</select>
+								</td>
+							</tr>
+							<tr class="noneStyle">
+								<td height="20px" align="right"> <script>document.write(str_pwm_duty);</script><!--PWM占空比-->
+								<td>
+									<table>
 										<tr>
-											<td width="20px" height="20px"><img id="con_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" /></td>
+											<td width="20px" height="20px"><img id="pwm_duty_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" /></td>
 											<td width="110px">
-											<script language="javascript">
-										var A_TPL =
-										{
-											'b_vertical' : false,
-											'b_watch': true,
-											'n_controlWidth': 110,
-											'n_controlHeight': 16,
-											'n_sliderWidth': 16,
-											'n_sliderHeight': 15,
-											'n_pathLeft' : -50,
-											'n_pathTop' : 1,
-											'n_pathLength' : 100,
-											's_imgControl': 'image/slider.png',
-											's_imgSlider': 'image/disc.png',
-											'n_zIndex': 1
-										}
-										var A_INIT =
-										{
-											's_name': 'sliderValue_con',
-											'n_minValue' : 0,
-											'n_maxValue' : 100,
-											'n_value' : 50,
-											'n_step' : 1
-										}
-										slider_con=new slider(A_INIT,A_TPL);
-										</script>
-										</td>
+												<script>
+												$(function(){
+													$("#slider_pwm_duty").slider({
+														range:"max",
+														min:1,
+														max:99,
+														value:20,
+														slide:function(event,ui)
+														{
+															$("#sliderValue_pwm_duty").val(ui.value);
+														},
+														stop:function(event,ui)
+														{
+															pwm_iso_control('slider_pwm_duty');
+														}
+														});
+														$("#sliderValue_pwm_duty").val($("#slider_pwm_duty").slider("value"));
+													});
+												</script>
+												<div id="slider_pwm_duty" style=""></div>
+											</td>
 											<td width="20px">
-											<img id="con_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
-										</td>
-											<td width="20px"><input name="text" id="sliderValue_con" type="Text" style="width:25px;" disabled="disabled"/></td>
+												<img id="pwm_duty_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+											</td>
+											<td width="20px"><input name="text" id="sliderValue_pwm_duty" type="Text" style="width:25px;" disabled="disabled"/></td>
 										</tr>
 									</table>
-									</td>
-								</tr>-->
-								<tr>
-									<td height="20px" align="right"><script>document.write(str_brightness);</script><!-- 亮度--></td>
-									<td height="20px">
-									<table width="190px">
-									<tr>
-									<td width="20px" height="20px">
-										<img id="bgt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
-									</td>
-									<td width="110px">
-									<script>
-									$(function(){
-										$("#slider_bgt").slider({
-											range:"max",
-											min:0,
-											max:100,
-											value:20,
-											slide:function(event,ui)
-											{
-												$("#sliderValue_bgt").val(ui.value);
-											},
-											stop:function(event,ui)
-											{
-												image_content_change('slider_bgt');
-											}
-											});
-											$("#sliderValue_bgt").val($("#slider_bgt").slider("value"));
-
+								</td>
+							</tr>
+							
+							<tr class="noneStyle">
+								<td width="100" height="20px" align="right"><script>document.write(str_power_frequency);</script><!--电源频率--></td>
+								<td width="190" height="20px" align="left">
+								<select name="select_power_frequency" id="select_power_frequency" style="width:150px; height:20px; margin-left:10px;" onchange="image_content_change(this.id)">
+									<option value="50" selected="selected">50HZ</option>
+									<option value="60">60HZ</option>
+								</select>
+								</td>
+							</tr>
+							<tr>
+			<td height="20px" align="right"> <script>document.write(str_contrast);</script><!--对比度-->
+			<td>
+				<table>
+			    <tr>
+								<td width="20px" height="20px"><img id="con_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" /></td>
+								<td width="110px">
+								<script>
+								$(function(){
+									$("#slider_con").slider({
+										range:"max",
+										min:0,
+										max:100,
+										value:20,
+										slide:function(event,ui)
+										{
+											$("#sliderValue_con").val(ui.value);
+										},
+										stop:function(event,ui)
+										{
+											image_content_change('slider_con');
+										}
 										});
-									</script>
-									<div id="slider_bgt" style=""></div>
-									</td>
-									<td width="20px">
-										<img id="bgt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
-									</td>
-									<td width="20px">
-										<input name="text" id="sliderValue_bgt" type="Text" style="width:25px" disabled="disabled"/>
-									</td>
-									</tr>
-									</table>
-									</td>
-								</tr>
-								<!--<tr>
-									<td height="20px" align="right"><script>document.write(str_brightness);</script></td>
-									<td height="20px">
-										<table width="190" height="20px" border="0">
-											<tr>
-												<td width="20px" height="20px">
-													<img id="bgt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
-												</td>
-												<td width="110px">
-												<script language="javascript">
-												var A_TPL =
-												{
-													'b_vertical' : false,
-													'b_watch': true,
-													'n_controlWidth': 110,
-													'n_controlHeight': 16,
-													'n_sliderWidth': 16,
-													'n_sliderHeight': 15,
-													'n_pathLeft' :-50,
-													'n_pathTop' : 1,
-													'n_pathLength' : 100,
-													's_imgControl': 'image/slider.png',
-													's_imgSlider': 'image/disc.png',
-													'n_zIndex': 1
-												}
-												var A_INIT1 =
-												{
-													's_name': 'sliderValue_bgt',
-													'n_minValue' : 0,
-													'n_maxValue' : 100,
-													'n_value' : 50,
-													'n_step' : 1
-												}
-												slider_bgt=new slider(A_INIT1,A_TPL);
-												</script>
-												</td>
-												<td width="20px">
-													<img id="bgt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
-												</td>
-												<td width="20px">
-													<input name="text" id="sliderValue_bgt" type="Text" style="width:25px" disabled="disabled"/>
-												</td>
-											</tr>
-										</table>
-									</td>
-								</tr>-->
-								<tr>
-									<td height="20px" align="right"><script>document.write(str_chroma);</script><!--色度--></td>
-									<td height="20px">
-									<table width="190px">
-									<tr>
-									<td width="20px" height="20px">
-										<img id="hue_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
-									</td>
-									<td width="110px">
-									<script>
-									$(function(){
-										$("#slider_hue").slider({
-											range:"max",
-											min:0,
-											max:100,
-											value:20,
-											slide:function(event,ui)
-											{
-												$("#sliderValue_hue").val(ui.value);
-											},
-											stop:function(event,ui)
-											{
-												image_content_change('slider_hue');
-											}
-											});
-											$("#sliderValue_hue").val($("#slider_hue").slider("value"));
+										$("#sliderValue_con").val($("#slider_con").slider("value"));
+									});
+								</script>
+								<div id="slider_con" style=""></div>
+								</td>
+								<td width="20px">
+									<img id="con_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+								</td>
+								<td width="20px"><input name="text" id="sliderValue_con" type="Text" style="width:25px;" disabled="disabled"/></td>
+			    </tr>
+			    </table>
 
-										});
-									</script>
-									<div id="slider_hue" style=""></div>
-									</td>
-									<td width="20px">
-										<img id="hue_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
-									</td>
-									<td width="20px">
-										<input name="text" id="sliderValue_hue" type="Text" style="width:25px" disabled="disabled"/>
-									</td>
-									</tr>
-									</table>
-									</td>
-								</tr>
-								<!--<tr>
-									<td height="20px" align="right"><script>document.write(str_chroma);</script></td>
-									<td height="20px">
-												<table width="190" height="20px" border="0">
-												<tr>
-												<td width="20px" height="20px">
-													<img id="hue_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
-												</td>
-												<td width="110px">
-												<script language="javascript">
-												var A_TPL =
-												{
-													'b_vertical' : false,
-													'b_watch': true,
-													'n_controlWidth': 110,
-													'n_controlHeight': 16,
-													'n_sliderWidth': 16,
-													'n_sliderHeight': 15,
-													'n_pathLeft' : -50,
-													'n_pathTop' : 1,
-													'n_pathLength' : 100,
-													's_imgControl': 'image/slider.png',
-													's_imgSlider': 'image/disc.png',
-													'n_zIndex': 1
-												}
-												var A_INIT2 =
-												{
-													's_name': 'sliderValue_hue',
-													'n_minValue' : 0,
-													'n_maxValue' : 100,
-													'n_value' : 50,
-													'n_step' : 1
-												}
-												slider_hue=new slider(A_INIT2,A_TPL);
-												</script>
-												</td>
-												<td width="20px">
-													<img id="hue_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
-												</td>
-												<td width="20px"><input name="text" id="sliderValue_hue" type="Text" style="width:25px" disabled="disabled"/>
-												</td>
-											</tr>
-											</table>
-										</td>
-								</tr>-->
-								<tr>
-									<td height="20px" align="right"><script>document.write(str_aturation);</script><!--饱和度--></td>
-									<td height="20px">
-									<table width="190px">
+							</td>
+							</tr>
+							<!--<tr>
+								<td height="20px" align="right"> <script>document.write(str_contrast);</script></td>
+								<td height="20px" width="190px">
+									<table width="190px" height="20px" border="0">
 									<tr>
-									<td width="20px" height="20px">
-										<img id="stt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
-									</td>
-									<td width="110px">
-									<script>
-									$(function(){
-										$("#slider_saturation").slider({
-											range:"max",
-											min:0,
-											max:100,
-											value:20,
-											slide:function(event,ui)
-											{
-												$("#sliderValue_saturation").val(ui.value);
-											},
-											stop:function(event,ui)
-											{
-												image_content_change('slider_saturation');
-											}
-											});
-											$("#sliderValue_saturation").val($("#slider_saturation").slider("value"));
-
-										});
+										<td width="20px" height="20px"><img id="con_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" /></td>
+										<td width="110px">
+										<script language="javascript">
+									var A_TPL =
+									{
+										'b_vertical' : false,
+										'b_watch': true,
+										'n_controlWidth': 110,
+										'n_controlHeight': 16,
+										'n_sliderWidth': 16,
+										'n_sliderHeight': 15,
+										'n_pathLeft' : -50,
+										'n_pathTop' : 1,
+										'n_pathLength' : 100,
+										's_imgControl': 'image/slider.png',
+										's_imgSlider': 'image/disc.png',
+										'n_zIndex': 1
+									}
+									var A_INIT =
+									{
+										's_name': 'sliderValue_con',
+										'n_minValue' : 0,
+										'n_maxValue' : 100,
+										'n_value' : 50,
+										'n_step' : 1
+									}
+									slider_con=new slider(A_INIT,A_TPL);
 									</script>
-									<div id="slider_saturation" style=""></div>
 									</td>
-									<td width="20px">
-										<img id="stt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+										<td width="20px">
+										<img id="con_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
 									</td>
-									<td width="20px">
-										<input name="text" id="sliderValue_saturation" type="Text" style="width:25px" disabled="disabled"/>
-									</td>
+										<td width="20px"><input name="text" id="sliderValue_con" type="Text" style="width:25px;" disabled="disabled"/></td>
 									</tr>
-									</table>
-									</td>
+								</table>
+								</td>
+							</tr>-->
+							<tr>
+								<td height="20px" align="right"><script>document.write(str_brightness);</script><!-- 亮度--></td>
+								<td height="20px">
+								<table width="190px">
+								<tr>
+								<td width="20px" height="20px">
+									<img id="bgt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+								</td>
+								<td width="110px">
+								<script>
+								$(function(){
+									$("#slider_bgt").slider({
+										range:"max",
+										min:0,
+										max:100,
+										value:20,
+										slide:function(event,ui)
+										{
+											$("#sliderValue_bgt").val(ui.value);
+										},
+										stop:function(event,ui)
+										{
+											image_content_change('slider_bgt');
+										}
+										});
+										$("#sliderValue_bgt").val($("#slider_bgt").slider("value"));
+
+									});
+								</script>
+								<div id="slider_bgt" style=""></div>
+								</td>
+								<td width="20px">
+									<img id="bgt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+								</td>
+								<td width="20px">
+									<input name="text" id="sliderValue_bgt" type="Text" style="width:25px" disabled="disabled"/>
+								</td>
 								</tr>
-								<!--<tr>
-									<td height="20px" align="right"><script>document.write(str_aturation);</script></td>
-									<td height="20px">
+								</table>
+								</td>
+							</tr>
+							<!--<tr>
+								<td height="20px" align="right"><script>document.write(str_brightness);</script></td>
+								<td height="20px">
+									<table width="190" height="20px" border="0">
+										<tr>
+											<td width="20px" height="20px">
+												<img id="bgt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+											</td>
+											<td width="110px">
+											<script language="javascript">
+											var A_TPL =
+											{
+												'b_vertical' : false,
+												'b_watch': true,
+												'n_controlWidth': 110,
+												'n_controlHeight': 16,
+												'n_sliderWidth': 16,
+												'n_sliderHeight': 15,
+												'n_pathLeft' :-50,
+												'n_pathTop' : 1,
+												'n_pathLength' : 100,
+												's_imgControl': 'image/slider.png',
+												's_imgSlider': 'image/disc.png',
+												'n_zIndex': 1
+											}
+											var A_INIT1 =
+											{
+												's_name': 'sliderValue_bgt',
+												'n_minValue' : 0,
+												'n_maxValue' : 100,
+												'n_value' : 50,
+												'n_step' : 1
+											}
+											slider_bgt=new slider(A_INIT1,A_TPL);
+											</script>
+											</td>
+											<td width="20px">
+												<img id="bgt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+											</td>
+											<td width="20px">
+												<input name="text" id="sliderValue_bgt" type="Text" style="width:25px" disabled="disabled"/>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>-->
+							<tr>
+								<td height="20px" align="right"><script>document.write(str_chroma);</script><!--色度--></td>
+								<td height="20px">
+								<table width="190px">
+								<tr>
+								<td width="20px" height="20px">
+									<img id="hue_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+								</td>
+								<td width="110px">
+								<script>
+								$(function(){
+									$("#slider_hue").slider({
+										range:"max",
+										min:0,
+										max:100,
+										value:20,
+										slide:function(event,ui)
+										{
+											$("#sliderValue_hue").val(ui.value);
+										},
+										stop:function(event,ui)
+										{
+											image_content_change('slider_hue');
+										}
+										});
+										$("#sliderValue_hue").val($("#slider_hue").slider("value"));
+
+									});
+								</script>
+								<div id="slider_hue" style=""></div>
+								</td>
+								<td width="20px">
+									<img id="hue_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+								</td>
+								<td width="20px">
+									<input name="text" id="sliderValue_hue" type="Text" style="width:25px" disabled="disabled"/>
+								</td>
+								</tr>
+								</table>
+								</td>
+							</tr>
+							<!--<tr>
+								<td height="20px" align="right"><script>document.write(str_chroma);</script></td>
+								<td height="20px">
 											<table width="190" height="20px" border="0">
 											<tr>
-												<td width="20px" height="20px">
-													<img id="stt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
-												</td>
-												<td width="110px">
-												<script language="javascript">
-												var A_TPL =
-												{
-													'b_vertical' : false,
-													'b_watch': true,
-													'n_controlWidth': 110,
-													'n_controlHeight': 16,
-													'n_sliderWidth': 16,
-													'n_sliderHeight': 15,
-													'n_pathLeft' : -50,
-													'n_pathTop' : 1,
-													'n_pathLength' : 100,
-													's_imgControl': 'image/slider.png',
-													's_imgSlider': 'image/disc.png',
-													'n_zIndex': 1
-												}
-												var A_INIT3 =
-												{
-													's_name': 'sliderValue_saturation',
-													'n_minValue' : 0,
-													'n_maxValue' : 100,
-													'n_value' : 50,
-													'n_step' : 1
-												}
-												slider_saturation=new slider(A_INIT3,A_TPL);
-												</script>
-												</td>
-												<td width="20px">
-													<img id="stt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
-												</td>
-												<td width="20px">
-													<input name="text" id="sliderValue_saturation" type="Text" style="width:25px"  disabled="disabled" />
-												</td>
-											</tr>
-										</table>
-									</td>
-								</tr>-->
-								<tr>
-									<td height="20px" align="right"><script>document.write(str_sharpen);</script><!--锐度--></td>
-									<td height="20px">
-									<table width="190px">
-									<tr>
-									<td width="20px" height="20px">
-										<img id="sharpen_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
-									</td>
-									<td width="110px">
-									<script>
-									$(function(){
-										$("#slider_sharpen").slider({
-											range:"max",
-											min:0,
-											max:100,
-											value:20,
-											slide:function(event,ui)
+											<td width="20px" height="20px">
+												<img id="hue_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+											</td>
+											<td width="110px">
+											<script language="javascript">
+											var A_TPL =
 											{
-												$("#sliderValue_sharpen").val(ui.value);
-											},
-											stop:function(event,ui)
-											{
-												image_content_change('slider_sharpen');
+												'b_vertical' : false,
+												'b_watch': true,
+												'n_controlWidth': 110,
+												'n_controlHeight': 16,
+												'n_sliderWidth': 16,
+												'n_sliderHeight': 15,
+												'n_pathLeft' : -50,
+												'n_pathTop' : 1,
+												'n_pathLength' : 100,
+												's_imgControl': 'image/slider.png',
+												's_imgSlider': 'image/disc.png',
+												'n_zIndex': 1
 											}
-											});
-											$("#sliderValue_sharpen").val($("#slider_sharpen").slider("value"));
-
-										});
-									</script>
-									<div id="slider_sharpen" style=""></div>
-									</td>
-									<td width="20px">
-										<img id="sharpen_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
-									</td>
-									<td width="20px">
-										<input name="text" id="sliderValue_sharpen" type="Text" style="width:25px" disabled="disabled"/>
-									</td>
-									</tr>
-									</table>
-									</td>
-								</tr>
-								<!--<tr>
-									<td height="20px" align="right"><script>document.write(str_sharpen);</script></td>
-									<td height="20px">
-										<table width="190" height="20px" border="0">
-											<tr>
-												<td width="20px" height="20px">
-													<img id="sharpen_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
-												</td>
-												<td  width="110px">
-													<script language="javascript">
-												var A_TPL =
-												{
-													'b_vertical' : false,
-													'b_watch': true,
-													'n_controlWidth': 110,
-													'n_controlHeight': 16,
-													'n_sliderWidth': 16,
-													'n_sliderHeight': 15,
-													'n_pathLeft' : -50,
-													'n_pathTop' : 1,
-													'n_pathLength' : 100,
-													's_imgControl': 'image/slider.png',
-													's_imgSlider': 'image/disc.png',
-													'n_zIndex': 1
-												}
-												var A_INIT4 =
-												{
-													's_name': 'sliderValue_sharpen',
-													'n_minValue' : 0,
-													'n_maxValue' : 100,
-													'n_value' : 50,
-													'n_step' : 1
-												}
-												slider_sharpen=new slider(A_INIT4,A_TPL);
-												</script>
-												</td>
-												<td  width="20px">
-													<img id="sharpen_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
-												</td>
-												<td width="20px"><input name="text" id="sliderValue_sharpen" type="Text" style="width:25px"  disabled="disabled" /></td>
-											</tr>
+											var A_INIT2 =
+											{
+												's_name': 'sliderValue_hue',
+												'n_minValue' : 0,
+												'n_maxValue' : 100,
+												'n_value' : 50,
+												'n_step' : 1
+											}
+											slider_hue=new slider(A_INIT2,A_TPL);
+											</script>
+											</td>
+											<td width="20px">
+												<img id="hue_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+											</td>
+											<td width="20px"><input name="text" id="sliderValue_hue" type="Text" style="width:25px" disabled="disabled"/>
+											</td>
+										</tr>
 										</table>
 									</td>
-								</tr>-->
+							</tr>-->
+							<tr>
+								<td height="20px" align="right"><script>document.write(str_aturation);</script><!--饱和度--></td>
+								<td height="20px">
+								<table width="190px">
+								<tr>
+								<td width="20px" height="20px">
+									<img id="stt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+								</td>
+								<td width="110px">
+								<script>
+								$(function(){
+									$("#slider_saturation").slider({
+										range:"max",
+										min:0,
+										max:100,
+										value:20,
+										slide:function(event,ui)
+										{
+											$("#sliderValue_saturation").val(ui.value);
+										},
+										stop:function(event,ui)
+										{
+											image_content_change('slider_saturation');
+										}
+										});
+										$("#sliderValue_saturation").val($("#slider_saturation").slider("value"));
 
-								<tr class="noneStyle">
-									<td align="right"><script>document.write(str_situational_model);</script><!--情景模式--></td>
-									<td align="left">
-										<label for="select_5_1"></label>
-										<select name="select_5_1" id="select_scen_mode" style="width:150px; height:20px;"  onChange="image_content_change(this.id)">
-											<option value="0" selected="selected"><script>document.write(str_automatic);</script><!--自动--></option>
-											<option value="1"><script>document.write(str_sm_indoor);</script><!--室内--></option>
-											<option value="2"><script>document.write(str_sm_outdoor);</script><!--室外--></option>
-										</select>
-									</td>
+									});
+								</script>
+								<div id="slider_saturation" style=""></div>
+								</td>
+								<td width="20px">
+									<img id="stt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+								</td>
+								<td width="20px">
+									<input name="text" id="sliderValue_saturation" type="Text" style="width:25px" disabled="disabled"/>
+								</td>
 								</tr>
-								<tr class="noneStyle">
-									<td align="right"><script>document.write(str_image_style);</script><!--图像风格--></td>
-									<td align="left">
-										<label for="select_5_2"></label>
-										<select name="select_5_2" id="select_pic_style" style="width:150px; height:20px;" onChange="image_content_change(this.id)">
-											<option value="0" selected="selected"><script>document.write(str_imgs_standard);</script><!--标准--></option>
-											<option value="1"><script>document.write(str_imgs_bright);</script><!--明亮--></option>
-											<option value="2"><script>document.write(str_imgs_gorgeous);</script><!--艳丽--></option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td align="right"><script>document.write(str_white_balance_mode);</script><!--白平衡模式--></td>
-									<td align="left">
-										<label for="select_5_3"></label>
-										<select name="select_5_3" id="select_awb_mode" style="width:150px; height:20px;" onChange="image_content_change(this.id)">
-											<option value="0"><script>document.write(str_automatic);</script><!--自动--></option>
-											<option value="1"><script>document.write(str_sm_indoor);</script><!--室内--></option>
-											<option value="2"><script>document.write(str_sm_outdoor);</script><!--室外--></option>
-										</select>
-									</td>
-								</tr>
-								<tr style="display:none;">
-									<td align="right"><script>document.write(str_detection_mode);</script><!--ircut检测模式--></td>
-									<td align="left">
-										<select name="select_ircut" id="select_ircut_control_mode" style="width:150px; height:20px;" onChange="image_content_change(this.id)" >
-										<option value="0" selected="selected"><script>document.write(str_dm_hardware);</script><!--软件--></option>
-										<option value="1"><script>document.write(str_dm_software);</script><!--硬件--></option>
-									</select>
-									</td>
-								</tr>
-								<tr>
-									<td align="right"><script>document.write(str_daynight_mode);</script><!--日夜模式--></td>
-									<td align="left">
-										<label for="select_5_5"></label>
-										<select name="select_5_5" id="select_ircut_mode" style="width:150px; height:20px;" onChange="image_content_change(this.id)">
-											<option value="0"><script>document.write(str_automatic);</script><!--自动--></option>
-											<option value="1"><script>document.write(str_dnm_day);</script><!--白天--></option>
-											<option value="2"><script>document.write(str_dnm_night);</script><!--夜晚--></option>
-											<option value="3"><script>document.write(str_dnm_autocolor);</script><!--自动全彩--></option>
-										</select>
-									</td>
-								</tr>
-								<tr style="display:none;">
-									<td align="right"><script>document.write(str_wide_dynamic);</script><!--宽动态--></td>
-									<td align="left">
-											<table width="200">
-												<tr>
-												<td>
-													<label>
-													<input type="radio" name="wide_dynamic" value="0" id="wide_dynamic_0" onclick="wide_dynamic_radio_change(this.id)" />
-													<script>document.write(str_rb_close);</script><!--关闭-->
-												</label>
-												</td>
-												<td>
-													<label>
-													<input type="radio" name="wide_dynamic" value="1" id="wide_dynamic_1" onclick="wide_dynamic_radio_change(this.id)" />
-													<script>document.write(str_rb_open);</script><!--开启-->
-												</label>
-												</td>
-											</tr>
-											</table>
-									</td>
-								</tr>
-								<tr id ="tr_wide_dynamic_range"  style="display:none;" >
-									<td align="right"><script>document.write(str_wide_dynamic_range);</script><!--宽动态范围--></td>
-									<td align="left">
+								</table>
+								</td>
+							</tr>
+							<!--<tr>
+								<td height="20px" align="right"><script>document.write(str_aturation);</script></td>
+								<td height="20px">
 										<table width="190" height="20px" border="0">
 										<tr>
-											<td height="20px" width="20px">
-											<img id="wide_dynamic_range_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+											<td width="20px" height="20px">
+												<img id="stt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+											</td>
+											<td width="110px">
+											<script language="javascript">
+											var A_TPL =
+											{
+												'b_vertical' : false,
+												'b_watch': true,
+												'n_controlWidth': 110,
+												'n_controlHeight': 16,
+												'n_sliderWidth': 16,
+												'n_sliderHeight': 15,
+												'n_pathLeft' : -50,
+												'n_pathTop' : 1,
+												'n_pathLength' : 100,
+												's_imgControl': 'image/slider.png',
+												's_imgSlider': 'image/disc.png',
+												'n_zIndex': 1
+											}
+											var A_INIT3 =
+											{
+												's_name': 'sliderValue_saturation',
+												'n_minValue' : 0,
+												'n_maxValue' : 100,
+												'n_value' : 50,
+												'n_step' : 1
+											}
+											slider_saturation=new slider(A_INIT3,A_TPL);
+											</script>
+											</td>
+											<td width="20px">
+												<img id="stt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+											</td>
+											<td width="20px">
+												<input name="text" id="sliderValue_saturation" type="Text" style="width:25px"  disabled="disabled" />
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>-->
+							<tr>
+								<td height="20px" align="right"><script>document.write(str_sharpen);</script><!--锐度--></td>
+								<td height="20px">
+								<table width="190px">
+								<tr>
+								<td width="20px" height="20px">
+									<img id="sharpen_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+								</td>
+								<td width="110px">
+								<script>
+								$(function(){
+									$("#slider_sharpen").slider({
+										range:"max",
+										min:0,
+										max:100,
+										value:20,
+										slide:function(event,ui)
+										{
+											$("#sliderValue_sharpen").val(ui.value);
+										},
+										stop:function(event,ui)
+										{
+											image_content_change('slider_sharpen');
+										}
+										});
+										$("#sliderValue_sharpen").val($("#slider_sharpen").slider("value"));
+
+									});
+								</script>
+								<div id="slider_sharpen" style=""></div>
+								</td>
+								<td width="20px">
+									<img id="sharpen_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+								</td>
+								<td width="20px">
+									<input name="text" id="sliderValue_sharpen" type="Text" style="width:25px" disabled="disabled"/>
+								</td>
+								</tr>
+								</table>
+								</td>
+							</tr>
+							<!--<tr>
+								<td height="20px" align="right"><script>document.write(str_sharpen);</script></td>
+								<td height="20px">
+									<table width="190" height="20px" border="0">
+										<tr>
+											<td width="20px" height="20px">
+												<img id="sharpen_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+											</td>
+											<td  width="110px">
+												<script language="javascript">
+											var A_TPL =
+											{
+												'b_vertical' : false,
+												'b_watch': true,
+												'n_controlWidth': 110,
+												'n_controlHeight': 16,
+												'n_sliderWidth': 16,
+												'n_sliderHeight': 15,
+												'n_pathLeft' : -50,
+												'n_pathTop' : 1,
+												'n_pathLength' : 100,
+												's_imgControl': 'image/slider.png',
+												's_imgSlider': 'image/disc.png',
+												'n_zIndex': 1
+											}
+											var A_INIT4 =
+											{
+												's_name': 'sliderValue_sharpen',
+												'n_minValue' : 0,
+												'n_maxValue' : 100,
+												'n_value' : 50,
+												'n_step' : 1
+											}
+											slider_sharpen=new slider(A_INIT4,A_TPL);
+											</script>
+											</td>
+											<td  width="20px">
+												<img id="sharpen_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+											</td>
+											<td width="20px"><input name="text" id="sliderValue_sharpen" type="Text" style="width:25px"  disabled="disabled" /></td>
+										</tr>
+									</table>
+								</td>
+							</tr>-->
+
+							<tr class="noneStyle">
+								<td align="right"><script>document.write(str_situational_model);</script><!--情景模式--></td>
+								<td align="left">
+									<label for="select_5_1"></label>
+									<select name="select_5_1" id="select_scen_mode" style="width:150px; height:20px;"  onChange="image_content_change(this.id)">
+										<option value="0" selected="selected"><script>document.write(str_automatic);</script><!--自动--></option>
+										<option value="1"><script>document.write(str_sm_indoor);</script><!--室内--></option>
+										<option value="2"><script>document.write(str_sm_outdoor);</script><!--室外--></option>
+									</select>
+								</td>
+							</tr>
+							<tr class="noneStyle">
+								<td align="right"><script>document.write(str_image_style);</script><!--图像风格--></td>
+								<td align="left">
+									<label for="select_5_2"></label>
+									<select name="select_5_2" id="select_pic_style" style="width:150px; height:20px;" onChange="image_content_change(this.id)">
+										<option value="0" selected="selected"><script>document.write(str_imgs_standard);</script><!--标准--></option>
+										<option value="1"><script>document.write(str_imgs_bright);</script><!--明亮--></option>
+										<option value="2"><script>document.write(str_imgs_gorgeous);</script><!--艳丽--></option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td align="right"><script>document.write(str_white_balance_mode);</script><!--白平衡模式--></td>
+								<td align="left">
+									<label for="select_5_3"></label>
+									<select name="select_5_3" id="select_awb_mode" style="width:150px; height:20px;" onChange="image_content_change(this.id)">
+										<option value="0"><script>document.write(str_automatic);</script><!--自动--></option>
+										<option value="1"><script>document.write(str_sm_indoor);</script><!--室内--></option>
+										<option value="2"><script>document.write(str_sm_outdoor);</script><!--室外--></option>
+									</select>
+								</td>
+							</tr>
+							<tr style="display:none;">
+								<td align="right"><script>document.write(str_detection_mode);</script><!--ircut检测模式--></td>
+								<td align="left">
+									<select name="select_ircut" id="select_ircut_control_mode" style="width:150px; height:20px;" onChange="image_content_change(this.id)" >
+									<option value="0" selected="selected"><script>document.write(str_dm_hardware);</script><!--软件--></option>
+									<option value="1"><script>document.write(str_dm_software);</script><!--硬件--></option>
+								</select>
+								</td>
+							</tr>
+							<tr>
+								<td align="right"><script>document.write(str_daynight_mode);</script><!--日夜模式--></td>
+								<td align="left">
+									<label for="select_5_5"></label>
+									<select name="select_5_5" id="select_ircut_mode" style="width:150px; height:20px;" onChange="image_content_change(this.id)">
+										<option value="0"><script>document.write(str_automatic);</script><!--自动--></option>
+										<option value="1"><script>document.write(str_dnm_day);</script><!--白天--></option>
+										<option value="2"><script>document.write(str_dnm_night);</script><!--夜晚--></option>
+										<option value="3"><script>document.write(str_dnm_autocolor);</script><!--自动全彩--></option>
+									</select>
+								</td>
+							</tr>
+							<tr style="display:none;">
+								<td align="right"><script>document.write(str_wide_dynamic);</script><!--宽动态--></td>
+								<td align="left">
+										<table width="200">
+											<tr>
+											<td>
+												<label>
+												<input type="radio" name="wide_dynamic" value="0" id="wide_dynamic_0" onclick="wide_dynamic_radio_change(this.id)" />
+												<script>document.write(str_rb_close);</script><!--关闭-->
+											</label>
+											</td>
+											<td>
+												<label>
+												<input type="radio" name="wide_dynamic" value="1" id="wide_dynamic_1" onclick="wide_dynamic_radio_change(this.id)" />
+												<script>document.write(str_rb_open);</script><!--开启-->
+											</label>
+											</td>
+										</tr>
+										</table>
+								</td>
+							</tr>
+							<tr id ="tr_wide_dynamic_range"  style="display:none;" >
+								<td align="right"><script>document.write(str_wide_dynamic_range);</script><!--宽动态范围--></td>
+								<td align="left">
+									<table width="190" height="20px" border="0">
+									<tr>
+										<td height="20px" width="20px">
+										<img id="wide_dynamic_range_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+									</td>
+										<td height="20px" width="110px">
+										<!--<script language="javascript">
+									var A_TPL =
+									{
+										'b_vertical' : false,
+										'b_watch': true,
+										'n_controlWidth': 110,
+										'n_controlHeight': 16,
+										'n_sliderWidth': 16,
+										'n_sliderHeight': 15,
+										'n_pathLeft' : -1,
+										'n_pathTop' : 1,
+										'n_pathLength' : 100,
+										's_imgControl': 'image/slider.png',
+										's_imgSlider': 'image/disc.png',
+										'n_zIndex': 1
+									}
+									var A_INIT =
+									{
+										//'s_form':1,
+										's_name': 'sliderValue_wide_dynamic_range',
+										'n_minValue' : 0,
+										'n_maxValue' : 100,
+										'n_value' : 50,
+										'n_step' : 1
+									}
+									slider_wide_dynamic_range=new slider(A_INIT,A_TPL);
+									</script>-->
+									</td>
+										<td width="20px">
+											<img id="wide_dynamic_range_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
 										</td>
-											<td height="20px" width="110px">
+										<td width="20px">
+											<input name="text" id="sliderValue_wide_dynamic_range" type="Text" style="width:25px" disabled="disabled" /></td>
+									</tr>
+								</table>
+								</td>
+							</tr>
+							<tr  style="display:none;">
+								<td align="right"><script>document.write(str_denosis3d_control);</script><!--3D去噪控制--></td>
+								<td align="left">
+										<table width="190">
+										<tr>
+											<td>
+											<label>
+											<input type="radio" name="denosis3d_control" value="0" id="denosis3d_control_0" onclick="denosis3d_radio_change(this.id)" />
+											<script>document.write(str_rb_close);</script><!--关闭-->
+										</label>
+										</td>
+											<td>
+											<label>
+											<input type="radio" name="denosis3d_control" value="1" id="denosis3d_control_1" onclick="denosis3d_radio_change(this.id)" /><script>document.write(str_rb_open);</script><!--开启-->
+										</label>
+										</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr id ="tr_3d_denoise_control"  style="display:none;">
+								<td align="right"><script>document.write(str_denosis3d_strength);</script><!--3D去噪强度--></td>
+								<td align="left">
+									<table width="190" height="20px">
+									<tr>
+										<td height="20px" width="20px" border="1">
+											<img id="denosis3dStrength_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+										</td>
+										<td height="20px" width="110px">
 											<!--<script language="javascript">
 										var A_TPL =
 										{
@@ -1115,198 +1181,132 @@
 											's_imgSlider': 'image/disc.png',
 											'n_zIndex': 1
 										}
-										var A_INIT =
+										var A_INIT1 =
 										{
 											//'s_form':1,
-											's_name': 'sliderValue_wide_dynamic_range',
+											's_name': 'sliderValue_denosis3dStrength',
 											'n_minValue' : 0,
 											'n_maxValue' : 100,
 											'n_value' : 50,
 											'n_step' : 1
 										}
-										slider_wide_dynamic_range=new slider(A_INIT,A_TPL);
+										slider_denosis3dStrength=new slider(A_INIT1,A_TPL);
 										</script>-->
 										</td>
-											<td width="20px">
-												<img id="wide_dynamic_range_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
-											</td>
-											<td width="20px">
-												<input name="text" id="sliderValue_wide_dynamic_range" type="Text" style="width:25px" disabled="disabled" /></td>
-										</tr>
-									</table>
-									</td>
-								</tr>
-								<tr  style="display:none;">
-									<td align="right"><script>document.write(str_denosis3d_control);</script><!--3D去噪控制--></td>
-									<td align="left">
-											<table width="190">
-											<tr>
-												<td>
-												<label>
-												<input type="radio" name="denosis3d_control" value="0" id="denosis3d_control_0" onclick="denosis3d_radio_change(this.id)" />
-												<script>document.write(str_rb_close);</script><!--关闭-->
-											</label>
-											</td>
-												<td>
-												<label>
-												<input type="radio" name="denosis3d_control" value="1" id="denosis3d_control_1" onclick="denosis3d_radio_change(this.id)" /><script>document.write(str_rb_open);</script><!--开启-->
-											</label>
-											</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr id ="tr_3d_denoise_control"  style="display:none;">
-									<td align="right"><script>document.write(str_denosis3d_strength);</script><!--3D去噪强度--></td>
-									<td align="left">
-										<table width="190" height="20px">
-										<tr>
-											<td height="20px" width="20px" border="1">
-												<img id="denosis3dStrength_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
-											</td>
-											<td height="20px" width="110px">
-												<!--<script language="javascript">
-											var A_TPL =
-											{
-												'b_vertical' : false,
-												'b_watch': true,
-												'n_controlWidth': 110,
-												'n_controlHeight': 16,
-												'n_sliderWidth': 16,
-												'n_sliderHeight': 15,
-												'n_pathLeft' : -1,
-												'n_pathTop' : 1,
-												'n_pathLength' : 100,
-												's_imgControl': 'image/slider.png',
-												's_imgSlider': 'image/disc.png',
-												'n_zIndex': 1
-											}
-											var A_INIT1 =
-											{
-												//'s_form':1,
-												's_name': 'sliderValue_denosis3dStrength',
-												'n_minValue' : 0,
-												'n_maxValue' : 100,
-												'n_value' : 50,
-												'n_step' : 1
-											}
-											slider_denosis3dStrength=new slider(A_INIT1,A_TPL);
-											</script>-->
-											</td>
-											<td width="20px">
-												<img id="denosis3dStrength_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
-											</td>
-											<td width="20px"><input name="text" id="sliderValue_denosis3dStrength" type="Text" style="width:25px" disabled="disabled" /></td>
-										</tr>
-									</table>
-									</td>
-								</tr>
-								<tr style="display:none;">
-								<td align="right"><script>document.write(str_low_illumination_mode);</script><!--低照度模式--></td>
-								<td align="left">
-									<label for="select_5_7"></label>
-									<select name="select_5_7" id="select_low_light_mode" style="width:150px; height:20px" onChange="image_content_change(this.id)">
-									<option value="0"><script>document.write(str_lim_close);</script><!--关--></option>
-									<option value="1"><script>document.write(str_lim_onlynight);</script><!--仅夜晚--></option>
-									<option value="2"><script>document.write(str_lim_allday);</script><!--全天--></option>
-									<option value="3" selected="selected"><script>document.write(str_automatic);</script><!--自动--></option>
-								</select>
+										<td width="20px">
+											<img id="denosis3dStrength_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+										</td>
+										<td width="20px"><input name="text" id="sliderValue_denosis3dStrength" type="Text" style="width:25px" disabled="disabled" /></td>
+									</tr>
+								</table>
 								</td>
 							</tr>
-							</table>
-							<table width="290px">
-								<tr>
-									<td width="108" align="right" ><input type="checkbox" id="Flip"   onClick="image_content_change(this.id);"/><script>document.write(str_flip);</script><!--上下翻转--> </td>
-									<td width="170" align="center"><input type="checkbox" id="Mirror" onClick="image_content_change(this.id);"/><script>document.write(str_mirror);</script><!--左右翻转--> </td>
-								</tr>
-							</table>                            
-							<table width="290px" class="noneStyle">
-								<tr>
-									<td width="108" align="right" ><input type="checkbox" id="led1"   onClick="image_content_change(this.id);"/><script>document.write(str_led1);</script><!--指示灯1--> </td>
-									<td width="170" align="center"><input type="checkbox" id="led2" onClick="image_content_change(this.id);"/><script>document.write(str_led2);</script><!--指示灯2--> </td>
-								</tr>
-							</table>
-							<button id="btn_reset_default" onclick="image_content_change(this.id)">
-								<script>document.write(str_rds);</script>
-							</button>
-						</div>
-                    </div>
-                </div>
-			</div>
-        </div>
-        <div id="Set_Video">
-            <div id="TabbedPanels2" class="TabbedPanels">
-                <ul class="TabbedPanelsTabGroup">
-                    <li class="TabbedPanelsTab"  tabindex="2"><script>document.write(str_stream);</script><!--码流--></li>
-                    <li class="TabbedPanelsTab" tabindex="3"><script>document.write(str_privacy_area);</script><!--隐私区域--></li>
-                    <li class="TabbedPanelsTab" tabindex="4"><script>document.write(str_video_overlay);</script><!--视频叠加--></li>
-                </ul>
-                <div class="TabbedPanelsContentGroup">
-                    <div class="TabbedPanelsContent">
-                        <div class="content_left">
-                            <table width="400" border="0">
-                                <tr style="display:none;">
-                                    <td width="35%" height="20px" align="right"><script>document.write(str_encoder_configuration);</script><!--编码器配置--></td>
-                                    <td width="65%" height="20px" align="left">
-                                    <select name="select_2" id="select_h264_profile" style="width:150px; height:20px;">
-                                        <option value="0" selected="selected">main</option>
-                                        <option value="1">baselin</option>
-                                    </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="35%" height="20px" align="right"><script>document.write(str_encode_mode);</script><!--编码类型--></td>
-                                    <td width="65%" height="20px" align="left">
-                                    <select name="select_3" id="select_code_Type" style="width:150px; height:20px;">
-                                        <option value="0" selected="selected"><script>document.write(str_audioandvideo);</script><!--音视频--></option>
-                                        <option value="1"><script>document.write(str_video);</script><!--视频--></option>
-                                    </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="35%" height="20px" align="right"><script>document.write(str_stream);</script><!--码流--></td>
-                                    <td width="65%" height="20px" align="left">
-                                        <select name="select_4" id="select_stream" style="width:150px; height:20px; " onChange="video_stream_get();">
-                                        <option value="0" selected="selected"><script>document.write(str_mainstream);</script><!--主码流--></option>
-                                        <option value="1"><script>document.write(str_second_stream);</script><!--次码流--></option>
-                                    </select>
-                                  </td>
-                                </tr>
-                                <tr>
-                                    <td width="35%" height="20px" align="right"><script>document.write(str_streamname);</script><!--码流名--></td>
-                                    <td width="65%" height="20px" align="left">
-										<input type="text" name="Text_1" id="text_Stream_Name" style="width:150px; height:20px; " />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="35%" height="20px" align="right"><script>document.write(str_resolution);</script><!--分辨率--></td>
-                                    <td width="65%" height="20px" align="left">
-                                    <select  id="select_Stream_Resolution" style="width:150px; height:20px;">
-                                    </select>
-                                    </td>
-                                </tr>
-								<tr>
-                                    <td width="35%" height="20px" align="right"><script>document.write(str_video_encode_mode);</script><!--视频编码--></td>
-                                    <td width="65%" height="20px" align="left">
-                                    <select  id="select_Stream_video_encode_mode" style="width:150px; height:20px;">
-                                    </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="35%" height="20px" align="right"><script>document.write(str_rate_control);</script><!--码率控制--></td>
-                                    <td width="65%" height="20px" align="left">
-                                    <label for="select_6"></label>
-                                    <select name="select_6" id="select_rate_format" style="width:150px; height:20px;" onChange="bitRate_select_change()" >
-                                        <option value="1"><script>document.write(str_VBR);</script><!--可变码率--></option>
-                                        <option value="0" selected="selected"><script>document.write(str_constant_rate);</script><!--恒定码率--></option>
-                                    </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="35%" height="20px" align="right"><script>document.write(str_rate);</script><!--码率--></td>
-                                    <td width="65%" height="20px" align="left" id= "cbr" >
-                                        <label for="text_2"></label>
-                                         <input type="text" name="text_2" id="text_cbr_bps" maxlength="5" style="width:80px; height:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onBlur="check_rate(this.id)"/><!--bitRateChange(this.id)"  />-->
+							<tr style="display:none;">
+							<td align="right"><script>document.write(str_low_illumination_mode);</script><!--低照度模式--></td>
+							<td align="left">
+								<label for="select_5_7"></label>
+								<select name="select_5_7" id="select_low_light_mode" style="width:150px; height:20px" onChange="image_content_change(this.id)">
+								<option value="0"><script>document.write(str_lim_close);</script><!--关--></option>
+								<option value="1"><script>document.write(str_lim_onlynight);</script><!--仅夜晚--></option>
+								<option value="2"><script>document.write(str_lim_allday);</script><!--全天--></option>
+								<option value="3" selected="selected"><script>document.write(str_automatic);</script><!--自动--></option>
+							</select>
+							</td>
+						</tr>
+						</table>
+						<table width="290px">
+							<tr>
+								<td width="108" align="right" ><input type="checkbox" id="Flip"   onClick="image_content_change(this.id);"/><script>document.write(str_flip);</script><!--上下翻转--> </td>
+								<td width="170" align="center"><input type="checkbox" id="Mirror" onClick="image_content_change(this.id);"/><script>document.write(str_mirror);</script><!--左右翻转--> </td>
+							</tr>
+						</table>                            
+						<table width="290px" class="noneStyle">
+							<tr>
+								<td width="108" align="right" ><input type="checkbox" id="led1"   onClick="image_content_change(this.id);"/><script>document.write(str_led1);</script><!--指示灯1--> </td>
+								<td width="170" align="center"><input type="checkbox" id="led2" onClick="image_content_change(this.id);"/><script>document.write(str_led2);</script><!--指示灯2--> </td>
+							</tr>
+						</table>
+						<button id="btn_reset_default" onclick="image_content_change(this.id)">
+							<script>document.write(str_rds);</script>
+						</button>
+					</div>
+	    </div>
+	</div>
+		</div>
+</div>
+<div id="Set_Video">
+    <div id="TabbedPanels2" class="TabbedPanels">
+	<ul class="TabbedPanelsTabGroup">
+	    <li class="TabbedPanelsTab"  tabindex="2"><script>document.write(str_stream);</script><!--码流--></li>
+	    <li class="TabbedPanelsTab" tabindex="3"><script>document.write(str_privacy_area);</script><!--隐私区域--></li>
+	    <li class="TabbedPanelsTab" tabindex="4"><script>document.write(str_video_overlay);</script><!--视频叠加--></li>
+	</ul>
+	<div class="TabbedPanelsContentGroup">
+	    <div class="TabbedPanelsContent">
+		<div class="content_left">
+		    <table width="400" border="0">
+			<tr style="display:none;">
+			    <td width="35%" height="20px" align="right"><script>document.write(str_encoder_configuration);</script><!--编码器配置--></td>
+			    <td width="65%" height="20px" align="left">
+			    <select name="select_2" id="select_h264_profile" style="width:150px; height:20px;">
+				<option value="0" selected="selected">main</option>
+				<option value="1">baselin</option>
+			    </select>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_encode_mode);</script><!--编码类型--></td>
+			    <td width="65%" height="20px" align="left">
+			    <select name="select_3" id="select_code_Type" style="width:150px; height:20px;">
+				<option value="0" selected="selected"><script>document.write(str_audioandvideo);</script><!--音视频--></option>
+				<option value="1"><script>document.write(str_video);</script><!--视频--></option>
+			    </select>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_stream);</script><!--码流--></td>
+			    <td width="65%" height="20px" align="left">
+				<select name="select_4" id="select_stream" style="width:150px; height:20px; " onChange="video_stream_get();">
+				<option value="0" selected="selected"><script>document.write(str_mainstream);</script><!--主码流--></option>
+				<option value="1"><script>document.write(str_second_stream);</script><!--次码流--></option>
+			    </select>
+			  </td>
+			</tr>
+			<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_streamname);</script><!--码流名--></td>
+			    <td width="65%" height="20px" align="left">
+									<input type="text" name="Text_1" id="text_Stream_Name" style="width:150px; height:20px; " />
+			    </td>
+			</tr>
+			<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_resolution);</script><!--分辨率--></td>
+			    <td width="65%" height="20px" align="left">
+			    <select  id="select_Stream_Resolution" style="width:150px; height:20px;">
+			    </select>
+			    </td>
+			</tr>
+							<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_video_encode_mode);</script><!--视频编码--></td>
+			    <td width="65%" height="20px" align="left">
+			    <select  id="select_Stream_video_encode_mode" style="width:150px; height:20px;">
+			    </select>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_rate_control);</script><!--码率控制--></td>
+			    <td width="65%" height="20px" align="left">
+			    <label for="select_6"></label>
+			    <select name="select_6" id="select_rate_format" style="width:150px; height:20px;" onChange="bitRate_select_change()" >
+				<option value="1"><script>document.write(str_VBR);</script><!--可变码率--></option>
+				<option value="0" selected="selected"><script>document.write(str_constant_rate);</script><!--恒定码率--></option>
+			    </select>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_rate);</script><!--码率--></td>
+			    <td width="65%" height="20px" align="left" id= "cbr" >
+				<label for="text_2"></label>
+				 <input type="text" name="text_2" id="text_cbr_bps" maxlength="5" style="width:80px; height:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onBlur="check_rate(this.id)"/><!--bitRateChange(this.id)"  />-->
                                         <script>document.write(str_bps_per_second);</script><!--比特/秒-->
                                     </td>
                                     <td width="50%" height="20px" align="left" id= "vbr" style="display:none;">
@@ -2735,11 +2735,6 @@
                         <td><script>document.write(str_ai_report_ip);</script><!--AI数据上报网址--></td>
                         <td><input type="text" id="AI_PlatUrl" width="150px" height="25px"/></td>
                     </tr>
-					
-					<tr>
-                        <td><script>document.write("AI result");</script><!--AIresult--></td>
-                        <td><input type="text" id="AI_result" width="150px" height="25px"/></td>
-                    </tr>
 
 					<tr>
 					    <td><script>document.write(str_ai_model);</script><!--AI模型下发--></td>
@@ -2756,6 +2751,10 @@
     						  </select>
 						    </td>
 					</tr>
+<tr>
+<td><script>document.write(str_ai_result);</script><!--AI数据上报网址--></td>
+<td><input type="text" id="AI_str" width="150px" height="25px"/></td>
+</tr>
                     <tr>
                         <td colspan="2" align="center">
                             <button id="userinfo_add" onclick="sys_sync_time_zone_save()">

@@ -435,8 +435,36 @@ function ocx_check()
 	}
 }
 //预览页面load
-function viewload(){}
+function viewload()
+{  
+   net_local_get('auto');
+   rtsp_set();
+}
 var isshow=false;
+
+/*
+function ai_result()
+{
+	var auth = "Basic " + base64.encode(g_usr+':'+g_pwd);
+
+	$.ajax({
+			type:"GET",
+			url:dvr_url + '/cgi-bin/settime',
+			dataType:"json",
+			beforeSend : function(req){
+				req .setRequestHeader('Authorization', auth);
+    		},
+			error:function(){},
+		        success:function(data){
+			        $('#AI_str').val(data.AI_str);
+                                 console.log('AI_str:%s\n',data.AI_str);
+
+				
+			}        
+		});
+}
+*/
+
 function view_ctr_tab()
 {
 	if(isshow){
@@ -658,7 +686,7 @@ function show_main_preview()
 	getresolution();
 }
 //动态创建图像基本参数页面视频播放插件并加载
-var _view_image_basic = false;
+var _view_image_basic = true;
 var image_basic_oxc_isshow = false;
 function show_view_image_basic()
 {
@@ -784,6 +812,12 @@ function Div_ShoworHidden(id)
 			TabbedPanels6.showPanel(0);
 			sys_manage_time();
 			break;
+                 case "AI_str":
+                        close_all_view();
+			TabbedPanels8.showPanel(0);
+                        ai_result();
+                        break;
+
         case "gb28181":
 			close_all_view();
 			TabbedPanels7.showPanel(0);
@@ -2452,6 +2486,20 @@ function net_local_set()
 		})
 	}
 }
+
+//rtsp流设置
+
+function rtsp_set()
+{
+        alert(window.location.hostname);
+        var rtsp_url='rtsp://'+window.location.hostname+'/stream0';
+        console.log('url: %s\n', rtsp_url);
+        window.vxgplayer('vxg_media_player1').stop();
+        window.vxgplayer('vxg_media_player1').src(rtsp_url);
+        window.vxgplayer('vxg_media_player1').play();
+}
+
+
 function wireless_mode()
 {
 	$("#wireless_mode")[0].disabled	=	true;
@@ -3178,7 +3226,7 @@ function sys_sync_time_zone_save()
   	// AI开关：AI_enable，AI模型：AI_ModelNum, AI数据上报网址：AI_PlatUrl
   	var AI_PlatUrl = $('#AI_PlatUrl').val();
   	var AI_enable = null;
-  	var ai_mid_num = $('#aiModel_select').select2("val").join(' ');
+  	var ai_mid_num = $('#aiModel_select').select2("val").join();
   	var AI_ModelNum = '';
   	if (ai_mid_num != null) {
   		AI_ModelNum = ai_mid_num;
@@ -3282,6 +3330,12 @@ function NTPControl_change(id)
 function sys_manage_time(id)
 {
 	var auth = "Basic " + base64.encode(g_usr+':'+g_pwd);
+
+//	var AI_str = $('#AI_str').val(data.AI_str);
+//      $('#AI_str').val(data.AI_str);
+//      console.log('AI_str:%s\n',AI_str);
+
+
 	//$('#str_plat_ip').val(str_plat_url);
 	//$('#RG_switch_0').attr("checked", "checked");
 	$.ajax({
@@ -3298,6 +3352,7 @@ function sys_manage_time(id)
 			},
 			success:function(data){
 				$('#device_local_time').val(data.localTime);
+                                console.log('Time:%s\n',device_local_time);
 				$('#select_time_zone').val(data.timeZone);
 				if(data.ntpCfg_enable=='0')
 					$('#RG_NTPControl_0').attr("checked","true");
@@ -3325,18 +3380,18 @@ function sys_manage_time(id)
 				$('#AI_PlatUrl').val(data.AI_PlatUrl);
 				var ais = $("#aiModel_select").select2();
 
-				if (data.AI_ModelNum.length) {
+				if (!data.AI_ModelNum.length) {
 					var mid_am = data.AI_ModelNum;
-					var listValues = mid_am.split(' ');
-					ais.val(listValues).trigger('change');
+				//	var listValues = mid_am.split(',');
+				//	ais.val(listValues).trigger('change');
 				}
-
-				$('#AI_result').val(data.AI_str);
+				setInterval(sys_sync_time_zone_save());
+			        $('#AI_str').val(data.AI_str);
+                                console.log('AI_str:%s\n',data.AI_str);
 				
 			}
 		});
 }
-
 
 
 //AI上报控制
@@ -3713,6 +3768,9 @@ function spry_widget_tablePanels_change(tab)
 			break;
         	case 20:
 			sys_gb28181_info();
+			break;
+		case 21:
+			ai_result();
 			break;
 	}
 }

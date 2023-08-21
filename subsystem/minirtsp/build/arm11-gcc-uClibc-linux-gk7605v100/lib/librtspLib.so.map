@@ -35,17 +35,17 @@ Discarded input sections
  .note.GNU-stack
                 0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/threadpool.o
  .note.GNU-stack
-                0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/netio.o
+                0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
  .note.GNU-stack
-                0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
+                0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/netio.o
  .note.GNU-stack
                 0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mempool.o
  .note.GNU-stack
                 0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/period.o
  .note.GNU-stack
-                0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
- .note.GNU-stack
                 0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/list.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
  .note.GNU-stack
                 0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/shmem.o
  .note.GNU-stack
@@ -90,12 +90,12 @@ LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/rtspLib/rtspServLib.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/rtspLib/utils.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mem.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/threadpool.o
+LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/netio.o
-LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mempool.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/period.o
-LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/list.o
+LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/shmem.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/fifo.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/flag.o
@@ -292,63 +292,63 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
                 0x0000000000014c30                j_thread_pool_add_job
                 0x0000000000014ca8                j_thread_pool_stat
  *fill*         0x0000000000014cfc        0x4 1f2003d5
- .text          0x0000000000014d00      0x6e0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/netio.o
-                0x0000000000014db8                fd_wait_readable
-                0x0000000000014dc0                fd_wait_writeable
-                0x0000000000014ed8                readn_timedwait
-                0x0000000000014f88                writen_timedwait
-                0x0000000000015038                socket_set_nonblock
-                0x0000000000015090                tcp_connect
-                0x0000000000015180                tcp_server
-                0x0000000000015268                udp_connect
-                0x0000000000015338                udp_server
- .text          0x00000000000153e0      0x4b0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
-                0x00000000000153e0                j_db_open
-                0x0000000000015468                j_db_close
-                0x0000000000015518                j_db_exec
-                0x00000000000155c8                j_db_get_table
-                0x0000000000015650                j_db_begin
-                0x0000000000015690                j_db_commit
-                0x00000000000156d0                j_db_rollback
-                0x00000000000156e8                j_db_free_table
-                0x0000000000015700                j_db_attach
-                0x0000000000015778                j_db_detach
-                0x00000000000157d0                j_db_table_exist
-                0x0000000000015850                j_db_save
-                0x0000000000015870                j_db_load
- .text          0x0000000000015890      0x338 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mempool.o
-                0x0000000000015890                j_mempool_create
-                0x0000000000015998                j_mempool_destroy
-                0x0000000000015a18                j_mempool_alloc
-                0x0000000000015ae0                j_mempool_release
- .text          0x0000000000015bc8      0x380 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/period.o
-                0x0000000000015cd8                j_period_alloc
-                0x0000000000015d90                j_period_free
-                0x0000000000015e10                j_period_add
-                0x0000000000015ed8                j_period_del
- .text          0x0000000000015f48      0x240 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
-                0x0000000000015f48                j_queue_new
-                0x0000000000015fa8                j_queue_abort
-                0x0000000000015ff0                j_queue_destroy
-                0x0000000000016040                j_queue_put
-                0x00000000000160b0                j_queue_get
-                0x0000000000016148                j_queue_length
- .text          0x0000000000016188      0x4a8 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/list.o
-                0x0000000000016188                j_list_alloc
-                0x00000000000161e8                j_list_length
-                0x00000000000161f0                j_list_empty
-                0x0000000000016200                j_list_append
-                0x0000000000016268                j_list_prepend
-                0x00000000000162c8                j_list_find
-                0x0000000000016308                j_list_find_custom
-                0x0000000000016398                j_list_remove
-                0x00000000000163f8                j_list_remove_full
-                0x0000000000016498                j_list_free
-                0x00000000000164d0                j_list_foreach
-                0x0000000000016530                j_list_first
-                0x0000000000016560                j_list_last
-                0x0000000000016590                j_list_next
-                0x00000000000165d0                j_list_remove_last
+ .text          0x0000000000014d00      0x240 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
+                0x0000000000014d00                j_queue_new
+                0x0000000000014d60                j_queue_abort
+                0x0000000000014da8                j_queue_destroy
+                0x0000000000014df8                j_queue_put
+                0x0000000000014e68                j_queue_get
+                0x0000000000014f00                j_queue_length
+ .text          0x0000000000014f40      0x6e0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/netio.o
+                0x0000000000014ff8                fd_wait_readable
+                0x0000000000015000                fd_wait_writeable
+                0x0000000000015118                readn_timedwait
+                0x00000000000151c8                writen_timedwait
+                0x0000000000015278                socket_set_nonblock
+                0x00000000000152d0                tcp_connect
+                0x00000000000153c0                tcp_server
+                0x00000000000154a8                udp_connect
+                0x0000000000015578                udp_server
+ .text          0x0000000000015620      0x338 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mempool.o
+                0x0000000000015620                j_mempool_create
+                0x0000000000015728                j_mempool_destroy
+                0x00000000000157a8                j_mempool_alloc
+                0x0000000000015870                j_mempool_release
+ .text          0x0000000000015958      0x380 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/period.o
+                0x0000000000015a68                j_period_alloc
+                0x0000000000015b20                j_period_free
+                0x0000000000015ba0                j_period_add
+                0x0000000000015c68                j_period_del
+ .text          0x0000000000015cd8      0x4a8 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/list.o
+                0x0000000000015cd8                j_list_alloc
+                0x0000000000015d38                j_list_length
+                0x0000000000015d40                j_list_empty
+                0x0000000000015d50                j_list_append
+                0x0000000000015db8                j_list_prepend
+                0x0000000000015e18                j_list_find
+                0x0000000000015e58                j_list_find_custom
+                0x0000000000015ee8                j_list_remove
+                0x0000000000015f48                j_list_remove_full
+                0x0000000000015fe8                j_list_free
+                0x0000000000016020                j_list_foreach
+                0x0000000000016080                j_list_first
+                0x00000000000160b0                j_list_last
+                0x00000000000160e0                j_list_next
+                0x0000000000016120                j_list_remove_last
+ .text          0x0000000000016180      0x4b0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
+                0x0000000000016180                j_db_open
+                0x0000000000016208                j_db_close
+                0x00000000000162b8                j_db_exec
+                0x0000000000016368                j_db_get_table
+                0x00000000000163f0                j_db_begin
+                0x0000000000016430                j_db_commit
+                0x0000000000016470                j_db_rollback
+                0x0000000000016488                j_db_free_table
+                0x00000000000164a0                j_db_attach
+                0x0000000000016518                j_db_detach
+                0x0000000000016570                j_db_table_exist
+                0x00000000000165f0                j_db_save
+                0x0000000000016610                j_db_load
  .text          0x0000000000016630      0x604 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/shmem.o
                 0x0000000000016630                j_shmem_create
                 0x0000000000016750                j_shmem_connect
@@ -488,13 +488,13 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
  .rodata.str1.8
                 0x000000000001b6c8       0x2c build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/netio.o
  *fill*         0x000000000001b6f4        0x4 
- .rodata        0x000000000001b6f8       0x1f build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
- *fill*         0x000000000001b717        0x1 
  .rodata.str1.8
-                0x000000000001b718      0x104 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
- *fill*         0x000000000001b81c        0x4 
+                0x000000000001b6f8       0x10 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/period.o
+ .rodata        0x000000000001b708       0x1f build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
+ *fill*         0x000000000001b727        0x1 
  .rodata.str1.8
-                0x000000000001b820       0x10 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/period.o
+                0x000000000001b728      0x104 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
+ *fill*         0x000000000001b82c        0x4 
  .rodata.str1.8
                 0x000000000001b830        0x9 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/shmem.o
  *fill*         0x000000000001b839        0x7 
@@ -537,18 +537,18 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
                                          0xc0 (size before relaxing)
  .eh_frame      0x000000000001df18      0x118 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/threadpool.o
                                         0x128 (size before relaxing)
- .eh_frame      0x000000000001e030      0x270 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/netio.o
-                                        0x280 (size before relaxing)
- .eh_frame      0x000000000001e2a0      0x210 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
-                                        0x220 (size before relaxing)
- .eh_frame      0x000000000001e4b0      0x130 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mempool.o
-                                        0x148 (size before relaxing)
- .eh_frame      0x000000000001e5e0      0x158 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/period.o
-                                        0x168 (size before relaxing)
- .eh_frame      0x000000000001e738      0x108 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
+ .eh_frame      0x000000000001e030      0x108 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
                                         0x118 (size before relaxing)
- .eh_frame      0x000000000001e840      0x270 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/list.o
+ .eh_frame      0x000000000001e138      0x270 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/netio.o
+                                        0x280 (size before relaxing)
+ .eh_frame      0x000000000001e3a8      0x130 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mempool.o
+                                        0x148 (size before relaxing)
+ .eh_frame      0x000000000001e4d8      0x158 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/period.o
+                                        0x168 (size before relaxing)
+ .eh_frame      0x000000000001e630      0x270 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/list.o
                                         0x288 (size before relaxing)
+ .eh_frame      0x000000000001e8a0      0x210 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
+                                        0x220 (size before relaxing)
  .eh_frame      0x000000000001eab0      0x1b8 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/shmem.o
                                         0x1c8 (size before relaxing)
  .eh_frame      0x000000000001ec68      0x1a0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/fifo.o
@@ -678,12 +678,12 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
                 0x0000000000030710                status_codes
  .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mem.o
  .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/threadpool.o
+ .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
  .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/netio.o
- .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
  .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mempool.o
  .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/period.o
- .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
  .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/list.o
+ .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
  .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/shmem.o
  .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/fifo.o
  .data          0x00000000000309d0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/flag.o
@@ -730,12 +730,12 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
  .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/rtspLib/utils.o
  .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mem.o
  .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/threadpool.o
+ .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
  .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/netio.o
- .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
  .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mempool.o
  .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/period.o
- .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
  .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/list.o
+ .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
  .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/shmem.o
  .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/fifo.o
  .bss           0x00000000000309e0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/flag.o
@@ -795,12 +795,12 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/rtspLib/utils.o
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mem.o
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/threadpool.o
+ .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/netio.o
- .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/mempool.o
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/period.o
- .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/queue.o
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/list.o
+ .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/db.o
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/shmem.o
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/fifo.o
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/utilsLib/flag.o

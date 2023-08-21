@@ -10,9 +10,9 @@ Discarded input sections
  .note.GNU-stack
                 0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./parser_cfg.o
  .note.GNU-stack
-                0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
- .note.GNU-stack
                 0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./get_p2p_id.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
  .note.GNU-stack
                 0x0000000000000000        0x0 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/crtendS.o
  .note.GNU-stack
@@ -29,8 +29,8 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crti.o
 LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/crtbeginS.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/./netcam_update.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/./parser_cfg.o
-LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
 LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/./get_p2p_id.o
+LOAD build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
 LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/libgcc.a
 LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/../../../../aarch64-linux-gnu/lib/../lib64/libgcc_s.so
 LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/libc.so
@@ -116,7 +116,7 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
  .plt           0x00000000000021c0      0x560 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crti.o
  *(.iplt)
 
-.text           0x0000000000002720     0x6204
+.text           0x0000000000002720     0x6208
  *(.text.unlikely .text.*_unlikely .text.unlikely.*)
  *(.text.exit .text.exit.*)
  *(.text.startup .text.startup.*)
@@ -158,33 +158,34 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
                 0x0000000000006248                upgrade_flash_by_buf
                 0x0000000000006718                upgrade_flash_by_file
  *fill*         0x0000000000006d1c        0x4 1f2003d5
- .text          0x0000000000006d20     0x1990 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
-                0x0000000000006d20                get_mtd_info
-                0x0000000000006e50                dump_flash
-                0x00000000000070b8                verify_flash
-                0x0000000000007400                erase_flash_mtd
-                0x0000000000007698                erase_flash_all
-                0x0000000000007900                flash_copy
-                0x0000000000007bb8                make_dev_info_crc32
-                0x0000000000007c20                check_dev_info_crc32
-                0x0000000000007cb8                save_info_to_mtd_reserve
-                0x00000000000081c0                load_info_to_mtd_reserve
- .text          0x00000000000086b0      0x274 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./get_p2p_id.o
-                0x0000000000008888                netcam_p2pid_init
- .text          0x0000000000008924        0x0 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/crtendS.o
- .text          0x0000000000008924        0x0 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
+ .text          0x0000000000006d20      0x274 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./get_p2p_id.o
+                0x0000000000006ef8                netcam_p2pid_init
+ *fill*         0x0000000000006f94        0x4 1f2003d5
+ .text          0x0000000000006f98     0x1990 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
+                0x0000000000006f98                get_mtd_info
+                0x00000000000070c8                dump_flash
+                0x0000000000007330                verify_flash
+                0x0000000000007678                erase_flash_mtd
+                0x0000000000007910                erase_flash_all
+                0x0000000000007b78                flash_copy
+                0x0000000000007e30                make_dev_info_crc32
+                0x0000000000007e98                check_dev_info_crc32
+                0x0000000000007f30                save_info_to_mtd_reserve
+                0x0000000000008438                load_info_to_mtd_reserve
+ .text          0x0000000000008928        0x0 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/crtendS.o
+ .text          0x0000000000008928        0x0 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
  *(.gnu.warning)
 
-.fini           0x0000000000008924       0x10
+.fini           0x0000000000008928       0x10
  *(SORT_NONE(.fini))
- .fini          0x0000000000008924        0x8 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crti.o
-                0x0000000000008924                _fini
- .fini          0x000000000000892c        0x8 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
+ .fini          0x0000000000008928        0x8 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crti.o
+                0x0000000000008928                _fini
+ .fini          0x0000000000008930        0x8 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
                 [!provide]                        PROVIDE (__etext = .)
                 [!provide]                        PROVIDE (_etext = .)
                 [!provide]                        PROVIDE (etext = .)
 
-.rodata         0x0000000000008938     0x2fed
+.rodata         0x0000000000008938     0x2ff0
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.8
                 0x0000000000008938      0x825 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./netcam_update.o
@@ -195,13 +196,14 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
  .rodata.str1.8
                 0x0000000000009328     0x18f1 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./parser_cfg.o
  *fill*         0x000000000000ac19        0x7 
- .rodata        0x000000000000ac20       0xc9 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
- *fill*         0x000000000000ace9        0x7 
  .rodata.str1.8
-                0x000000000000acf0      0xb28 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
+                0x000000000000ac20      0x10d build/arm11-gcc-uClibc-linux-gk7605v100/obj/./get_p2p_id.o
+ *fill*         0x000000000000ad2d        0x3 
+ .rodata        0x000000000000ad30       0xc9 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
+ *fill*         0x000000000000adf9        0x7 
+ .rodata.str1.8
+                0x000000000000ae00      0xb28 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
                                         0xb30 (size before relaxing)
- .rodata.str1.8
-                0x000000000000b818      0x10d build/arm11-gcc-uClibc-linux-gk7605v100/obj/./get_p2p_id.o
 
 .rodata1
  *(.rodata1)
@@ -212,18 +214,18 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
                 0x000000000000b928                __GNU_EH_FRAME_HDR
  *(.eh_frame_entry .eh_frame_entry.*)
 
-.eh_frame       0x000000000000bab0     0x1410
+.eh_frame       0x000000000000bab0     0x1414
  *(.eh_frame)
  .eh_frame      0x000000000000bab0       0x78 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/crtbeginS.o
  .eh_frame      0x000000000000bb28      0x310 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./netcam_update.o
                                         0x320 (size before relaxing)
  .eh_frame      0x000000000000be38      0x980 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./parser_cfg.o
                                         0x998 (size before relaxing)
- .eh_frame      0x000000000000c7b8      0x680 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
-                                        0x698 (size before relaxing)
- .eh_frame      0x000000000000ce38       0x84 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./get_p2p_id.o
+ .eh_frame      0x000000000000c7b8       0x88 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./get_p2p_id.o
                                          0x98 (size before relaxing)
- .eh_frame      0x000000000000cebc        0x4 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/crtendS.o
+ .eh_frame      0x000000000000c840      0x680 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
+                                        0x698 (size before relaxing)
+ .eh_frame      0x000000000000cec0        0x4 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/crtendS.o
  *(.eh_frame.*)
 
 .gcc_except_table
@@ -320,8 +322,8 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
                 0x000000000001e2a8                shmidFile
                 0x000000000001e2ac                shmid
  .data          0x000000000001e2b0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./parser_cfg.o
- .data          0x000000000001e2b0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
  .data          0x000000000001e2b0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./get_p2p_id.o
+ .data          0x000000000001e2b0        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
  .data          0x000000000001e2b0        0x0 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/crtendS.o
  .data          0x000000000001e2b0        0x0 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
 
@@ -352,8 +354,8 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
                 0x000000000001e308                shmFile
                 0x000000000001e310                shareInfo
  .bss           0x000000000001e318       0x18 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./parser_cfg.o
+ .bss           0x000000000001e330        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./get_p2p_id.o
  .bss           0x000000000001e330       0x34 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
- .bss           0x000000000001e364        0x0 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./get_p2p_id.o
  .bss           0x000000000001e364        0x0 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/crtendS.o
  .bss           0x000000000001e364        0x0 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
  *(COMMON)
@@ -393,8 +395,8 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
                                          0x17 (size before relaxing)
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./netcam_update.o
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./parser_cfg.o
- .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
  .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./get_p2p_id.o
+ .comment       0x0000000000000016       0x17 build/arm11-gcc-uClibc-linux-gk7605v100/obj/./flash_ctl.o
  .comment       0x0000000000000016       0x17 /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../lib/gcc/aarch64-linux-gnu/7.3.0/crtendS.o
 
 .gnu.build.attributes

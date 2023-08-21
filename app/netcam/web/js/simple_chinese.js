@@ -335,6 +335,7 @@ var str_NTP_status="NTP状态";
 var str_NTP_service_provider="NTP服务商";
 var str_ai_report_ip="AI数据上报网址";
 var str_ai_model="AI模型";
+var str_ai_result="AI识别结果";
 var str_plat_ip="平台端IP";
 var str_plat_url="http://169.254.20.103:8080/reportAlarmData";
 var str_switch_485="485上报开关";

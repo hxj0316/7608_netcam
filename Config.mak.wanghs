@@ -1,1 +1,12 @@
-platform/sdk/Config.mak.wanghs
+SDK_TOP     = /home/wanghs/yianyun/platform/sdk
+ROOTFS_PARENT_DIRECTORY = /home/xieqianqian/nfs_7608
+TOOLCHAIN_PARENT_DIRECTORY = /opt/linux/x86-arm/aarch64-mix210-linux/bin
+INSTALL_DIR = /home/wanghs/yianyun/install
+DECODER     = gk7605v100
+CHIP        = gk7605v100
+CUSTOM_BOARD_SENSOR = CUS_GK7605V100_GC4653_1916M_V2
+CUSTOM_BOARD_PROJECT = CUS_GK7605V100_GC4653_1916M_V2
+SENSOR      = gc4653
+PLATFORM    = hgk
+SDK_VER     = 
+APP         = netcam

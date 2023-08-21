@@ -384,12 +384,12 @@ LOAD /opt/linux/x86-arm/aarch64-mix210-linux/host_bin/../target/usr/lib/crtn.o
 .debug_frame
  *(.debug_frame)
 
-.debug_str      0x0000000000000000      0xc73
+.debug_str      0x0000000000000000      0xc70
  *(.debug_str)
- .debug_str     0x0000000000000000      0x873 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/httpd.o
-                                        0x964 (size before relaxing)
- .debug_str     0x0000000000000873      0x400 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/httpClient.o
-                                        0x90a (size before relaxing)
+ .debug_str     0x0000000000000000      0x870 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/httpd.o
+                                        0x961 (size before relaxing)
+ .debug_str     0x0000000000000870      0x400 build/arm11-gcc-uClibc-linux-gk7605v100/obj/src/httpClient.o
+                                        0x907 (size before relaxing)
 
 .debug_loc
  *(.debug_loc)
