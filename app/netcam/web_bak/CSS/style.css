@@ -1,0 +1,151 @@
+@charset "utf-8";
+body
+{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:normal;
+	color:#666666;
+	margin:0px;
+	padding:0px;
+	/*background:#fff;*/
+}
+p,from,h1,h2,h3,h4,h5,h6
+{
+	margin:0px;
+	padding:0px;
+}
+ul,ol
+{
+	margin:0px;
+	padding:0px;
+	list-style-type:none;
+}
+img
+{
+	border:none;
+}
+a
+{
+	color:#333333;
+	text-decoration:none;
+}
+a:hover
+{
+	color:#666666;
+	text-decoration:underline;
+}
+.clearfix:after
+{
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden
+}
+.clearfix
+{
+	display:inline-table
+}
+*html .clearfix
+{
+	height:1%;
+}
+.clearfix
+{
+	display:block
+}
+*+html .clearfix
+{
+	min-height:1%
+}
+/* ny_zb */
+.ny_zb
+{
+	width:120px;
+	overflow:hidden;
+	border-left:1px solid #dddddd;
+	border-right:1px solid #dddddd;
+	border-bottom:1px solid #dddddd;
+	font-family:"微软雅黑";
+	margin:40px auto 0 auto;
+}
+.ny_zbbt
+{
+	background-color:#f1f1f1;
+	height:30px;
+	line-height:40px;
+	overflow:hidden;
+	border-top:2px solid #b7b7b7;
+}
+.ny_zbbt span
+{
+	padding-left:30px;
+	font-size:16px;
+	color:#000;
+	line-height:40px;
+}
+.ny_zblb1
+{
+	padding:10px 5px 20px 5px;
+}
+
+.ny_zblb1 li
+{
+	line-height:33px;
+	font-size:14px;
+	color:#333;
+	float:left;
+	width:100%;
+}
+.ny_zblb1 li a
+{
+	display:block;
+	padding-left:30px;
+	text-decoration:none;
+	color:#333;
+	background:url(../image/menu_bgs.png) no-repeat ;
+}
+.ny_zblb1 li a.cur
+{
+	color:#6fb600;
+	font-weight:bold;
+	background:url(../image/menu_bgs.png) no-repeat right;
+	text-decoration:none;
+	/*-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	behavior:url(js/ie-css3.htc);*/
+}
+
+.ny_zblb1 li ul
+{
+	display:none;
+	color:#666;
+	padding:2px 0 3px 00px;
+}
+.ny_zblb1 li ul li
+{
+	float:none;
+	background-image:none;
+	height:26px;
+	line-height:26px;
+	margin-top:2px;
+	margin-left:2px;
+	font-size:12px;
+}
+.ny_zblb1 li ul li a
+{
+	padding-left:30px;
+	display:block;
+	background:url(../image/menu_bg1.png) no-repeat;
+}
+.ny_zblb1 li ul a:hover
+{
+	color:#6fb600;
+}
+.ny_zblb1 li ul a:curr
+{
+	color:#6fb600;
+	font-weight:bloder;
+	text-decoration:none;
+}

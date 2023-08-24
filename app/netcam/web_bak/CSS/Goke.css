@@ -1,0 +1,283 @@
+@charset "utf-8";
+/* CSS Document */
+/*Fix IE. Hide from IE Mac\*/
+*html ul li {float:left;}
+*html ul li a{height:1%; width:50px;}
+/*End*/
+body
+{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	background-color:#303030;/*ededef;/*303030;/*666666;/*3c434b;*/
+	/*background:url('image/view_bg.png') repeat-x;*/
+}
+/*
+#view_menu
+{
+	width:100%;
+	margin-top:20px;
+	background-color:a6c0e8;
+}
+#view_menu ul
+{
+	float:left;
+	margin-right:10px;
+	list-style:none;
+	font-size:20px;
+	color:#FFF;
+}
+#view_menu ul li
+{
+	float:left;
+	width:60px;
+	text-align:center;
+	background-color:#86a9de;
+	padding-top:5px;
+	height:25px;
+}
+#view_menu ul li:hover
+{
+	background-color:#b2cdf7;
+}
+#view_menu ul li a
+{
+	color:#000;
+	text-decoration:none;
+}
+#view_menu ul li a:hover
+{
+	text-decoration:none;
+	color:#F00;
+}
+*/
+#top{
+	width:1100px;/*分辨率自适应删除*/
+	height:70px;
+	float:top;
+	margin-top:0px;
+	margin-left:auto;
+	margin-right:auto;
+	font-size:24px;
+	/*font-family: "华文行楷";*/
+	border-bottom:3px solid #f9f9f9;
+}
+.content
+{
+	height:650px;
+	width:1100px;
+	background-color:#ededef;/*ededef;/*;/*#f0f3f5;*/
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:2%;
+
+	/*border-radius:10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;*/
+}
+.content_top
+{
+	width:100%;
+	height:550px;/*分辨率自适应删除*/
+	border:0px solid #000;
+	float:top;
+	margin-top:0px;
+	position:relative;
+	border:0px solid #000;
+}
+.menu_table
+{
+}
+.menu_table:hover
+{
+	color:#009df6;
+}
+.content_buttom
+{
+	width:100%;
+	height:30px;
+	border:0px solid #000;
+	float:top;
+	margin-top:0;
+}
+.mid_left{
+	border:0px solid #000;
+	width:120px;
+	margin-left:0px;
+	margin-top:10px;
+	float:left;
+	margin-right:0px;
+	display:inline;
+	}
+.mid_right
+{
+	border:0px solid #000;
+	width:940px;
+	margin-left:0px;
+	margin-top:10px;
+	float:left;
+	}			
+.foot{
+	margin-top:30px;
+	height:70px;
+	width:100%;
+}
+#Video_Cover
+{
+	/*background-image:url(../image/Hydrangeas.jpg);
+	background-repeat:no-repeat;*/
+	background-color:#c5c5c5;
+	z-index:2;
+}
+#Video_OSD
+{
+	/*background-image:url(../image/Hydrangeas.jpg);
+	background-repeat:no-repeat;*/
+	background-color:#c5c5c5;
+	z-index:2;
+}
+#View_Tips
+{
+	vertical-align: middle;
+	text-align: center;
+	position: absolute;
+	top: 45%;
+	left: 30%;
+	visibility: visible;
+}
+
+#Video
+{
+	float:right;
+	border:0px solid #000;
+	margin-right:10px;
+	margin-top:5px;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+}
+
+#view_ctr
+{
+	width:150px; 
+	float:left; 
+	margin-left:10px; 
+	margin-top:5px; 
+	border-radius:7px;  
+	-moz-border-radius:7px; 
+	-webkit-border-radius:7px; 
+	background-color:#f9f9f9;/*abc2db;/*354253;/*f9f9f9*/ 
+}
+
+/*
+#View
+{
+	width:1024px;
+	height:631px;/*分辨率自适应删除*/
+	/*margin-left:auto;
+	margin-right:auto;
+	margin-top:-14px;
+	background-color:#999999;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	behavior:url(ie-css3.htc);
+	/*border-radius:10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border:0px solid #000;*/
+/*}*/
+#View_Video
+{
+	width:100%;
+	/*height:100%;*/
+	height:576px;
+}
+#Tips
+{
+	font-size:20px;
+}
+.div_obj
+{
+	width:640px;
+	height:480px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-top:10px;
+	display:inline;
+	float:left;
+	border:1px solid #000;
+}
+.div_ctr
+{
+	margin-top:20px;
+	width:290px;
+	margin-right:0px;
+	margin-left:0px;
+	float:right;
+	text-align:center;
+	border:0px solid #000;
+}
+#Set_Video
+{
+	width:100%;
+	text-align:center;
+}
+.content_left
+{
+	border:1px solid #999999;
+	margin-left:3px;
+	margin-top:10px;
+	float:left;
+	margin-right:10px;
+	display:inline;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	/*behavior:url(js/ie-css3.htc);*/
+}
+.content_right
+{
+	margin-top:10px;
+	margin-left:10px;
+	float:left;
+}
+#system_list
+{
+	height:25px;
+	width:70px;
+}
+#yt_left
+{
+	width:80%;
+	height:500px;
+	margin-top:10px;
+	margin-left:10px;
+	margin-right:5px;
+	display:inline;
+	float:left;
+	border:1px solid #000;
+}
+#yt_right
+{
+	width:15%;
+	height:80%;
+	margin-left:5px;
+	margin-top:10px;
+	display:inline;
+	float:left;
+}
+#txtdisplayinInfo
+{
+	background-color:#f33;
+	font-size:12px;  
+	line-height:24px;
+	display:block; 
+	color:#fff; 
+	text-align:left;
+	margin:4px; 
+	padding:0 8px; 
+	border-radius:4px;
+	position:absolute; 
+	/*left:0; 
+	top:419;*/
+}

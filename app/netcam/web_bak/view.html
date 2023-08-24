@@ -1,0 +1,2870 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- saved from url=(0014)about:internet-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css" href="CSS/Goke.css" />
+<link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+<link href="SpryAssets/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+<link href="CSS/style.css" rel="stylesheet" type="text/css" />
+<link href="CSS/select2.min.css" rel="stylesheet" type="text/css"/>
+
+<!--<link href="CSS/jquery-ui.css" />-->
+<link href="CSS/jquery-ui.min.css" rel="stylesheet" />
+<style type="text/css">
+.table_wifi table{background:#999999;}
+.table_wifi table td{background:#ededef;}
+.proccess{border:1px solid;width:8px;height:8px;background:#ffffff;margin:3px;}
+.noneStyle{display: none;}
+</style>
+<!--<script type="text/javascript" src="js/slider.js"></script>-->
+<script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
+<script src="SpryAssets/SpryTabbedPanels.js" type="text/javascript"></script>
+<!--<script src="js/curvycorners.src.js" type="text/javascript"></script>-->
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/base64.js" type="text/javascript"></script>
+<script src="js/cookie.js" type="text/javascript"></script>
+<script src="js/function.js?123=12" type="text/javascript"></script>
+<script src="js/swfupload.js" type="text/javascript"></script>
+<script src="js/jquery.qrcode.min.js" type="text/javascript"></script>
+<script src="js/select2.min.js" type="text/javascript"></script>
+</script>
+<!--<script src="js/string.js" type="text/javascript"></script>-->
+<!--<script src="js/handler.js" type="text/javascript"></script>-->
+<title>IPCAM</title>
+    <script type="text/javascript" src="vxgplayer-1.8.40.min.js">
+    </script>
+    <link href="vxgplayer-1.8.40.min.css" rel="stylesheet" />
+</head>
+<body onload="viewload()" onunload="htmlclose()">
+<!--网页main-->
+<!--<div id="load_div" align=center style="background-color:#FFF; width:2000px; height:1000px; z-index:9999; display:block;">
+<font style="margin-top:45%;">页面加载中......</font>
+<div align="center">
+	<form method=post name=proccess>
+	<script language=javascript>
+		for(i=0;i<30;i++)document.write("<input class=\"proccess\">")
+	</script>
+	</form>
+</div>
+<div align="center">
+<script language=JavaScript>var p=0,j=0;
+	var c=new Array("lightskyblue","white")
+	setInterval('proccess();',100)
+	function proccess(){
+		document.forms.proccess.elements[p].style.background=c[j];
+		p+=1;
+		if(p==30){p=0;j=1-j;}}
+		</script>
+</div>
+</div>-->
+
+<div id="content_div" class="content" style="border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; position:relative; z-index:2; behavior:url(js/ie-css3.htc);">
+<div id="top">
+<div id="log_top" style="float:left; height:100%; margin-left:5px;">
+<table>
+	<tr>
+	<td width="110px"><h3>IPCamera</h3></td>
+	<td id="menu_view" width="60px" align="center" onclick="menucontrol('View')">
+	    <table class="menu_table">
+					<tr>
+						<td>
+							<img src="image/preview2.png" id="img_menu_view" onmouseover="$('#img_menu_view').attr('src','image/preview2_hover.png');" onmouseout="$('#img_menu_view').attr('src','image/preview2.png');" />
+						</td>
+					</tr>
+					<tr>
+						<td align="center" style="font-size:12px;">
+							<script>document.write(str_preview_now);</script>
+						</td>
+					</tr>
+	    </table>
+	</td>
+	<td id="menu_set" width="60px" align="center" onclick="menucontrol('Setting')">
+			<table class="menu_table">
+				<tr>
+					<td>
+						<img src="image/systemSet2.png" id="img_menu_set" onmouseover="$('#img_menu_set').attr('src','image/systemSet1_hover.png');" onmouseout="$('#img_menu_set').attr('src','image/systemSet2.png');" />
+					</td>
+				</tr>
+				<tr>
+					<td align="center" style="font-size:12px;"><script>document.write(str_menu_setting);</script></td>
+				</tr>
+			</table>
+	</td>
+    </tr>
+</table>
+</div>
+
+<div style="float:right; margin-top:10px; margin-right:5px;">
+		<img id="menu_logout" src="image/logout.png" onclick="logout()" onmouseover="$('#menu_logout').attr('src','image/logout_hover.png');"
+    onmouseout="$('#menu_logout').attr('src','image/logout.png');" />
+</div>
+</div>
+<div id="View" class="content_top">
+<div id="Video" style=" height:570px;">
+	<div style="height:0px; float:top;">
+		<label id="lb_malv" style="float:left; height:20px; margin-top:5px; margin-left:10px"></label>
+			<label id="lb_fenbilv" style="float:right; margin-top:5px; margin-right:10px;"></label>
+	</div> 
+		    <div class="vxgplayer" id="vxg_media_player1" url="rtsp_url" autostart controls
+avsync nmf-src="pnacl/Release/media_player.nmf" nmf-path="media_player.nmf"></div>
+		    <tr>
+<td><script>document.write(str_ai_result);</script><!--AI数据上报网址--></td>
+<td><input type="text" id="AI_result" width="150px" height="25px"/></td>
+</tr>
+	</div>
+<div>
+		<div id="view_ctr" >
+			<table style="width:110px; height:110px; margin-left:auto; margin-right:auto; margin-top:8px; background-image:url('image/PTZnormal_11.png')" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td id="ptz_leftup" style="width:35px; height:35px;" onmouseover="$('#ptz_leftup').css('background-image','url(../image/PTZnormal_leftup_1.png)');" onmouseout="$('#ptz_leftup').css('background-image','');"></td>
+					<td id="ptz_up" style="width:40px; height:35px;"  onmouseover="$('#ptz_up').css('background-image','url(../image/PTZnormal_up_1.png)');" onmouseout="$('#ptz_up').css('background-image','');"></td>
+					<td id="ptz_rightup" style="width:35px; height:35px;" onmouseover="$('#ptz_rightup').css('background-image','url(../image/PTZnormal_rightup_1.png)');" onmouseout="$('#ptz_rightup').css('background-image','');"></td>
+				</tr>
+				<tr>
+					<td id="ptz_left" style="width:35px; height:40px;" onmouseover="$('#ptz_left').css('background-image','url(../image/PTZnormal_left_1.png)');" onmouseout="$('#ptz_left').css('background-image','');" ></td>
+					<td id="ptz_center" style="width:40px; height:40px;" onmouseover="$('#ptz_center').css('background-image','url(../image/PTZnormal_center.png)');" onmouseout="$('#ptz_center').css('background-image','');"></td>
+					<td id="ptz_right" style="width:35px; height:40px;" onmouseover="$('#ptz_right').css('background-image','url(../image/PTZnormal_right_1.png)');" onmouseout="$('#ptz_right').css('background-image','');"></td>
+				</tr>
+				<tr>
+					<td id="ptz_leftdown" style="width:35px; height:35px;" onmouseover="$('#ptz_leftdown').css('background-image','url(../image/PTZnormal_leftdown_1.png)');" onmouseout="$('#ptz_leftdown').css('background-image','');"></td>
+					<td id="ptz_down" style="width:40px; height:35px;" onmouseover="$('#ptz_down').css('background-image','url(../image/PTZnormal_down_1.png)');" onmouseout="$('#ptz_down').css('background-image','');"></td>
+					<td id="ptz_rightdown" style="width:35px; height:35px;" onmouseover="$('#ptz_rightdown').css('background-image','url(../image/PTZnormal_rightdown_1.png)');" onmouseout="$('#ptz_rightdown').css('background-image','');"></td>
+				</tr>
+			</table>
+			<table width="140px" style="margin-left:auto; margin-right:auto;">
+				<tr>
+					<td width="40px"><script>document.write(str_step);</script></td>
+					<td>
+					<select id="select_step" style="width:80px; height:20px;">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3" selected="selected">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+				    <td>
+					<script>document.write(str_language_select);</script><!--语言选择-->
+					</td>
+					<td>
+					<select id="language_select" name="" style="width:80px;" onchange="language_select_change()">
+						<option value="0">简体中文</option>
+						<!--<option value="1">Spanish</option>
+						<option value="2">Deutsch</option>
+						<option value="3">French</option>
+						<option value="4">Italian</option>
+						<option value="5">Polski</option>
+						<option value="6">한국의</option>-->
+						<option value="7">English</option>
+						<!--<option value="8">繁体中文</option>-->
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<script>document.write(str_stream_select);</script>
+					</td>
+					<td>
+						<select name="Stream_change" id="select_view_stream" style="float:left; width:80px;" onchange="view_stream_change(this.id)">
+							<option value="0"><script>document.write(str_mainstream);</script><!--主码流--></option>
+							<option value="1"><script>document.write(str_second_stream);</script><!--次码流--></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="40px" align="center"><img id="view_con" src="image/contrast.png" /><!--对比度--> </td>
+					<td height="20px" width="90px;">
+						<!--<script language="javascript">
+						var A_TPL =
+						{
+							'b_vertical' : false,
+							'b_watch': true,
+							'n_controlWidth': 93,
+							'n_controlHeight': 16,
+							'n_sliderWidth': 10,
+							'n_sliderHeight': 15,
+							'n_pathLeft' : -5,
+							'n_pathTop' : 3,
+							'n_pathLength' : 90,
+							's_imgControl': 'image/ColorSlider.png',
+							's_imgSlider': 'image/SpeedNormal.png',
+							'n_zIndex': 1
+						}
+						var A_INIT6 =
+						{
+							's_name': 'sliderValue_con_view',
+							'n_minValue' : 0,
+							'n_maxValue' : 100,
+							'n_value' : 50,
+							'n_step' : 1
+						}
+						slider_con_view=new slider(A_INIT6,A_TPL);
+						</script>
+					-->
+		<script>
+					$(function(){
+							$("#slider_con_view").slider({
+								range:"max",
+								min:0,
+								max:100,
+								value:20,
+								slide:function(event,ui)
+								{
+									$("#slider_con_view").val(ui.value);
+								},
+								stop:function(event,ui)
+								{
+									image_content_change('slider_con_view');
+								}
+								});
+								$("#slider_con_view").val($("#slider_con_view").slider("value"));
+
+
+							});
+
+						</script>
+						<div id="slider_con_view" style=""></div>
+					</td>
+				</tr>
+				<tr>
+					<td height="20px" align="center"><img id="view_bgt" src="image/brightness_24px.png" /><!--亮度--></td>
+					<td height="20px">
+							<!--<script language="javascript">
+							var A_TPL =
+							{
+								'b_vertical' : false,
+								'b_watch': true,
+								'n_controlWidth': 93,
+								'n_controlHeight': 16,
+								'n_sliderWidth': 10,
+								'n_sliderHeight': 15,
+								'n_pathLeft' : -5,
+								'n_pathTop' : 3,
+								'n_pathLength' : 90,
+								's_imgControl': 'image/ColorSlider.png',
+								's_imgSlider': 'image/SpeedNormal.png',
+								'n_zIndex': 1
+							}
+							var A_INIT7 =
+							{
+								's_name': 'sliderValue_bgt_view',
+								'n_minValue' : 0,
+								'n_maxValue' : 100,
+								'n_value' : 50,
+								'n_step' : 1
+							}
+							slider_bgt_view=new slider(A_INIT7,A_TPL);
+							</script>-->
+					<script>
+					$(function(){
+							$("#slider_bgt_view").slider({
+								range:"max",
+								min:0,
+								max:100,
+								value:20,
+								slide:function(event,ui)
+								{
+									$("#slider_bgt_view").val(ui.value);
+								},
+								stop:function(event,ui)
+								{
+									image_content_change('slider_bgt_view');
+								}
+								});
+								$("#slider_bgt_view").val($("#slider_bgt_view").slider("value"));
+
+							});
+						</script>
+						<div id="slider_bgt_view" style=""></div>
+					</td>
+
+				</tr>
+				<tr>
+					<td height="20px" align="center"><img id="view_chorma" src="image/Color_Pallette.png" /><!--色度--></td>
+					<td height="20px">
+						<!--<script language="javascript">
+						var A_TPL =
+						{
+							'b_vertical' : false,
+							'b_watch': true,
+							'n_controlWidth': 93,
+							'n_controlHeight': 16,
+							'n_sliderWidth': 10,
+							'n_sliderHeight': 15,
+							'n_pathLeft' : -5,
+							'n_pathTop' : 3,
+							'n_pathLength' : 90,
+							's_imgControl': 'image/ColorSlider.png',
+							's_imgSlider': 'image/SpeedNormal.png',
+							'n_zIndex': 1
+						}
+						var A_INIT8 =
+						{
+							's_name': 'sliderValue_hue_view',
+							'n_minValue' : 0,
+							'n_maxValue' : 100,
+							'n_value' : 50,
+							'n_step' : 1
+						}
+						slider_hue_view=new slider(A_INIT8,A_TPL);
+						</script>-->
+		    <script>
+					$(function(){
+							$("#slider_hue_view").slider({
+								range:"max",
+								min:0,
+								max:100,
+								value:20,
+								slide:function(event,ui)
+								{
+									$("#slider_hue_view").val(ui.value);
+								},
+								stop:function(event,ui)
+								{
+									image_content_change('slider_hue_view');
+								}
+								});
+								$("#slider_hue_view").val($("#slider_hue_view").slider("value"));
+
+							});
+						</script>
+						<div id="slider_hue_view" style=""></div>
+					</td>
+				</tr>
+				<tr>
+					<td height="20px" align="center"><img id="view_saturation" src="image/Video_SaturationStatic.png" /><!--饱和度--></td>
+					<td height="20px">
+						<!--<script language="javascript">
+						var A_TPL =
+						{
+							'b_vertical' : false,
+							'b_watch': true,
+						   'n_controlWidth': 93,
+							'n_controlHeight': 16,
+							'n_sliderWidth': 10,
+							'n_sliderHeight': 15,
+							'n_pathLeft' : -5,
+							'n_pathTop' : 3,
+							'n_pathLength' : 90,
+							's_imgControl': 'image/ColorSlider.png',
+							's_imgSlider': 'image/SpeedNormal.png',
+							'n_zIndex': 1
+						}
+						var A_INIT9 =
+						{
+							's_name': 'sliderValue_saturation_view',
+							'n_minValue' : 0,
+							'n_maxValue' : 100,
+							'n_value' : 50,
+							'n_step' : 1
+						}
+						slider_saturation_view=new slider(A_INIT9,A_TPL);
+						</script>-->
+			  <script>
+					$(function(){
+							$("#slider_saturation_view").slider({
+								range:"max",
+								min:0,
+								max:100,
+								value:20,
+								slide:function(event,ui)
+								{
+									$("#slider_saturation_view").val(ui.value);
+								},
+								stop:function(event,ui)
+								{
+									image_content_change('slider_saturation_view');
+								}
+								});
+								$("#slider_saturation_view").val($("#slider_saturation_view").slider("value"));
+
+							});
+						</script>
+						<div id="slider_saturation_view" style=""></div>
+					</td>
+				</tr>
+				<tr>
+					<td height="20px" align="center"><img id="view_sharpen" src="image/Video_HueStatic.png" /><!--锐度--></td>
+					<td height="20px">
+						<!--<script language="javascript">
+						var A_TPL =
+						{
+							'b_vertical' : false,
+							'b_watch': true,
+							'n_controlWidth': 93,
+							'n_controlHeight': 16,
+							'n_sliderWidth': 10,
+							'n_sliderHeight': 15,
+							'n_pathLeft' : -5,
+							'n_pathTop' : 3,
+							'n_pathLength' : 90,
+							's_imgControl': 'image/ColorSlider.png',
+							's_imgSlider': 'image/SpeedNormal.png',
+							'n_zIndex': 1
+						}
+						var A_INIT10 =
+						{
+							's_name': 'sliderValue_sharpen_view',
+							'n_minValue' : 0,
+							'n_maxValue' : 100,
+							'n_value' : 50,
+							'n_step' : 1
+						}
+						slider_sharpen_view=new slider(A_INIT10,A_TPL);
+						</script>
+		    -->       <script>
+					$(function(){
+							$("#slider_sharpen_view").slider({
+								range:"max",
+								min:0,
+								max:100,
+								value:20,
+								slide:function(event,ui)
+								{
+									$("#slider_sharpen_view").val(ui.value);
+								},
+								stop:function(event,ui)
+								{
+									image_content_change('slider_sharpen_view');
+								}
+								});
+								$("#slider_sharpen_view").val($("#slider_sharpen_view").slider("value"));
+
+							});
+						</script>
+						<div id="slider_sharpen_view" style=""></div>
+					</td>
+				</tr>
+			</table>
+			<table width="140px" style="margin-left:auto; margin-right:auto;">
+				<tr>
+					<td align="center"><input type="image" style="" id="img_snashot" src="image/screenshot.png" onclick="Snapshot()" /></td>
+					<td align="center" style="display:none;"><input type="image" style="margin-top:2px;" id="img_record" src="image/record.png" onclick="record()"/></td>
+					<td align="center">
+						<input type="image" id="img_voice_on" style="display:none;" src="image/voice_on.png" onclick="voice_ctr(this.id)"/>
+						<input type="image" id="img_voice_close" style="" src="image/voice_close.png" onclick="voice_ctr(this.id)"/>
+					</td>
+					<td align="center">
+						<input type="image" id="img_voicetalk_on" style="display:none;" src="image/voicetalk_on.png" onclick="voicetalk_ctr(this.id)"/>
+						<input type="image" id="img_voicetalk_off" style="" src="image/voicetalk_off.png" onclick="voicetalk_ctr(this.id)"/>
+					</td>
+					<td align="center">
+						<input type="image" id="img_pcrecord_on" style="display:none;" src="image/pcrecord_on.png" onclick="pcrecord_ctr(this.id)"/>
+						<input type="image" id="img_pcrecord_off" style="" src="image/pcrecord_off.png" onclick="pcrecord_ctr(this.id)"/>
+					</td>
+					<td align="center"><img id="view_ctr_reset" src="image/Refresh_24px.png" onclick="image_content_change(this.id)"/></td>
+
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function () {
+		$(".ny_zblb1 ul li").click(function(){
+			var thisSpan=$(this);
+			$(".ny_zblb1 ul li ul").prev("a").removeClass("cur");
+			$("ul", this).prev("a").addClass("cur");
+			$(this).children("ul").slideDown("fast");
+			$(this).siblings().children("ul").slideUp("fast");
+		});
+	});
+</script>
+<div id="Setting" class="content_top" style="display:none;">
+<div id="Set_Menu" class="mid_left">
+    <div class="ny_zblb1">
+			<ul class="clearfix">
+				<li class="li_first">
+					<a id="a_first" href="javascript:void(0)"><script>document.write(str_video_parameter);</script><!--视频参数--></a>
+					<ul style="display:block;">
+						<li><a href="javascript:void(0)" onclick="Div_ShoworHidden('Set_Image')"><script>document.write(str_image);</script><!--图像--></a></li>
+						<li><a href="javascript:void(0)" onclick="Div_ShoworHidden('Set_Video')"><script>document.write(str_video);</script><!--视频--></a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:void(0)"><script>document.write(str_network);</script><!--网络--></a>
+					<ul>
+						<li><a href="javascript:void(0)"  onclick="Div_ShoworHidden('Net_Access')"><script>document.write(str_network_access);</script><!--访问--></a></li>
+						<li><a href="javascript:void(0)" onclick="Div_ShoworHidden('Platform_Access')"><script>document.write(str_platform_access);</script><!--平台接入--></a></li>
+						<li id='gb28181_li'><a href="javascript:void(0)" onclick="Div_ShoworHidden('gb28181')"><script>document.write(str_gb28181);</script><!--GB28181--></a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:void(0)"><script>document.write(str_system_parameter);</script><!--系统参数--></a>
+					<ul>
+						<li><a id="user_manage" href="javascript:void(0)" onclick="Div_ShoworHidden('UserManage')"><script>document.write(str_user_manage);</script><!--用户管理--></a></li>
+						<li><a href="javascript:void(0)" onclick="Div_ShoworHidden('SystemSetting')"><script>document.write(str_system_manage);</script><!--系统管理--></a></li>
+					</ul>
+				</li>
+			</ul>
+    </div>
+    <div id="tipMessage">
+    </div>
+</div>
+<div id="Set_Conten" class="mid_right">
+<div id="Set_Image">
+		<div id="TabbedPanels1" class="TabbedPanels">
+	<ul class="TabbedPanelsTabGroup">
+	    <li class="TabbedPanelsTab" tabindex="0"><script>document.write(str_basic_parameter);</script><!--基本参数--></li>
+	</ul>
+      <div class="TabbedPanelsContentGroup">
+	    <div class="TabbedPanelsContent">
+		      <div id="View_Image_Basic" class="div_obj"> 
+      <div class="vxgplayer" style="height:484px;width:644px;margin-left:0px;margin-top:0px" id="vxg_media_player1" url="rtsp_url" autostart controls avsync nmf-src="pnacl/Release/media_player.nmf" nmf-path="media_player.nmf"></div>
+
+		      </div> 
+		<div class="div_ctr">
+						<table width="290" border="0">
+							<tr class="noneStyle">
+								<td width="100" height="20px" align="right"><script>document.write(str_pwm_control);</script><!--PWM控制--></td>
+								<td width="190" height="20px" align="left">
+								<select name="select_pwm_control" id="select_pwm_control" style="width:150px; height:20px; margin-left:10px;" onchange="pwm_iso_control(this.id)">
+									<option value="0" selected="selected"><script>document.write(str_pwm_close);</script></option>
+									<option value="1"><script>document.write(str_pwm_open);</script></option>
+									<option value="2"><script>document.write(str_pwm_auto);</script></option>
+								</select>
+								</td>
+							</tr>
+							<tr class="noneStyle">
+								<td width="100" height="20px" align="right"><script>document.write(str_pwm_iso);</script><!--PWM控制ISO阀值--></td>
+								<td width="190" height="20px" align="left">
+								<select name="select_pwm_iso" id="select_pwm_iso" style="width:150px; height:20px; margin-left:10px;" onchange="pwm_iso_control(this.id)">
+									<option value="0" selected="selected">ISO1</option>
+									<option value="1">ISO2</option>
+									<option value="2">ISO3</option>
+									<option value="3">ISO4</option>
+									<option value="4">ISO5</option>
+								</select>
+								</td>
+							</tr>
+							<tr class="noneStyle">
+								<td height="20px" align="right"> <script>document.write(str_pwm_duty);</script><!--PWM占空比-->
+								<td>
+									<table>
+										<tr>
+											<td width="20px" height="20px"><img id="pwm_duty_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" /></td>
+											<td width="110px">
+												<script>
+												$(function(){
+													$("#slider_pwm_duty").slider({
+														range:"max",
+														min:1,
+														max:99,
+														value:20,
+														slide:function(event,ui)
+														{
+															$("#sliderValue_pwm_duty").val(ui.value);
+														},
+														stop:function(event,ui)
+														{
+															pwm_iso_control('slider_pwm_duty');
+														}
+														});
+														$("#sliderValue_pwm_duty").val($("#slider_pwm_duty").slider("value"));
+													});
+												</script>
+												<div id="slider_pwm_duty" style=""></div>
+											</td>
+											<td width="20px">
+												<img id="pwm_duty_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+											</td>
+											<td width="20px"><input name="text" id="sliderValue_pwm_duty" type="Text" style="width:25px;" disabled="disabled"/></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							
+							<tr class="noneStyle">
+								<td width="100" height="20px" align="right"><script>document.write(str_power_frequency);</script><!--电源频率--></td>
+								<td width="190" height="20px" align="left">
+								<select name="select_power_frequency" id="select_power_frequency" style="width:150px; height:20px; margin-left:10px;" onchange="image_content_change(this.id)">
+									<option value="50" selected="selected">50HZ</option>
+									<option value="60">60HZ</option>
+								</select>
+								</td>
+							</tr>
+							<tr>
+			<td height="20px" align="right"> <script>document.write(str_contrast);</script><!--对比度-->
+			<td>
+				<table>
+			    <tr>
+								<td width="20px" height="20px"><img id="con_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" /></td>
+								<td width="110px">
+								<script>
+								$(function(){
+									$("#slider_con").slider({
+										range:"max",
+										min:0,
+										max:100,
+										value:20,
+										slide:function(event,ui)
+										{
+											$("#sliderValue_con").val(ui.value);
+										},
+										stop:function(event,ui)
+										{
+											image_content_change('slider_con');
+										}
+										});
+										$("#sliderValue_con").val($("#slider_con").slider("value"));
+									});
+								</script>
+								<div id="slider_con" style=""></div>
+								</td>
+								<td width="20px">
+									<img id="con_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+								</td>
+								<td width="20px"><input name="text" id="sliderValue_con" type="Text" style="width:25px;" disabled="disabled"/></td>
+			    </tr>
+			    </table>
+
+							</td>
+							</tr>
+							<!--<tr>
+								<td height="20px" align="right"> <script>document.write(str_contrast);</script></td>
+								<td height="20px" width="190px">
+									<table width="190px" height="20px" border="0">
+									<tr>
+										<td width="20px" height="20px"><img id="con_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" /></td>
+										<td width="110px">
+										<script language="javascript">
+									var A_TPL =
+									{
+										'b_vertical' : false,
+										'b_watch': true,
+										'n_controlWidth': 110,
+										'n_controlHeight': 16,
+										'n_sliderWidth': 16,
+										'n_sliderHeight': 15,
+										'n_pathLeft' : -50,
+										'n_pathTop' : 1,
+										'n_pathLength' : 100,
+										's_imgControl': 'image/slider.png',
+										's_imgSlider': 'image/disc.png',
+										'n_zIndex': 1
+									}
+									var A_INIT =
+									{
+										's_name': 'sliderValue_con',
+										'n_minValue' : 0,
+										'n_maxValue' : 100,
+										'n_value' : 50,
+										'n_step' : 1
+									}
+									slider_con=new slider(A_INIT,A_TPL);
+									</script>
+									</td>
+										<td width="20px">
+										<img id="con_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+									</td>
+										<td width="20px"><input name="text" id="sliderValue_con" type="Text" style="width:25px;" disabled="disabled"/></td>
+									</tr>
+								</table>
+								</td>
+							</tr>-->
+							<tr>
+								<td height="20px" align="right"><script>document.write(str_brightness);</script><!-- 亮度--></td>
+								<td height="20px">
+								<table width="190px">
+								<tr>
+								<td width="20px" height="20px">
+									<img id="bgt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+								</td>
+								<td width="110px">
+								<script>
+								$(function(){
+									$("#slider_bgt").slider({
+										range:"max",
+										min:0,
+										max:100,
+										value:20,
+										slide:function(event,ui)
+										{
+											$("#sliderValue_bgt").val(ui.value);
+										},
+										stop:function(event,ui)
+										{
+											image_content_change('slider_bgt');
+										}
+										});
+										$("#sliderValue_bgt").val($("#slider_bgt").slider("value"));
+
+									});
+								</script>
+								<div id="slider_bgt" style=""></div>
+								</td>
+								<td width="20px">
+									<img id="bgt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+								</td>
+								<td width="20px">
+									<input name="text" id="sliderValue_bgt" type="Text" style="width:25px" disabled="disabled"/>
+								</td>
+								</tr>
+								</table>
+								</td>
+							</tr>
+							<!--<tr>
+								<td height="20px" align="right"><script>document.write(str_brightness);</script></td>
+								<td height="20px">
+									<table width="190" height="20px" border="0">
+										<tr>
+											<td width="20px" height="20px">
+												<img id="bgt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+											</td>
+											<td width="110px">
+											<script language="javascript">
+											var A_TPL =
+											{
+												'b_vertical' : false,
+												'b_watch': true,
+												'n_controlWidth': 110,
+												'n_controlHeight': 16,
+												'n_sliderWidth': 16,
+												'n_sliderHeight': 15,
+												'n_pathLeft' :-50,
+												'n_pathTop' : 1,
+												'n_pathLength' : 100,
+												's_imgControl': 'image/slider.png',
+												's_imgSlider': 'image/disc.png',
+												'n_zIndex': 1
+											}
+											var A_INIT1 =
+											{
+												's_name': 'sliderValue_bgt',
+												'n_minValue' : 0,
+												'n_maxValue' : 100,
+												'n_value' : 50,
+												'n_step' : 1
+											}
+											slider_bgt=new slider(A_INIT1,A_TPL);
+											</script>
+											</td>
+											<td width="20px">
+												<img id="bgt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+											</td>
+											<td width="20px">
+												<input name="text" id="sliderValue_bgt" type="Text" style="width:25px" disabled="disabled"/>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>-->
+							<tr>
+								<td height="20px" align="right"><script>document.write(str_chroma);</script><!--色度--></td>
+								<td height="20px">
+								<table width="190px">
+								<tr>
+								<td width="20px" height="20px">
+									<img id="hue_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+								</td>
+								<td width="110px">
+								<script>
+								$(function(){
+									$("#slider_hue").slider({
+										range:"max",
+										min:0,
+										max:100,
+										value:20,
+										slide:function(event,ui)
+										{
+											$("#sliderValue_hue").val(ui.value);
+										},
+										stop:function(event,ui)
+										{
+											image_content_change('slider_hue');
+										}
+										});
+										$("#sliderValue_hue").val($("#slider_hue").slider("value"));
+
+									});
+								</script>
+								<div id="slider_hue" style=""></div>
+								</td>
+								<td width="20px">
+									<img id="hue_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+								</td>
+								<td width="20px">
+									<input name="text" id="sliderValue_hue" type="Text" style="width:25px" disabled="disabled"/>
+								</td>
+								</tr>
+								</table>
+								</td>
+							</tr>
+							<!--<tr>
+								<td height="20px" align="right"><script>document.write(str_chroma);</script></td>
+								<td height="20px">
+											<table width="190" height="20px" border="0">
+											<tr>
+											<td width="20px" height="20px">
+												<img id="hue_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+											</td>
+											<td width="110px">
+											<script language="javascript">
+											var A_TPL =
+											{
+												'b_vertical' : false,
+												'b_watch': true,
+												'n_controlWidth': 110,
+												'n_controlHeight': 16,
+												'n_sliderWidth': 16,
+												'n_sliderHeight': 15,
+												'n_pathLeft' : -50,
+												'n_pathTop' : 1,
+												'n_pathLength' : 100,
+												's_imgControl': 'image/slider.png',
+												's_imgSlider': 'image/disc.png',
+												'n_zIndex': 1
+											}
+											var A_INIT2 =
+											{
+												's_name': 'sliderValue_hue',
+												'n_minValue' : 0,
+												'n_maxValue' : 100,
+												'n_value' : 50,
+												'n_step' : 1
+											}
+											slider_hue=new slider(A_INIT2,A_TPL);
+											</script>
+											</td>
+											<td width="20px">
+												<img id="hue_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+											</td>
+											<td width="20px"><input name="text" id="sliderValue_hue" type="Text" style="width:25px" disabled="disabled"/>
+											</td>
+										</tr>
+										</table>
+									</td>
+							</tr>-->
+							<tr>
+								<td height="20px" align="right"><script>document.write(str_aturation);</script><!--饱和度--></td>
+								<td height="20px">
+								<table width="190px">
+								<tr>
+								<td width="20px" height="20px">
+									<img id="stt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+								</td>
+								<td width="110px">
+								<script>
+								$(function(){
+									$("#slider_saturation").slider({
+										range:"max",
+										min:0,
+										max:100,
+										value:20,
+										slide:function(event,ui)
+										{
+											$("#sliderValue_saturation").val(ui.value);
+										},
+										stop:function(event,ui)
+										{
+											image_content_change('slider_saturation');
+										}
+										});
+										$("#sliderValue_saturation").val($("#slider_saturation").slider("value"));
+
+									});
+								</script>
+								<div id="slider_saturation" style=""></div>
+								</td>
+								<td width="20px">
+									<img id="stt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+								</td>
+								<td width="20px">
+									<input name="text" id="sliderValue_saturation" type="Text" style="width:25px" disabled="disabled"/>
+								</td>
+								</tr>
+								</table>
+								</td>
+							</tr>
+							<!--<tr>
+								<td height="20px" align="right"><script>document.write(str_aturation);</script></td>
+								<td height="20px">
+										<table width="190" height="20px" border="0">
+										<tr>
+											<td width="20px" height="20px">
+												<img id="stt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+											</td>
+											<td width="110px">
+											<script language="javascript">
+											var A_TPL =
+											{
+												'b_vertical' : false,
+												'b_watch': true,
+												'n_controlWidth': 110,
+												'n_controlHeight': 16,
+												'n_sliderWidth': 16,
+												'n_sliderHeight': 15,
+												'n_pathLeft' : -50,
+												'n_pathTop' : 1,
+												'n_pathLength' : 100,
+												's_imgControl': 'image/slider.png',
+												's_imgSlider': 'image/disc.png',
+												'n_zIndex': 1
+											}
+											var A_INIT3 =
+											{
+												's_name': 'sliderValue_saturation',
+												'n_minValue' : 0,
+												'n_maxValue' : 100,
+												'n_value' : 50,
+												'n_step' : 1
+											}
+											slider_saturation=new slider(A_INIT3,A_TPL);
+											</script>
+											</td>
+											<td width="20px">
+												<img id="stt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+											</td>
+											<td width="20px">
+												<input name="text" id="sliderValue_saturation" type="Text" style="width:25px"  disabled="disabled" />
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>-->
+							<tr>
+								<td height="20px" align="right"><script>document.write(str_sharpen);</script><!--锐度--></td>
+								<td height="20px">
+								<table width="190px">
+								<tr>
+								<td width="20px" height="20px">
+									<img id="sharpen_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+								</td>
+								<td width="110px">
+								<script>
+								$(function(){
+									$("#slider_sharpen").slider({
+										range:"max",
+										min:0,
+										max:100,
+										value:20,
+										slide:function(event,ui)
+										{
+											$("#sliderValue_sharpen").val(ui.value);
+										},
+										stop:function(event,ui)
+										{
+											image_content_change('slider_sharpen');
+										}
+										});
+										$("#sliderValue_sharpen").val($("#slider_sharpen").slider("value"));
+
+									});
+								</script>
+								<div id="slider_sharpen" style=""></div>
+								</td>
+								<td width="20px">
+									<img id="sharpen_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+								</td>
+								<td width="20px">
+									<input name="text" id="sliderValue_sharpen" type="Text" style="width:25px" disabled="disabled"/>
+								</td>
+								</tr>
+								</table>
+								</td>
+							</tr>
+							<!--<tr>
+								<td height="20px" align="right"><script>document.write(str_sharpen);</script></td>
+								<td height="20px">
+									<table width="190" height="20px" border="0">
+										<tr>
+											<td width="20px" height="20px">
+												<img id="sharpen_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+											</td>
+											<td  width="110px">
+												<script language="javascript">
+											var A_TPL =
+											{
+												'b_vertical' : false,
+												'b_watch': true,
+												'n_controlWidth': 110,
+												'n_controlHeight': 16,
+												'n_sliderWidth': 16,
+												'n_sliderHeight': 15,
+												'n_pathLeft' : -50,
+												'n_pathTop' : 1,
+												'n_pathLength' : 100,
+												's_imgControl': 'image/slider.png',
+												's_imgSlider': 'image/disc.png',
+												'n_zIndex': 1
+											}
+											var A_INIT4 =
+											{
+												's_name': 'sliderValue_sharpen',
+												'n_minValue' : 0,
+												'n_maxValue' : 100,
+												'n_value' : 50,
+												'n_step' : 1
+											}
+											slider_sharpen=new slider(A_INIT4,A_TPL);
+											</script>
+											</td>
+											<td  width="20px">
+												<img id="sharpen_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+											</td>
+											<td width="20px"><input name="text" id="sliderValue_sharpen" type="Text" style="width:25px"  disabled="disabled" /></td>
+										</tr>
+									</table>
+								</td>
+							</tr>-->
+
+							<tr class="noneStyle">
+								<td align="right"><script>document.write(str_situational_model);</script><!--情景模式--></td>
+								<td align="left">
+									<label for="select_5_1"></label>
+									<select name="select_5_1" id="select_scen_mode" style="width:150px; height:20px;"  onChange="image_content_change(this.id)">
+										<option value="0" selected="selected"><script>document.write(str_automatic);</script><!--自动--></option>
+										<option value="1"><script>document.write(str_sm_indoor);</script><!--室内--></option>
+										<option value="2"><script>document.write(str_sm_outdoor);</script><!--室外--></option>
+									</select>
+								</td>
+							</tr>
+							<tr class="noneStyle">
+								<td align="right"><script>document.write(str_image_style);</script><!--图像风格--></td>
+								<td align="left">
+									<label for="select_5_2"></label>
+									<select name="select_5_2" id="select_pic_style" style="width:150px; height:20px;" onChange="image_content_change(this.id)">
+										<option value="0" selected="selected"><script>document.write(str_imgs_standard);</script><!--标准--></option>
+										<option value="1"><script>document.write(str_imgs_bright);</script><!--明亮--></option>
+										<option value="2"><script>document.write(str_imgs_gorgeous);</script><!--艳丽--></option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td align="right"><script>document.write(str_white_balance_mode);</script><!--白平衡模式--></td>
+								<td align="left">
+									<label for="select_5_3"></label>
+									<select name="select_5_3" id="select_awb_mode" style="width:150px; height:20px;" onChange="image_content_change(this.id)">
+										<option value="0"><script>document.write(str_automatic);</script><!--自动--></option>
+										<option value="1"><script>document.write(str_sm_indoor);</script><!--室内--></option>
+										<option value="2"><script>document.write(str_sm_outdoor);</script><!--室外--></option>
+									</select>
+								</td>
+							</tr>
+							<tr style="display:none;">
+								<td align="right"><script>document.write(str_detection_mode);</script><!--ircut检测模式--></td>
+								<td align="left">
+									<select name="select_ircut" id="select_ircut_control_mode" style="width:150px; height:20px;" onChange="image_content_change(this.id)" >
+									<option value="0" selected="selected"><script>document.write(str_dm_hardware);</script><!--软件--></option>
+									<option value="1"><script>document.write(str_dm_software);</script><!--硬件--></option>
+								</select>
+								</td>
+							</tr>
+							<tr>
+								<td align="right"><script>document.write(str_daynight_mode);</script><!--日夜模式--></td>
+								<td align="left">
+									<label for="select_5_5"></label>
+									<select name="select_5_5" id="select_ircut_mode" style="width:150px; height:20px;" onChange="image_content_change(this.id)">
+										<option value="0"><script>document.write(str_automatic);</script><!--自动--></option>
+										<option value="1"><script>document.write(str_dnm_day);</script><!--白天--></option>
+										<option value="2"><script>document.write(str_dnm_night);</script><!--夜晚--></option>
+										<option value="3"><script>document.write(str_dnm_autocolor);</script><!--自动全彩--></option>
+									</select>
+								</td>
+							</tr>
+							<tr style="display:none;">
+								<td align="right"><script>document.write(str_wide_dynamic);</script><!--宽动态--></td>
+								<td align="left">
+										<table width="200">
+											<tr>
+											<td>
+												<label>
+												<input type="radio" name="wide_dynamic" value="0" id="wide_dynamic_0" onclick="wide_dynamic_radio_change(this.id)" />
+												<script>document.write(str_rb_close);</script><!--关闭-->
+											</label>
+											</td>
+											<td>
+												<label>
+												<input type="radio" name="wide_dynamic" value="1" id="wide_dynamic_1" onclick="wide_dynamic_radio_change(this.id)" />
+												<script>document.write(str_rb_open);</script><!--开启-->
+											</label>
+											</td>
+										</tr>
+										</table>
+								</td>
+							</tr>
+							<tr id ="tr_wide_dynamic_range"  style="display:none;" >
+								<td align="right"><script>document.write(str_wide_dynamic_range);</script><!--宽动态范围--></td>
+								<td align="left">
+									<table width="190" height="20px" border="0">
+									<tr>
+										<td height="20px" width="20px">
+										<img id="wide_dynamic_range_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+									</td>
+										<td height="20px" width="110px">
+										<!--<script language="javascript">
+									var A_TPL =
+									{
+										'b_vertical' : false,
+										'b_watch': true,
+										'n_controlWidth': 110,
+										'n_controlHeight': 16,
+										'n_sliderWidth': 16,
+										'n_sliderHeight': 15,
+										'n_pathLeft' : -1,
+										'n_pathTop' : 1,
+										'n_pathLength' : 100,
+										's_imgControl': 'image/slider.png',
+										's_imgSlider': 'image/disc.png',
+										'n_zIndex': 1
+									}
+									var A_INIT =
+									{
+										//'s_form':1,
+										's_name': 'sliderValue_wide_dynamic_range',
+										'n_minValue' : 0,
+										'n_maxValue' : 100,
+										'n_value' : 50,
+										'n_step' : 1
+									}
+									slider_wide_dynamic_range=new slider(A_INIT,A_TPL);
+									</script>-->
+									</td>
+										<td width="20px">
+											<img id="wide_dynamic_range_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+										</td>
+										<td width="20px">
+											<input name="text" id="sliderValue_wide_dynamic_range" type="Text" style="width:25px" disabled="disabled" /></td>
+									</tr>
+								</table>
+								</td>
+							</tr>
+							<tr  style="display:none;">
+								<td align="right"><script>document.write(str_denosis3d_control);</script><!--3D去噪控制--></td>
+								<td align="left">
+										<table width="190">
+										<tr>
+											<td>
+											<label>
+											<input type="radio" name="denosis3d_control" value="0" id="denosis3d_control_0" onclick="denosis3d_radio_change(this.id)" />
+											<script>document.write(str_rb_close);</script><!--关闭-->
+										</label>
+										</td>
+											<td>
+											<label>
+											<input type="radio" name="denosis3d_control" value="1" id="denosis3d_control_1" onclick="denosis3d_radio_change(this.id)" /><script>document.write(str_rb_open);</script><!--开启-->
+										</label>
+										</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr id ="tr_3d_denoise_control"  style="display:none;">
+								<td align="right"><script>document.write(str_denosis3d_strength);</script><!--3D去噪强度--></td>
+								<td align="left">
+									<table width="190" height="20px">
+									<tr>
+										<td height="20px" width="20px" border="1">
+											<img id="denosis3dStrength_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+										</td>
+										<td height="20px" width="110px">
+											<!--<script language="javascript">
+										var A_TPL =
+										{
+											'b_vertical' : false,
+											'b_watch': true,
+											'n_controlWidth': 110,
+											'n_controlHeight': 16,
+											'n_sliderWidth': 16,
+											'n_sliderHeight': 15,
+											'n_pathLeft' : -1,
+											'n_pathTop' : 1,
+											'n_pathLength' : 100,
+											's_imgControl': 'image/slider.png',
+											's_imgSlider': 'image/disc.png',
+											'n_zIndex': 1
+										}
+										var A_INIT1 =
+										{
+											//'s_form':1,
+											's_name': 'sliderValue_denosis3dStrength',
+											'n_minValue' : 0,
+											'n_maxValue' : 100,
+											'n_value' : 50,
+											'n_step' : 1
+										}
+										slider_denosis3dStrength=new slider(A_INIT1,A_TPL);
+										</script>-->
+										</td>
+										<td width="20px">
+											<img id="denosis3dStrength_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+										</td>
+										<td width="20px"><input name="text" id="sliderValue_denosis3dStrength" type="Text" style="width:25px" disabled="disabled" /></td>
+									</tr>
+								</table>
+								</td>
+							</tr>
+							<tr style="display:none;">
+							<td align="right"><script>document.write(str_low_illumination_mode);</script><!--低照度模式--></td>
+							<td align="left">
+								<label for="select_5_7"></label>
+								<select name="select_5_7" id="select_low_light_mode" style="width:150px; height:20px" onChange="image_content_change(this.id)">
+								<option value="0"><script>document.write(str_lim_close);</script><!--关--></option>
+								<option value="1"><script>document.write(str_lim_onlynight);</script><!--仅夜晚--></option>
+								<option value="2"><script>document.write(str_lim_allday);</script><!--全天--></option>
+								<option value="3" selected="selected"><script>document.write(str_automatic);</script><!--自动--></option>
+							</select>
+							</td>
+						</tr>
+						</table>
+						<table width="290px">
+							<tr>
+								<td width="108" align="right" ><input type="checkbox" id="Flip"   onClick="image_content_change(this.id);"/><script>document.write(str_flip);</script><!--上下翻转--> </td>
+								<td width="170" align="center"><input type="checkbox" id="Mirror" onClick="image_content_change(this.id);"/><script>document.write(str_mirror);</script><!--左右翻转--> </td>
+							</tr>
+						</table>                            
+						<table width="290px" class="noneStyle">
+							<tr>
+								<td width="108" align="right" ><input type="checkbox" id="led1"   onClick="image_content_change(this.id);"/><script>document.write(str_led1);</script><!--指示灯1--> </td>
+								<td width="170" align="center"><input type="checkbox" id="led2" onClick="image_content_change(this.id);"/><script>document.write(str_led2);</script><!--指示灯2--> </td>
+							</tr>
+						</table>
+						<button id="btn_reset_default" onclick="image_content_change(this.id)">
+							<script>document.write(str_rds);</script>
+						</button>
+					</div>
+	    </div>
+	</div>
+		</div>
+</div>
+<div id="Set_Video">
+    <div id="TabbedPanels2" class="TabbedPanels">
+	<ul class="TabbedPanelsTabGroup">
+	    <li class="TabbedPanelsTab"  tabindex="2"><script>document.write(str_stream);</script><!--码流--></li>
+	    <li class="TabbedPanelsTab" tabindex="3"><script>document.write(str_privacy_area);</script><!--隐私区域--></li>
+	    <li class="TabbedPanelsTab" tabindex="4"><script>document.write(str_video_overlay);</script><!--视频叠加--></li>
+	</ul>
+	<div class="TabbedPanelsContentGroup">
+	    <div class="TabbedPanelsContent">
+		<div class="content_left">
+		    <table width="400" border="0">
+			<tr style="display:none;">
+			    <td width="35%" height="20px" align="right"><script>document.write(str_encoder_configuration);</script><!--编码器配置--></td>
+			    <td width="65%" height="20px" align="left">
+			    <select name="select_2" id="select_h264_profile" style="width:150px; height:20px;">
+				<option value="0" selected="selected">main</option>
+				<option value="1">baselin</option>
+			    </select>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_encode_mode);</script><!--编码类型--></td>
+			    <td width="65%" height="20px" align="left">
+			    <select name="select_3" id="select_code_Type" style="width:150px; height:20px;">
+				<option value="0" selected="selected"><script>document.write(str_audioandvideo);</script><!--音视频--></option>
+				<option value="1"><script>document.write(str_video);</script><!--视频--></option>
+			    </select>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_stream);</script><!--码流--></td>
+			    <td width="65%" height="20px" align="left">
+				<select name="select_4" id="select_stream" style="width:150px; height:20px; " onChange="video_stream_get();">
+				<option value="0" selected="selected"><script>document.write(str_mainstream);</script><!--主码流--></option>
+				<option value="1"><script>document.write(str_second_stream);</script><!--次码流--></option>
+			    </select>
+			  </td>
+			</tr>
+			<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_streamname);</script><!--码流名--></td>
+			    <td width="65%" height="20px" align="left">
+									<input type="text" name="Text_1" id="text_Stream_Name" style="width:150px; height:20px; " />
+			    </td>
+			</tr>
+			<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_resolution);</script><!--分辨率--></td>
+			    <td width="65%" height="20px" align="left">
+			    <select  id="select_Stream_Resolution" style="width:150px; height:20px;">
+			    </select>
+			    </td>
+			</tr>
+							<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_video_encode_mode);</script><!--视频编码--></td>
+			    <td width="65%" height="20px" align="left">
+			    <select  id="select_Stream_video_encode_mode" style="width:150px; height:20px;">
+			    </select>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_rate_control);</script><!--码率控制--></td>
+			    <td width="65%" height="20px" align="left">
+			    <label for="select_6"></label>
+			    <select name="select_6" id="select_rate_format" style="width:150px; height:20px;" onChange="bitRate_select_change()" >
+				<option value="1"><script>document.write(str_VBR);</script><!--可变码率--></option>
+				<option value="0" selected="selected"><script>document.write(str_constant_rate);</script><!--恒定码率--></option>
+			    </select>
+			    </td>
+			</tr>
+			<tr>
+			    <td width="35%" height="20px" align="right"><script>document.write(str_rate);</script><!--码率--></td>
+			    <td width="65%" height="20px" align="left" id= "cbr" >
+				<label for="text_2"></label>
+				 <input type="text" name="text_2" id="text_cbr_bps" maxlength="5" style="width:80px; height:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onBlur="check_rate(this.id)"/><!--bitRateChange(this.id)"  />-->
+                                        <script>document.write(str_bps_per_second);</script><!--比特/秒-->
+                                    </td>
+                                    <td width="50%" height="20px" align="left" id= "vbr" style="display:none;">
+                                    <label id="rate_check_result"></label>
+                                       <div id="tips">
+                                        <input type="text" name="text_vbr_min" id="text_vbr_min_bps" style="width:40px; height:20px;" onKeyUp="bitRateChange(this.id)" />
+                                        <input type="text" name="text_vbr_max" id="text_vbr_max_bps" style="width:40px; height:20px;" onChange="bitRateChange(this.id)"  /><script>document.write(str_bps_per_second);</script><!--比特/秒-->
+                                      </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="35%" height="20px" align="right"><script>document.write(str_frame_rate);</script><!--帧率--></td>
+                                    <td width="65%" height="20px" align="left"><input type="text" name="text_3" id="text_fps" style="width:80px; height:20px;" onKeyUp="frameRateChange()" />
+                                      <script>document.write(str_frames_per_second);</script><!--帧/秒-->
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td colspan="2">
+                                    <button id="btn_save" onclick="video_stream_set()">
+                                    <script>document.write(str_saveset);</script>
+                                    </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                	<td colspan="2">
+                                    <label id="tips" style="color:#F00"></label></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="TabbedPanelsContent">
+                        <div class="div_obj">
+							<span id="Video_Cover">
+							</span>
+						</div>
+                        <div class="div_ctr">
+							<table width="300px" border="0">
+                            <tr>
+                                <td width="150px" height="25px" align="center"><script>document.write(str_enable);</script><!--使能--></td>
+                                <td width="150px" height="25px" align="center"><input type="checkbox" name="cb_sn" id="cover_enabled"/></td>
+                            </tr>
+                            <tr>
+                                <td align="center"><script>document.write(str_areacolor);</script><!--区域颜色--></td>
+                                <td align="center">
+                                    <select id="Cover_bgColor" style="width:120px">
+                                        <option value="FFFFFF"><script>document.write(str_white);</script><!--白色--></option>
+                                        <option value="5AAF5A"><script>document.write(str_green);</script><!--绿色--></option>
+                                        <option value="006ECF"><script>document.write(str_blue);</script><!--蓝色--></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <button id="area_btn_save" onclick="video_privacy_mask_set()">
+                                    <script>document.write(str_saveset);</script>
+                                    </button>
+                                    <!--<input type="button" value="保存设置" onclick="video_privacy_mask_set()" />-->
+                                </td>
+                            </tr>
+                        </table>
+                        </div>
+                    </div>
+                    <div class="TabbedPanelsContent">
+						<div id="Video_OSD" class="div_obj">
+						</div>
+						<div class="div_ctr">
+							<table width="300" border="0">
+								<tr>
+									<td width="103" colspan="2" align="left" style="font-size:18px; font-weight:bold;"><script>document.write(str_timeset);</script><!--时间设置--></td>
+								</tr>
+								<tr>
+									<td width="103" align="right"><script>document.write(str_show_enable);</script><!--是否显示--></td>
+									<td width="187" align="left">
+									<input type="checkbox" onclick="osddate_enable()" name="osddate_enable" id="osddate_enable" />
+									<label for="osddate_enable"></label></td>
+								</tr>
+								<tr>
+									<td align="right"><script>document.write(str_data_format);</script><!--日期格式--></td>
+									<td align="left">
+									<label for="osddate_dateFormat"></label>
+									<select name="osddate_dateFormat" id="osddate_dateFormat" style="width:150px; height:20px;">
+                                  <option value="0" selected="selected">YYYY-MM-DD</option>
+                                  <option value="1">MM-DD-YYYY</option>
+                                  <option value="2">YYYY/MM/DD</option>
+                                  <option value="3">MM/DD/YYYY</option>
+                                  <option value="4">DD-MM-YYYY</option>
+                                  <option value="5">DD/MM/YYYY</option>
+                                </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><script>document.write(str_time_format);</script><!--时间格式--></td>
+                                <td align="left">
+                                <label for="osddate_timeFormat"></label>
+                                <select name="osddate_timeFormat" id="osddate_timeFormat" style="width:150px; height:20px;">
+                                  <option value="0" selected="selected"><script>document.write(str_time_24);</script><!--24小时制--></option>
+                                  <option value="1"><script>document.write(str_time_12);</script><!--12小时制--></option>
+                                </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><script>document.write(str_week_enable);</script><!--是否显示星期--></td>
+                                <td align="left"><input name="osddate_week" type="checkbox" id="osddate_week"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="103" colspan="2" align="left" style="font-size:18px; font-weight:bold;"><script>document.write(str_streamname_set);</script><!--码流名设置--></td>
+                            </tr>
+                            <tr>
+                                <td align="right"><script>document.write(str_show_enable);</script><!--是否显示--></td>
+                                <td align="left">
+                                <input type="checkbox" name="osdCh_name_enable" id="osdCh_name_enable" />
+                                <label for="osdCh_name_enable"></label></td>
+                            </tr>
+                            <tr>
+                                <td width="103" colspan="2" align="left" style="font-size:18px; font-weight:bold;"><script>document.write(str_other_set);</script><!--其他设置--></td>
+                            </tr>
+                            <tr>
+                                <td align="right"><script>document.write(str_show_enable);</script><!--是否显示--></td>
+                                <td align="left">
+                                <input type="checkbox" name="osdCH_ID_enable" id="osdCH_ID_enable" />
+                                <label for="osdCH_ID_enable"></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><script>document.write(str_content);</script><!--内容--></td>
+                                <td align="left"><input id="osdCH_ID_text" name="OSD_Content" type="text" width="150px" height="20px"/></td>
+                            </tr>
+                        </table>
+                        <button id="OSD_saveset" onclick="video_overlayer_set()"><script>document.write(str_saveset);</script></button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Net_Access">
+            <div id="TabbedPanels3" class="TabbedPanels">
+                <ul class="TabbedPanelsTabGroup">
+                    <li class="TabbedPanelsTab" tabindex="5">IP<!--<script>document.write(str_local);</script--><!--本地--></li>
+                    <li class="TabbedPanelsTab" tabindex="6"><script>document.write(str_wireless);</script><!--无线--></li>
+                </ul>
+                <div class="TabbedPanelsContentGroup">
+                    <div class="TabbedPanelsContent">
+                    <div class="content_left" >
+                        <table width="420" border="0">
+                            <tr>
+                                <td align="right"><script>document.write(str_active_net);</script>
+                                </td>
+                                <td>
+                                <table width="200">
+                                    <tr>
+                                        <td>
+                                        <label>
+                                        <input type="radio" name="RadioGroupNetMode" value="0" id="RadioLocalNet" checked onclick="net_local_get('local')" /><script>document.write(str_local);</script><!--开启--> </label>
+                                        </td>
+                                        <td>
+                                        <label>
+                                        <input type="radio" name="RadioGroupNetMode" value="1" id="RadioWifiNet" onclick="net_local_get('wifi')"   /><script>document.write(str_wireless);</script><!--关闭--></label>
+                                        </td>
+                                    </tr>
+                                </table>
+                                </td>
+                            </tr>
+							<tr>
+                                <td width="100" align="right">MAC</td>
+                                <td width="202">
+                                <label for="nameLocalMac"></label>
+                                <input type="text" name="nameLocalMac" id="textLocalMac"  disabled="disabled" style="width:150px; height:20px;"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><script>document.write(str_ipudpc);</script><!--IP自适应--></td>
+                                <td>
+                                <table width="200">
+                                    <tr>
+                                        <td>
+                                        <label>
+                                        <input type="radio" name="RadioGroupLocalDhcp" value="1" id="RadioLocalDhcpEnable" onClick="local_dhcp_config_change(this.id);" checked /><script>document.write(str_rb_open);</script><!--开启--> </label>
+                                        </td>
+                                        <td>
+                                        <label>
+                                        <input type="radio" name="RadioGroupLocalDhcp" value="0" id="RadioLocalDhcpDisable" onClick="local_dhcp_config_change(this.id);"  /><script>document.write(str_rb_close);</script><!--关闭--></label>
+                                        </td>
+                                    </tr>
+                                </table>
+                                </td>
+                            </tr>
+                            <tr style="display:none;">
+                                <td align="right">UPNP
+                                </td>
+                                <td>
+                                <table width="200">
+                                    <tr>
+                                        <td>
+                                        <label>
+                                        <input type="radio" name="RadioGroupLocalUpnp" value="1" id="RadioLocalUpnpEnable"  /><script>document.write(str_rb_open);</script><!--开启--> </label>
+                                        </td>
+                                        <td>
+                                        <label>
+                                        <input type="radio" name="RadioGroupLocalUpnp" value="0" id="RadioLocalUpnpDisable"  checked /><script>document.write(str_rb_close);</script><!--关闭--></label>
+                                        </td>
+                                    </tr>
+                                </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><script>document.write(str_ipaddress);</script><!--IP地址--></td>
+                                <td>
+                                <label for="NameLocalIp"></label>
+                                <input type="text" name="NameLocalIp" id="textLocalIp" style="width:150px; height:20px; display:none;"  onChange="check_ip_is_valid(this.id)" onFocus="save_current_ipaddr(this.id)" />
+                                <div id="ip" name="set_time_div" style="width:166px; height:24px; background-color:#FFF; border:1px solid #CCC;">
+		<input type="text" id="ip_1" name="IP" value="" maxlength="3" style="border-style:none; margin-left:2px; width:30px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke_first(id)"/>.
+		<input type="text" id="ip_2" name="IP" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>.
+		<input type="text" id="ip_3" name="IP" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>.
+		<input type="text" id="ip_4" name="IP" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>
+</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><script>document.write(str_gateway);</script><!--网关--></td>
+                                <td>
+                                <label for="NameLocalGateway"></label>
+                                <input type="text" name="NameLocalGateway" id="textLocalGateway" style="width:150px; height:20px; display:none;" onChange="check_ip_is_valid(this.id)" onFocus="save_current_ipaddr(this.id)" />
+                                <div id="gw" name="set_time_div" style="width:166px; height:24px; background-color:#FFF; border:1px solid #CCC;">
+		<input type="text" id="gw_1" name="GW" value="" maxlength="3" style="border-style:none; margin-left:2px; width:30px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(id)"/>.
+		<input type="text" id="gw_2" name="GW" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>.
+		<input type="text" id="gw_3" name="GW" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>.
+		<input type="text" id="gw_4" name="GW" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>
+</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><script>document.write(str_mask);</script><!--子网掩码--></td>
+                                <td>
+                                <label for="NameLocalMask"></label>
+                                <input type="text" name="NameLocalMask" id="textLocalMask" style="width:150px; height:20px; display:none;" onChange="check_ip_is_valid(this.id)" onFocus="save_current_ipaddr(this.id)"/>
+                                 <div id="mask" name="set_time_div" style="width:166px; height:24px; background-color:#FFF; border:1px solid #CCC;">
+		<input type="text" id="mask_1" name="MASK" value="" maxlength="3" style="border-style:none; margin-left:2px; width:30px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke_first(id)"/>.
+		<input type="text" id="mask_2" name="MASK" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>.
+		<input type="text" id="mask_3" name="MASK" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>.
+		<input type="text" id="mask_4" name="MASK" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>
+</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><script>document.write(str_first_DNS);</script><!--首选DNS--></td>
+                                <td>
+                                <label for="NanmeDns1"></label>
+                                <input type="text" name="NanmeDns1" id="textLocalDns1" style="width:150px; height:20px; display:none;" onChange="check_ip_is_valid(this.id)" onFocus="save_current_ipaddr(this.id)" />
+                                <div id="DNS_f" name="DNS_F" style="width:166px; height:24px; background-color:#FFF; border:1px solid #CCC;">
+		<input type="text" id="DNS_f_1" name="DNS_F" value="" maxlength="3" style="border-style:none; margin-left:2px; width:30px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke_first(id)"/>.
+		<input type="text" id="DNS_f_2" name="DNS_F" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>.
+		<input type="text" id="DNS_f_3" name="DNS_F" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>.
+		<input type="text" id="DNS_f_4" name="DNS_F" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>
+</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right"><script>document.write(str_second_DNS);</script><!--备用DNS--></td>
+                                <td>
+                                <label for="NanmeDns2"></label>
+                                <input type="text" name="NanmeDns2" id="textLocalDns2" style="width:150px; height:20px; display:none;" onChange="check_ip_is_valid(this.id)" onFocus="save_current_ipaddr(this.id)" />
+                                <div id="DNS_b" name="DNS_B" style="width:166px; height:24px; background-color:#FFF; border:1px solid #CCC;">
+		<input type="text" id="DNS_b_1" name="DNS_B" value="" maxlength="3" style="border-style:none; margin-left:2px; width:30px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke_first(id)"/>.
+		<input type="text" id="DNS_b_2" name="DNS_B" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>.
+		<input type="text" id="DNS_b_3" name="DNS_B" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>.
+		<input type="text" id="DNS_b_4" name="DNS_B" value="" maxlength="3" style="border-style:none; width:30px; margin-left:0px; text-align:center;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="ip_checke(this.id)"/>
+</div>
+                                </td>
+                            </tr>
+							<td width="108" align="right" ><input type="checkbox" id="IPAutoTrack"/><script>document.write(str_ipautotrack);</script><!--IP跟随--> </td>
+                            <tr>
+                                <td colspan="2" align="center">
+                                <button id="localnet_saveset" onclick="net_local_set()"><script>document.write(str_net_save);</script></button>
+</td>
+                            </tr>
+                      </table>
+					</div>
+                    </div>
+					<div class="TabbedPanelsContent">
+                    <div id="wireless">
+					<div class="content_left">
+						<div class="table_wifi">
+							<table width="500px" border="0" cellpadding="0" cellspacing="1" >
+									<caption><script>document.write(str_wireless_config);</script></caption>
+                                    <!--<tr>
+									<td colspan="2" align="center">
+									<script>document.write(str_wireless_config);</script>
+									</td>
+								</tr>-->
+								<tr>
+									<td align="right" width="100px"><script>document.write(str_wireless_mode);</script></td>
+									<td>
+									<select id="wireless_mode" onChange="wireless_mode()">
+										<option value="0">accessPoint</option>
+										<option value="1">stationMode</option>
+									</select>
+									<td>
+								</tr>
+							</table>
+							<table width="500px" border="0" cellpadding="0" cellspacing="1" id="sta">
+
+								<tr>
+									<td align="right" width="100px"><script>document.write(str_wifi_list);</script></td>
+									<td>
+										<table width="100%" border="0" cellspacing="1" cellpadding="0">
+											<tr align="center">
+												<td width="30px">ID</td>
+												<td width="100px">SSID</td>
+												<td width="200px">MAC</td>
+												<td width="54px">SIGNAL</td>
+												<td width="16px"></td>
+											</tr>
+											<tr>
+												<td colspan="5">
+												<div id="div_wifi_show">
+												<table id="wifi_list" width="100%" border="0" cellpadding="0" cellspacing="1">
+												</table>
+											</div></td></tr>
+										</table>
+										<button id="wifi_search" onclick="net_wifi_get()">
+											<script>
+												document.write(str_wifi_search);
+											</script>
+										</button>
+									</td>
+								</tr>
+								<tr style="height:25px;">
+									<td align="right"><script>document.write(str_wifi_choice);</script></td>
+									<td><input id="wireless_control" name="wirelessctr" type="checkbox" onclick="wireless_control()"/></td>
+								</tr>
+								<tr id="wireless_SSID"  style="height:25px;">
+									<td align="right">SSID</td>
+									<td><input id="wifi_SSID" type="text" /></td>
+								</tr>
+								<tr id="wireless_apchannel"  style="height:25px;">
+									<td align="right"><script>                                            document.write(str_ap_channel);</script></td>
+									<td><input name="" type="text" disabled="disabled"/></td>
+								</tr>
+								<tr id="wireless_networktype"  style="height:25px;">
+									<td align="right"><script>                                            document.write(str_wifi_MacAddr);</script></td>
+									<td><input type="text" id="wifi_MacAddr" readonly="readonly" /></td>
+								</tr>
+								<tr id="wireless_authtype"  style="height:25px;">
+									<td align="right"><script>                                            document.write(str_wifi_authtype);</script></td>
+									<td><select id="wifi_authtype" onChange="">
+										<option value="0">
+										 <script>document.write(str_none);</script>
+										</option>
+										<option value="1">WEP</option>
+										<option value="2">WPA-PSK Personal (AES)</option>
+										<option value="3">WPA-PSK Personal (TKIP)</option>
+										<option value="4">WPA2-PSK Personal (AES)</option>
+										<option value="5">WPA2-PSK Personal (TKIP)</option>
+									</select></td>
+								</tr>
+								<tr id="wireless_encryption"  style="height:25px;">
+									<td align="right"><script>                                            document.write(str_wifi_encryption);</script></td>
+									<td><select id="encrypt">
+										<option>
+										   <script>document.write(str_auth_open);</script>
+										</option>
+										<option>
+											<script>document.write(str_auth_share);</script>
+										</option>
+									</select></td>
+								</tr>
+								<tr id="wireless_keytype"  style="height:25px;">
+									<td align="right"><script>                                            document.write(str_wifi_keytype);</script></td>
+									<td><select id="keyformat">
+										<option>
+											<script>document.write(str_hex);</script>
+										</option>
+										<option>
+										   <script>document.write(str_ascii);</script>
+										</option>
+									</select></td>
+								</tr>
+								<tr id="wireless_key_index"  style="height:25px;">
+									<td align="right"><script>                                            document.write(str_wifi_wep_key_index);</script></td>
+									<td>
+									<select id="defkey">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+									</select>
+									</td>
+								</tr>
+								<tr id="wireless_tr_key1"  style="height:25px;">
+									<td align="right">
+										<script>                                            document.write(str_wifi_wep_key1);</script>
+									</td>
+									<td>
+										<input id="key1" maxlength="26">
+										<select id="key1_bits">
+											<option>64 bits</option>
+											<option>128 bits</option>
+										</select>
+									</td>
+								</tr>
+								<tr id="wireless_tr_key2"  style="height:25px;">
+									<td align="right">
+										<script>
+										document.write(str_wifi_wep_key2);</script>
+									</td>
+									<td>
+										<input id="key2" maxlength="26">
+										<select id="key2_bits">
+											<option>64 bits</option>
+											<option>128 bits</option>
+										</select>
+									</td>
+								</tr>
+								<tr id="wireless_tr_key3"  style="height:25px;">
+									<td align="right">
+									<script>
+									document.write(str_wifi_wep_key3);</script>
+									</td>
+									<td>
+										<input id="key3" maxlength="26">
+										<select id="key3_bits">
+											<option>64 bits</option>
+											<option>128 bits</option>
+										</select>
+									</td>
+								</tr>
+								<tr id="wireless_tr_key4"  style="height:25px;">
+									<td align="right">
+									<script>
+									document.write(str_wifi_wep_key4);</script>
+									</td>
+									<td>
+										<input id="key4" maxlength="26">
+										<select id="key4_bits">
+											<option>64 bits</option>
+											<option>128 bits</option>
+										</select>
+									</td>
+								</tr>
+								<tr id="wireless_wpa_psk"  style="height:25px;">
+									<td align="right">
+									<script>
+									document.write(str_auth_share);</script>
+									</td>
+									<td>
+									<input type="password" id="wpa_psk" maxlength="64" onKeyUp="nochinese();"/>
+									<input type="text" id="wpa_psk_text" maxlength="64" onKeyUp="nochinese();"/>
+									<input type="checkbox" id="wpa_psk_type" onclick="type_change()"/>
+									<script>document.write(str_showpassword);</script>
+									</td>
+								</tr>
+								<tr  style="height:25px;">
+									<td align="right">
+										<button id="set" onClick="net_wifi_set(1)">
+											<script>document.write(str_connect);		</script>
+										</button>
+									</td>
+									<td>
+										<button id="disconnect" onclick="net_wifi_set(0)" style="float:left; margin-left:15px;">
+											<script>document.write(str_disconnect);</script>
+										</button>
+									</td>
+								</tr>
+							</table>
+
+							<table width="500px" border="0" cellpadding="0" cellspacing="1"  id="acc">
+								<tr>
+									<td align="right" width="100px"><script>document.write(str_ap_name);</script></td>
+									<td><input id="wirelessApEssId_acc" /></td>
+								</tr>
+								<tr>
+									<td align="right"><script>document.write(str_ap_pwd);</script></td>
+									<td><input id="wirelessApPsk_acc" /></td>
+								</tr>
+								<tr>
+									<td align="right"><script>document.write(str_ap_authmode);</script></td>
+									<td>
+										<select id="wirelessWpaMode_acc" >
+											<option value="0">NONE</option>
+											<option value="1">WPA_PSK</option>
+											<option value="2">WPA2_PSK</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td align="right"><script>document.write(str_ap_wifiip);</script></td>
+									<td><input id="wlan0_staticIP_ap" disabled="disabled" /></td>
+								</tr>
+								<tr>
+									<td align="right"><script>document.write(str_ap_DHCPServer);</script></td>
+									<td>
+										<input name="dhcpp" type="radio" id="dhcpServer_enabled_1" onClick="ap_dhcp_change();" checked="checked" disabled="disabled"/>
+										<script>document.write(str_rb_open);</script>
+										<input name="dhcpp" type="radio" id="dhcpServer_enabled_0" onClick="ap_dhcp_change();" disabled="disabled" />
+										<script>document.write(str_rb_close);</script>
+									</td>
+								</tr>
+								<tr>
+									<td align="right"><script>document.write(str_ap_startaddress);</script></td>
+									<td><input id="dhcpIpNumber" disabled="disabled" /></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="center"><button onclick="ap_wifi_edit()"><script>document.write(str_edit_userinfo);</script></button></td>
+								</tr>
+							</table>
+						</div>
+                    </div>
+                    </div>
+					</div>
+                </div>
+            </div>
+        </div>
+        <div id="Platform_Access">
+        <div id="TabbedPanels4" class="TabbedPanels">
+            <ul class="TabbedPanelsTabGroup">
+                <li class="TabbedPanelsTab" tabindex="7"><script>document.write(str_platform_access);</script><!--平台接入--></li>
+                <li class="TabbedPanelsTab" tabindex="16"><script>document.write(str_FTP_server);</script><!--FTP服务--></li>
+                <li class="TabbedPanelsTab" tabindex="17" style="display:none;"><script>document.write(str_mail_server);</script><!--邮件服务--></li>
+                <li class="TabbedPanelsTab" tabindex="18"><script>document.write(str_alarm_server);</script><!--报警服务--></li>
+				<li class="TabbedPanelsTab" tabindex="19"><script>document.write(str_record_server);</script><!--录像配置--></li>
+			</ul>
+            <div class="TabbedPanelsContentGroup">
+                <div class="TabbedPanelsContent">
+                <div class="content_left">
+					<table width="100%" border="0">
+						<tr style="width:100%" align="center">
+							<td colspan="2">ONVIF</td>
+						</tr>
+						<tr>
+							<td align="right"><script>document.write(str_versioninfo);</script><!--版本信息--></td>
+							<td align="left"><input type="text" id="textOnvifVersion" name="ONVIF_Version" height="25px"  disabled="disabled" /></td>
+						</tr>
+                        <tr>
+                        	<td id="hr1" colspan="2">
+                            <hr />
+
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td id="p2p_info" colspan="2" align="center">P2P</td>
+                        </tr>
+                        <tr>
+                        	<td id="hr2" colspan="2">
+                            <hr />
+                            </td>
+
+                        </tr>
+                        <tr>
+                        	<td colspan="2">
+                            <table id="p2p_qr_tb" width="100%">
+
+                            </table>
+                            </td>
+                        </tr>
+					</table>
+                </div>
+                </div>
+                <div class="TabbedPanelsContent">
+					<div class="content_left">
+					<table class="layout-grid-frame" cellspacing="0" cellpadding="0" width="500px">
+					<tr>
+                    <td colspan="2">
+						<table width="100%" class="summaryTable" border="0">
+                        <tr>
+                            <td colspan="2" class="TitleBgcolor" align="center">
+                                <script>document.write(str_ftp_config);</script>
+                            </td>
+                        </tr>
+						<tr>
+							<td align="right"><script>document.write(str_ftp_enable);</script></td>
+							<td><input id="ftp_enable" type="checkbox" onclick="ftp_enbale()"/></td>
+						</tr>
+                        <tr>
+                            <td width="25%" align="right">
+                                <script>document.write(str_ftp_svr);</script>
+                            </td>
+                            <td>
+                                <input id="ftp_server" type="text" maxlength="64" style="width:150px; height:20px;" onKeyUp="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <script>document.write(str_ftp_port);</script>
+                            </td>
+                            <td>
+                                <input id="ftp_port" type="text" maxlength="5" style="width:150px; height:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <script>document.write(str_ftp_user);</script>
+                            </td>
+                            <td>
+                                <input id="ftp_user" type="text" style="ime-mode:disabled; width:150px; height:20px;" onpaste="return false"  maxlength="24" onKeyUp="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <script>document.write(str_ftp_pwd);</script>
+                            </td>
+                            <td>
+                                <input id="ftp_pwd" type="password" maxlength="64" style="width:150px; height:20px;" onKeyUp="value=value.replace(/[\W]/g,'')">
+                            </td>
+                        </tr>
+                        <tr style="display: none">
+                            <td align="right">
+                                <script>document.write(str_ftp_upload_interval);</script>
+                            </td>
+                            <td>
+                                <input value="0" id="uploadinterval" maxlength="5" onKeyUp="value=value.replace(/[^\d]/g,'')" style="width:150px; height:20px;"
+            onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">&nbsp;&nbsp;<script>document.write(str_ftp_upimg_time);</script>(0~3600)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <script>document.write(str_ftp_dir);</script>
+                            </td>
+                            <td>
+                                <input id="ftp_dir" maxlength="64" style="width:150px; height:20px;">
+                            </td>
+                        </tr>
+                        <tr style="display: none">
+                            <td align="right">
+                                <script>document.write(str_ftp_mode);</script>
+                            </td>
+                            <td>
+                                <select id="mode_sel">
+                                    <option>PORT</option>
+                                    <option>PASV</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                            </td>
+                            <td>
+                                <button onClick="ftp_control(1)">
+                                    <script>document.write(str_test);</script>
+                                </button>
+                                <script>document.write(str_test_info);</script>
+                            </td>
+                        </tr>
+                    </table>
+                    </td>
+                </tr>
+					<tr>
+                    <td width="125" align="right">
+                        <button id="set" onClick="ftp_control(0)">
+                            <script>document.write(str_set);</script>
+                        </button>
+                    </td>
+                    <td width="373">
+                        <button id="reload" style="float:left; margin-left:60px;" onClick=""><!--location.reload()"-->
+                            <script>document.write(str_refresh);</script>
+                        </button>
+                    </td>
+                </tr>
+				</table>
+				</div>
+                </div>
+				<div class="TabbedPanelsContent">
+                    <div class="content_left">
+						<table class="layout-grid-frame" cellspacing="0" cellpadding="0" width="500px">
+                        <tr>
+                            <td colspan="2">
+								<table width="100%" class="summaryTable">
+                                <tr>
+                                    <td colspan="2" class="TitleBgcolor" align="center">
+                                            <script>document.write(str_mail_config);</script>
+                                    </td>
+                                </tr>
+								<tr>
+									<td width="80px" align="right">
+										<script>document.write(str_mail_enable);</script>
+									</td>
+									<td>
+										<input id="email_enable" type="checkbox" onclick="email_enable()" />
+									</td>
+								</tr>
+                                <tr>
+                                    <td align="right">
+                                        <script>document.write(str_sender);</script>
+                                    </td>
+                                    <td>
+                                        <input id="email_sender" style="ime-mode:disabled; width:150px; height:20px;" maxlength="256" onBlur="mail_check()" onKeyUp="">
+										<!--<select id="smtp_sel" name="smtp_sel" style=" width:150px; height:20px;"
+                                            onchange="onselsmtp()">
+                                            <script>document.write(str_mail_sel_ser);</script>
+                                            <option value=".gmail.com">@gmail.com</option>
+                                            <option value=".mail.yahoo.com">@yahoo.com,@yahoo.com.cn</option>
+                                            <option value=".sina.com.cn">@sina.com</option>
+                                            <option value=".qq.com">@qq.com</option>
+                                            <option value=".sohu.com">@sohu.com</option>
+                                            <option value=".yeah.net">@yeah.net</option>
+                                            <option value=".126.com">@126.com</option>
+                                            <option value=".163.com">@163.com</option>
+                                            <option value=".vip.163.com">@vip.163.com</option>
+                                            <option value=".tom.com">@tom.com</option>
+                                            <option value=".263.net">@263.net</option>
+                                            <option value=".21cn.com">@21cn.com</option>
+                                        </select>-->
+                                    </td>
+                                </tr>
+								<tr id="tr_pwd">
+                                    <td align="right">
+                                        <script>document.write(str_smtp_pwd);</script>
+                                    </td>
+                                    <td>
+                                        <input id="email_pwd" type="password" maxlength="64" style="width:150px; height:20px;" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <script>document.write(str_smtp_svr);</script>
+                                    </td>
+                                    <td>
+									<table>
+										<tr>
+											<td>
+												<input id="mail_svr" maxlength="64" style="width:150px; height:20px; margin-left:-2px;" onKeyUp="">&nbsp;&nbsp;
+											</td>
+											<td align="right">
+												<script>document.write(str_smtp_port);</script>
+											</td>
+											<td>
+												<input id="smtp_port" maxlength="5" onKeyUp="value=value.replace(/[^\d]/g,'')" value="25" style="width:40px; height:20px;" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">
+											</td>
+										</tr>
+									</table>
+									</td>
+                                </tr>
+                                <tr style="display:none;">
+                                    <td align="right">
+                                        <script>document.write(str_smtp_sender);</script>
+                                    </td>
+                                    <td>
+                                        <input id="sender"  style="ime-mode:disabled; width:150px; height:20px;" onpaste="return false" maxlength="26" onKeyUp="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <script>document.write(str_receiver);</script>
+                                    </td>
+                                    <td>
+                                        <input id="receiver"  style="ime-mode:disabled; width:238px; height:20px;" maxlength="256" onKeyUp="" onblur="rev_check(this.id)">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <script>document.write(str_mail_copy);</script>
+                                    </td>
+                                    <td>
+                                        <input id="rec_cc"  style="ime-mode:disabled; width:238px; height:20px;" maxlength="256" onKeyUp="" onblur="rev_check(this.id)">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <script>document.write(str_bcc);</script>
+                                    </td>
+									<td>
+										<input id="rec_bcc"  style="ime-mode:disabled; width:238px; height:20px;" maxlength="256" onKeyUp="" onblur="rev_check(this.id)">
+									</td>
+                                </tr>
+								<tr>
+									<td width="21%" align="right"><script>document.write(str_pic_add);</script></td>
+									<td>
+										<table>
+											<tr>
+												<td>
+													<input type="checkbox" id="pic_ck"/>
+												</td>
+												<td width="21%" align="right"><script>document.write(str_encryption);</script></td>
+												<td>
+													<input type="checkbox" id="mail_encrypt" onclick="mail_encrypt()"/>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+                            </table>
+                            </td>
+						</tr>
+						<tr>
+							<td width="106" align="right">
+								<button id="set" onClick="mailset()">
+									<script>document.write(str_set);</script>
+								</button>
+							</td>
+							<td width="392">
+								<button id="reload" style="float:left; margin-left:60px;"  onClick="email_load()">
+									<script>document.write(str_refresh);</script>
+								</button>
+							</td>
+						</tr>
+					</table>
+					</div>
+                </div>
+				<div class="TabbedPanelsContent">
+                    <div class="content_left">
+						<table>
+							<tr>
+								<td colspan="2" align="center" style="font-weight:bold;"><script>document.write(str_alarm_config);</script></td>
+							</tr>
+							<tr>
+								<td width="21%" align="right"><script>document.write(str_motion_enable);</script></td>
+								<td><input type="checkbox" id="motion_enable" onclick="alarm_enable()" /></td>
+							</tr>
+							<tr>
+								<td align="right"><script>document.write(str_motion_sensitivity);</script></td>
+								<td>
+								<table>
+									<tr>
+									<td width="110px">
+										<!--<script language="javascript">
+											var A_TPL =
+											{
+												'b_vertical' : false,
+												'b_watch': true,
+												'n_controlWidth': 110,
+												'n_controlHeight': 16,
+												'n_sliderWidth': 16,
+												'n_sliderHeight': 15,
+												'n_pathLeft' : -3,
+												'n_pathTop' : 1,
+												'n_pathLength' : 100,
+												's_imgControl': 'image/slider.png',
+												's_imgSlider': 'image/disc.png',
+												'n_zIndex': 1
+											}
+											var A_INIT7 =
+											{
+												's_name': 'sliderValue_motion',
+												'n_minValue' : 1,
+												'n_maxValue' : 100,
+												'n_value' : 50,
+												'n_step' : 1
+											}
+											slider_motion=new slider(A_INIT7,A_TPL);
+										</script>-->
+                                <script>
+								$(function(){
+								$("#slider_motion").slider({
+									range:"max",
+									min:0,
+									max:100,
+									value:20,
+									slide:function(event,ui)
+									{
+										$("#slider_motion").val(ui.value);
+									},
+									stop:function(event,ui)
+									{
+										$("#sliderValue_motion").val($("#slider_motion").slider("value"));
+									}
+									});
+									$("#sliderValue_motion").val($("#slider_motion").slider("value"));
+								});
+							</script>
+							<div id="slider_motion" style=""></div>
+										</td>
+										<td>
+											<input name="text" id="sliderValue_motion" type="Text" style="width:25px" disabled="disabled"/>
+										</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="right"><script>document.write(str_alarm_timeset);</script></td>
+								<td><select id="alarm_time_set" style=" width:100px; height:20px;"
+                                            onchange="day_change(this.value)">
+                                            <option value="0" selected="selected"><script>document.write(str_sun);</script></option>
+                                            <option value="1"><script>document.write(str_mon);</script></option>
+                                            <option value="2"><script>document.write(str_tue);</script></option>
+                                            <option value="3"><script>document.write(str_wed);</script></option>
+                                            <option value="4"><script>document.write(str_thu);</script></option>
+                                            <option value="5"><script>document.write(str_fri);</script></option>
+                                            <option value="6"><script>document.write(str_sat);</script></option>
+                                    </select></td>
+							</tr>
+							<tr>
+								<td align="right"><script>document.write(str_settime1);</script></td>
+								<td height="25px;">
+									<div id="set_time1_f" name="set_time_div" style="width:100px; height:24px; background-color:#FFF; float:left; margin-left:5px; margin-top:2px;">
+										<input type="text" id="set_time1_f_hour" name="set_time" value="00" maxlength="2" style="border-style:none; margin-left:2px; width:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="hour_check(this.id)"/>:
+										<input type="text" id="set_time1_f_min" name="set_time" value="00" maxlength="2" style="border-style:none; width:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="min_check(this.id)"/>:
+										<input type="text" id="set_time1_f_sec" name="set_time" value="00" maxlength="2" style="border-style:none; width:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="second_check(this.id)"/>
+									</div>
+									<div id="set_time1_b" name="set_time_div" style="width:100px; height:24px; background-color:#FFF; float:left; margin-left:5px; margin-top:2px;">
+										<input type="text" id="set_time1_b_hour" name="set_time" value="00" maxlength="2" style="border-style:none; margin-left:2px; width:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="hour_check(this.id)"/>:
+										<input type="text" id="set_time1_b_min" name="set_time" value="00" maxlength="2" style="border-style:none; width:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="min_check(this.id)"/>:
+										<input type="text" id="set_time1_b_sec" name="set_time" value="00" maxlength="2" style="border-style:none; width:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="second_check(this.id)"/>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td align="right"><script>document.write(str_settime2);</script></td>
+								<td height="25px;">
+									<div id="set_time2_f" name="set_time_div" style="width:100px; height:24px; background-color:#FFF; float:left; margin-left:5px; margin-top:2px;">
+										<input type="text" id="set_time2_f_hour" name="set_time" value="00" maxlength="2" style="border-style:none; margin-left:2px; width:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="hour_check(this.id)"/>:
+										<input type="text" id="set_time2_f_min" name="set_time" value="00" maxlength="2" style="border-style:none; width:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="min_check(this.id)"/>:
+										<input type="text" id="set_time2_f_sec" name="set_time" value="00" maxlength="2" style="border-style:none; width:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="second_check(this.id)"/>
+									</div>
+									<div id="set_time2_b" name="set_time_div" style="width:100px; height:24px; background-color:#FFF; float:left; margin-left:5px; margin-top:2px;">
+										<input type="text" id="set_time2_b_hour" name="set_time" value="00" maxlength="2" style="border-style:none; margin-left:2px; width:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="hour_check(this.id)"/>:
+										<input type="text" id="set_time2_b_min" name="set_time" value="00" maxlength="2" style="border-style:none; width:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="min_check(this.id)"/>:
+										<input type="text" id="set_time2_b_sec" name="set_time" value="00" maxlength="2" style="border-style:none; width:20px;" onKeyUp="value=value.replace(/[^\d]/g,'')" onblur="second_check(this.id)"/>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td align="right"><script>document.write(str_copy2week);</script></td>
+								<td><input type="checkbox" id="allcopy_ctr" onclick="copyall()" /></td>
+							</tr>
+							<tr>
+								<td>
+								</td>
+								<td>
+									<table align="center">
+										<tr>
+											<td width="100px"><input type="checkbox" id="copy_sun" name="copy2week" onclick="cpoytoday(this.id)" /><script>document.write(str_sun);</script></td>
+											<td width="100px"><input type="checkbox" id="copy_mon" name="copy2week" onclick="cpoytoday(this.id)" /><script>document.write(str_mon);</script></td>
+											<td width="100px"><input type="checkbox" id="copy_tue" name="copy2week" onclick="cpoytoday(this.id)" /><script>document.write(str_tue);</script></td>
+											<td width="100px"><input type="checkbox" id="copy_wed" name="copy2week" onclick="cpoytoday(this.id)" /><script>document.write(str_wed);</script></td>
+										</tr>
+										<tr>
+											<td><input type="checkbox" id="copy_thu" name="copy2week" onclick="cpoytoday(this.id)" /><script>document.write(str_thu);</script></td>
+											<td><input type="checkbox" id="copy_fri" name="copy2week" onclick="cpoytoday(this.id)" /><script>document.write(str_fri);</script></td>
+											<td><input type="checkbox" id="copy_sat" name="copy2week" onclick="cpoytoday(this.id)" /><script>document.write(str_sat);</script></td>
+											<td><button id="copy" onClick="copy()"><script>document.write(str_copy);</script></button></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<hr style="background-color:#f9f9f9; width:100%" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" align="center" style="font-weight:bold;"><script>document.write(str_linkage_set);</script></td>
+							</tr>
+							<tr>
+								<td align="right"><script>document.write(str_alarm_interval);</script></td>
+								<td><input id="alarm_interval" style="width:20px" value="0" /></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<table border="0" align="center">
+										<tr>
+											<td width="100px" style="display:none;"><input type="checkbox" id="linkage_mail" name="linkage" onclick="" /><script>document.write(str_linkage_mail);</script></td>
+											<td width="100px"><input type="checkbox" id="linkage_ftp" name="linkage" onclick="" /><script>document.write(str_linkage_ftp);</script></td>
+											<td width="100px"><input type="checkbox" id="linkage_buzzing" name="linkage" onclick="" /><script>document.write(str_linkage_buzzing);</script></td>
+										</tr>
+										<tr>
+											<td><input type="checkbox" id="Alarm_IO" name="linkage" onclick="" /><script>document.write(str_alarm_IO);</script></td>
+											<td><input type="checkbox" id="linkage_capture" name="linkage" onclick="" /><script>document.write(str_linkage_capture);</script></td>
+											<td><input type="checkbox" id="linkage_record" name="linkage" onclick="" /><script>document.write(str_linkage_record);</script></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="right"> <button id="alarm_set" onclick="alarm_set()"><script>document.write(str_set);</script></button></td>
+								<td style="float:left; margin-left:60px"> <button id="alarm_set" onclick="alarm_load()"><script>document.write(str_refresh);</script></button></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="TabbedPanelsContent">
+					<div class="content_left">
+						<table>
+							<tr>
+								<td><script>document.write(str_rec_location);</script></td>
+								<td>
+									<select name="select_reclocation" id="select_reclocation" style="width:150px; height:20px; " onChange="rec_location_change();">
+										<option value="0" selected="selected"><script>document.write(str_rec_sd);</script><!--SD卡--></option>
+										<option value="1"><script>document.write(str_rec_pc);</script><!--PC本地--></option>
+									</select>
+								</td>
+							</tr>
+							<tr id="rec_by_sd_name">
+								<td id="sd_rec_name"><script>document.write(str_rec_sd_name);</script></td>
+								<td><input id="sd_name" type="text" disabled="disabled"></td>
+							</tr>
+							<tr id="rec_by_sd_mem">
+								<td id="sd_rec_total"><script>document.write(str_total_memory);</script></td>
+								<td><input id="sd_total_memory" type="text" disabled="disabled" value="0G" /></td>
+							</tr>
+							<tr id="rec_by_sd_available">
+								<td id="sd_rec_available"><script>document.write(str_available_space);</script></td>
+								<td><input id="sd_available_space" type="text" disabled="disabled"  value="0G" /></td>
+							</tr>
+							<tr id="rec_by_sd_reset">
+								<td id="sd_reset" colspan="2" align="center">
+								<button onclick="sd_reset()">
+									<script>document.write(str_format);</script>
+								</button>
+								</td>
+							</tr>
+							<tr id="rec_by_pc_fmt">
+								<td id="pc_rec_fmt"><script>document.write(str_pc_fmt);</script></td>
+								<td>
+									<select name="rec_select_fmt" id="rec_select_fmt" style="width:150px; height:20px; " onChange="rec_fmt_change();">
+										<option value="0" selected="selected"><script>document.write(str_rec_fmt_avi);</script><!--AVI--></option>
+										<option value="1"><script>document.write(str_rec_fmt_stream);</script><!--原始数据--></option>
+									</select>
+								</td>
+							</tr>
+							<tr id="rec_by_pc_audio">
+								<td id="pc_rec_audio"><script>document.write(str_pc_audio);</script></td>
+								<td>
+									<select name="rec_select_audio" id="rec_select_audio" style="width:150px; height:20px; ">
+										<option value="0" selected="selected"><script>document.write(str_rec_pc_audiooff);</script><!--关闭--></option>
+										<option value="1"><script>document.write(str_rec_pc_audioon);</script><!--开启--></option>
+									</select>
+								</td>
+							</tr>
+							<tr id="rec_by_pc_loc">
+								<td id="pc_rec_loc"><script>document.write(str_pc_recloaction);</script></td>
+								<td><input id="pc_reclocation" type="text" disabled="disabled"  value="D:\gk_recorder" /></td>
+							</tr>
+							<tr id="rec_by_pc_submit">
+								<td id="pc_rec_submit" colspan="2" align="center">
+								<button onclick="rec_pc_submit(this)">
+									<script>document.write(str_rec_pc_submit);</script>
+								</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+        </div>
+        </div>
+        <div id="gb28181">
+        <div id="TabbedPanels7" class="TabbedPanels">
+            <ul class="TabbedPanelsTabGroup">
+                <li class="TabbedPanelsTab" tabindex="20"><script>document.write(str_gb28181);</script><!--GB28181--></li>
+			</ul>
+            <div class="TabbedPanelsContentGroup">
+                <div class="TabbedPanelsContent">
+                <div class="content_left">
+					<table width="100%" border="0">
+						<tr style="width:100%" align="center">
+							<td align="right"><script>document.write(str_ServerUID);</script></td>
+							<td align="left"><input type="text" id="ServerUID" name="ServerUID" height="25px"/></td>
+						</tr>
+						<tr style="width:100%" align="center">
+							<td align="right"><script>document.write(str_ServerDomain);</script></script></td>
+							<td align="left"><input type="text" id="ServerDomain" name="ServerDomain" height="25px"/></td>
+						</tr>
+						<tr style="width:100%" align="center">
+							<td align="right"><script>document.write(str_ServerIP);</script></script></td>
+							<td align="left"><input type="text" id="ServerIP" name="ServerIP" height="25px"/></td>
+						</tr>
+						<tr style="width:100%" align="center">
+							<td align="right"><script>document.write(str_ServerPort);</script></script></td>
+							<td align="left"><input type="text" id="ServerPort" name="ServerPort" height="25px"/></td>
+						</tr>
+						<tr style="width:100%" align="center">
+							<td align="right"><script>document.write(str_DeviceUID);</script></script></td>
+							<td align="left"><input type="text" id="DeviceUID" name="DeviceUID" height="25px"/></td>
+						</tr>
+                        <tr style="width:100%" align="center">
+							<td align="right"><script>document.write(str_ServerPwd);</script></script></td>
+							<td align="left"><input type="text" id="ServerPwd" name="ServerPwd" height="25px"/></td>
+						</tr>
+						<tr style="width:100%" align="center">
+							<td align="right"><script>document.write(str_DevicePort);</script></script></td>
+							<td align="left"><input type="text" id="DevicePort" name="DevicePort" height="25px"/></td>
+						</tr>
+						<tr style="width:100%" align="center">
+							<td align="right"><script>document.write(str_Expire);</script></script></td>
+							<td align="left"><input type="text" id="Expire" name="Expire" height="25px"/></td>
+						</tr>
+						<tr style="width:100%" align="center">
+							<td align="right"><script>document.write(str_DevHBCycle);</script></script></td>
+							<td align="left"><input type="text" id="DevHBCycle" name="DevHBCycle" height="25px"/></td>
+						</tr>
+						<tr style="width:100%" align="center">
+							<td align="right"><script>document.write(str_DevHBOutTimes);</script></script></td>
+							<td align="left"><input type="text" id="DevHBOutTimes" name="DevHBOutTimes" height="25px"/></td>
+						</tr>
+                        <tr style="width:100%" align="center">
+                            <td>
+							<button id="set" onclick="sys_gb28181_set()">
+                            <script>document.write(str_set);</script>
+                            </button>
+                            </td>
+                        </tr>
+                        </button>
+						</tr>
+					</table>
+                </div>
+                </div>
+            </div>    
+        </div>
+        </div>
+        <div id="UserManage">
+        <div id="TabbedPanels5" class="TabbedPanels">
+            <ul class="TabbedPanelsTabGroup">
+                <li class="TabbedPanelsTab" tabindex="8"><script>document.write(str_userinfo);</script><!--用户信息--></li>
+                <li class="TabbedPanelsTab" tabindex="9"><script>document.write(str_adduserinfo);</script><!--添加用户--></li>
+                <li class="TabbedPanelsTab" tabindex="10"><script>document.write(str_modifyuserinfo);</script><!--修改信息--></li>
+            </ul>
+            <div class="TabbedPanelsContentGroup">
+                <div class="TabbedPanelsContent">
+					<div class="content_left">
+                    <div id="userinfo_showlist"></div>
+                </div>
+				</div>
+                <div class="TabbedPanelsContent">
+                    <div class="content_left">
+                    <table width="340" border="0" align="center">
+                        <tr>
+                            <td align="center" colspan="2"><script>document.write(str_addinfo);</script><!--信息添加--></td>
+                        </tr>
+                        <tr>
+                            <td width="89" align="right"><script>document.write(str_username);</script><!--用户名--></td>
+                            <td width="235" align="left">
+                                <input type="text" name="userinfo_add_name" id="userinfo_add_name"  style="width:150px; height:20px"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right"><script>document.write(str_userpwd);</script><!--密码--></td>
+                            <td align="left">
+                                <input type="password" name="userinfo_add_password" id="userinfo_add_password" style="width:150px; height:20px"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+								<script>document.write(str_userpwds);</script><!--确认密码-->
+							</td>
+                            <td align="left">
+                                <input type="password" name="userinfo_add_passwords" id="userinfo_add_passwords" style="width:150px; height:20px"/>
+                            </td>
+                        </tr>
+                        <tr style="display:none;">
+                            <td align="right"><script>document.write(str_rightlist);</script><!--权限列表--></td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td><input name="chenk_all" id="check_all_right" type="checkbox" value="全选" onclick="check_all(this.id)" />
+                                        <script>document.write(str_checkall);</script><!--全选--></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <table width="200" bgcolor="#FFFFFF" style="border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;">
+                                            <tr>
+												<td colspan="3">
+													<input type="checkbox" id="check_setting" name="checkbox_group_right" value="0" />
+                                                    <script>document.write(str_setting);</script><!--设置-->
+												</td>
+											</tr>
+											<tr>
+                                                <td>
+                                                    <input type="checkbox" id="check_video_parameter" name="checkbox_group_right" value="0" />
+                                                    <script>document.write(str_video_parameter);</script><!--视频参数-->
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" id="check_iamge" name="checkbox_group_right"/>
+                                                    <script>document.write(str_image);</script><!--图像-->
+                                                </td>
+												<td>
+                                                    <input type="checkbox" id="check_video" name="checkbox_group_right" />
+                                                    <script>document.write(str_video);</script><!--视频-->
+                                                </td>
+                                            </tr>
+                                            <tr>
+												<td>
+													<input type="checkbox" id="check_network" name="checkbox_group_right"/>
+													<script>document.write(str_network);</script><!--网络--></td>
+												<td>
+													<input type="checkbox" id="check_network_access" name="checkbox_group_right"/>
+													<script>document.write(str_network_access);</script><!--访问-->
+												</td>
+												<td>
+                                                    <input type="checkbox" id="check_platform_access" name="checkbox_group_right"/>
+                                                    <script>document.write(str_platform_access);</script><!--服务-->
+                                                </td>
+                                            </tr>
+											<tr>
+												<td>
+													<input type="checkbox" id="check_sys_parameter" name="checkbox_group_right"/>
+													<script>document.write(str_system_parameter);</script><!--系统参数--></td>
+												<td>
+													<input type="checkbox" id="check_user_manage" name="checkbox_group_right"/>
+													<script>document.write(str_user_manage);</script><!--用户管理-->
+												</td>
+												<td>
+                                                    <input type="checkbox" id="check_sys_manage" name="checkbox_group_right"/>
+                                                    <script>document.write(str_system_manage);</script><!--系统管理-->
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                            <button id="userinfo_add" onclick="sys_user_add()">
+                                <script>document.write(str_save);</script>
+                            </button>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                </div>
+                <div class="TabbedPanelsContent">
+                    <div class="content_left">
+                    <table width="341" border="0" align="center">
+                        <tr>
+                            <td colspan="2" align="center">
+                                <script>document.write(str_modify_info);</script>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="84" align="right">
+                                <script>document.write(str_username);</script>
+                            </td>
+                            <td width="241" align="left">
+                                <input type="text" name="userinfo_modify_name" id="userinfo_modify_name" style="width:150px; height:20px;"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <script>document.write(str_oldpwd);</script>
+                            </td>
+                            <td align="left">
+                                <input type="password" name="userinfo_modify_oldpwd" id="userinfo_modify_oldpwd" style="width:150px; height:20px;"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <script>document.write(str_newpwd);</script>
+                            </td>
+                            <td align="left">
+                                <input type="password" name="userinfo_modify_newpwd" id="userinfo_modify_newpwd" style="width:150px; height:20px;"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <script>document.write(str_userpwds);</script>
+                            </td>
+                            <td align="left">
+                                <input type="password" name="userinfo_modify_newpwds" id="userinfo_modify_newpwds" style="width:150px; height:20px;"/>
+                            </td>
+                        </tr>
+                        <tr style="display:none;">
+                            <td align="right"><script>document.write(str_rightlist);</script><!--权限列表--></td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td colspan="2">
+                                            <input name="chenk_all" id="checkboxall_right_modify" type="checkbox" value="全选" onclick="check_all(this.id)" />
+                                            <script>document.write(str_checkall);</script>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <table width="200" bgcolor="#FFFFFF" style="border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;">
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" name="checkbox_group_right_modify" value="0" id="checkbox_group_right_modify_0" />
+                                                    <script>document.write(str_preview);</script><!--预览-->
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="checkbox_group_right_modify" value="1" id="checkbox_group_right_modify_1" />
+                                                    <script>document.write(str_setting);</script><!--设置-->
+                                                </td>
+                                            </tr>
+											<tr>
+                                                <td>
+                                                    <input type="checkbox" name="checkbox_group_right_modify" value="2" id="checkbox_group_right_modify_2" />
+                                                    <script>document.write(str_ptz);</script><!--云台-->
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="checkbox_group_right_modify" value="3" id="checkbox_group_right_modify_3" />
+                                                    <script>document.write(str_user_manage);</script><!--用户管理-->
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <button id="userinfo_add" onclick="sys_user_modify()">
+                                    <script>document.write(str_save);</script>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+		</div>
+        <div id="SystemSetting">
+            <div id="TabbedPanels6" class="TabbedPanels">
+            <ul class="TabbedPanelsTabGroup">
+                <li class="TabbedPanelsTab" tabindex="11"><script>document.write(str_system_time);</script><!--时间--></li>
+                <li class="TabbedPanelsTab" tabindex="12"><script>document.write(str_system_inti);</script><!--初始化--></li>
+                <li class="TabbedPanelsTab" tabindex="13"><script>document.write(str_versioninfo);</script><!--版本信息--></li>
+                <li class="TabbedPanelsTab" tabindex="14"><script>document.write(str_system_upgrade);</script><!--升级--></li>
+                <li class="TabbedPanelsTab" tabindex="15"><script>document.write(str_system_restart);</script><!--重启--></li>
+            </ul>
+            <div class="TabbedPanelsContentGroup">
+                <div class="TabbedPanelsContent">
+					<div class="content_left">
+					<table>
+                    <tr>
+                        <td align="right"><script>document.write(str_device_time);</script><!--设备时间--></td>
+                        <td align="left"><input type="text" id="device_local_time" name="Time"  disabled="disabled"  width="150px" height="25px"/></td>
+                    </tr>
+                    <tr>
+                        <td align="right"><script>document.write(str_time_zone);</script><!--时区--></td>
+                        <td align="left">
+                        <select  id="select_time_zone" name="time_zone" style="width:150px; height:25px;">
+                            <option value="-12">GMT-12:00</option>
+                            <option value="-11">GMT-11:00</option>
+                            <option value="-10">GMT-10:00</option>
+                            <option value="-9">GMT-09:00</option>
+                            <option value="-8">GMT-08:00</option>
+                            <option value="-7">GMT-07:00</option>
+                            <option value="-6">GMT-06:00</option>
+                            <option value="-5">GMT-05:00</option>
+                            <option value="-4">GMT-04:00</option>
+                            <option value="-3">GMT-03:00</option>
+                            <option value="-2">GMT-02:00</option>
+                            <option value="-1">GMT-01:00</option>
+                            <option value="0" selected="selected">GMT</option>
+                            <option value="1">GMT+01:00</option>
+                            <option value="2">GMT+02:00</option>
+                            <option value="3">GMT+03:00</option>
+                            <option value="4">GMT+04:00</option>
+                            <option value="5">GMT+05:00</option>
+                            <option value="6">GMT+06:00</option>
+                            <option value="7">GMT+07:00</option>
+                            <option value="8">GMT+08:00</option>
+                            <option value="9">GMT+09:00</option>
+                            <option value="10">GMT+10:00</option>
+                            <option value="11">GMT+11:00</option>
+                            <option value="12">GMT+12:00</option>
+                        </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right"><script>document.write(str_time_synchronous);</script><!--时间同步--></td>
+                        <td align="left">
+                            <input type="text" id="web_current_time" width="150px" height="25px"  disabled="disabled"   />
+                            <button id="userinfo_add" onclick="sys_sync_pc_time()"><script>document.write(str_synchronous);</script></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right"><script>document.write(str_NTP_status);</script><!--NTP状态--></td>
+                        <td><form id="form6" name="form6" method="post" action="">
+                            <table width="200">
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="RG_NTPControl" value="0" id="RG_NTPControl_0" onchange="NTPControl_change(this.id)" />
+                                        <script>document.write(str_rb_close);</script><!--关闭-->
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="RG_NTPControl" value="1" id="RG_NTPControl_1" onchange="NTPControl_change(this.id)" />
+                                        <script>document.write(str_rb_open);</script><!--开启-->
+                                    </td>
+                                </tr>
+                            </table>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><script>document.write(str_NTP_service_provider);</script><!--NTP服务商--></td>
+                        <td><input type="text" id="NTP_Server" width="150px" height="25px"/></td>
+                    </tr>
+					<tr>
+                        <td><script>document.write(str_plat_ip);</script><!--平台端IP--></td>
+                        <td><input type="text" id="str_plat_ip" width="150px" height="25px" /></td>
+                    </tr>
+					<tr>
+                        <td align="right"><script>document.write(str_switch_485);</script><!--485上报开关--></td>
+                        <td><form id="form7" name="form7" method="post" action="">
+                            <table width="200">
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="RG_switch" value="0" id="RG_switch_0"  />
+                                        <script>document.write(str_rb_close);</script><!--关闭-->
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="RG_switch" value="1" id="RG_switch_1"  />
+                                        <script>document.write(str_rb_open);</script><!--开启-->
+                                    </td>
+                                </tr>
+                            </table>
+                            </form>
+                        </td>
+                    </tr>
+	<tr>
+                        <td align="right"><script>document.write(str_switch_ai);</script><!--AI开关--></td>
+                        <td>
+							<!-- <form id="form8" name="form8" method="post" action=""> -->
+                            <table width="200">
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="AI_switch" value="0" onchange="AIControl_change(this.id)" id="AI_switch_0"  />
+                                        <script>document.write(str_rb_close);</script><!--关闭-->
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="AI_switch" value="1" id="AI_switch_1" onchange="AIControl_change(this.id)" />
+                                        <script>document.write(str_rb_open);</script><!--开启-->
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- </form> -->
+                        </td>
+                    </tr>
+					<tr>
+                        <td><script>document.write(str_ai_report_ip);</script><!--AI数据上报网址--></td>
+                        <td><input type="text" id="AI_PlatUrl" width="150px" height="25px"/></td>
+                    </tr>
+
+					<tr>
+					    <td><script>document.write(str_ai_model);</script><!--AI模型下发--></td>
+						  <td>
+    						<select id="aiModel_select" name="" style="width:280px; height:220px;" multiple="multiple" >
+      							<option value="0">车牌识别</option>
+      							<option value="1">人脸识别</option>
+      							<option value="2">车牌检测</option>
+      							<option value="3">车辆、人形检测</option>
+      							<option value="4">人脸检测</option>
+      							<option value="5">烟火检测</option>
+      							<option value="6">安全帽检测</option>
+      							<option value="7">反光衣检测</option>
+    						  </select>
+						    </td>
+					</tr>
+
+
+
+
+                    <tr>
+                        <td colspan="2" align="center">
+                            <button id="userinfo_add" onclick="sys_sync_time_zone_save()">
+                            <script>document.write(str_save);</script></button>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+                </div>
+                <div class="TabbedPanelsContent">
+                <div class="content_left">
+                    <button id="sys_rds" onclick="sys_manage_set_default()"><script>document.write(str_rds);</script></button>
+                </div>
+                </div>
+                <div class="TabbedPanelsContent">
+                <div class="content_left">
+                    <table width="323" border="0" align="center">
+                        <tr>
+                            <td width="100" align="right"><script>document.write(str_device_name);</script><!--设备名--></td>
+                            <td width="200" align="left">
+                                <input type="text" name="nameDeviceName"  id="textDeviceName" style="width:150px; height:20px;" disabled="disabled"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right"><script>document.write(str_device_type);</script><!--设备型号--></td>
+                            <td align="left">
+                                <input type="text" name="text_32-8"   id="textDeviceType" style="width:150px; height:20px;" disabled="disabled"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right"><script>document.write(str_hardware_version);</script><!--硬件版本--></td>
+                            <td align="left">
+                                <input type="text" name="text_32-9" id="textHardwareVersion" style="width:150px; height:20px;" disabled="disabled"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right"><script>document.write(str_software_version);</script><!--软件版本--></td>
+                            <td align="left">
+                                <input type="text" name="text_32-10"   id="textSoftwareVersion" style="width:150px; height:20px;" disabled="disabled"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right"><script>document.write(str_release_time);</script><!--发布时间--></td>
+                            <td align="left">
+                                <input type="text" name="text_32-11"  id="textReleasetime" style="width:150px; height:20px;" disabled="disabled"/>
+                            </td>
+                        </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="TabbedPanelsContent">
+                    <div style="margin-left:7px; margin-top:10px; float:left; margin-right:10px; display:inline;">
+                      <table>
+                      <tr>
+                     	<td><script>document.write(str_click_upgrade);</script></td>
+                      </tr>
+                      <tr>
+						<td>
+							<div id="swfuploads" >
+								<button id="swfupload" style="
+								height: 26px;
+								width: 36px;"></button>
+								
+							</div>
+						</td>
+                    </tr>
+                    </table>
+                    </div>
+                    <div style="margin-top:10px; margin-left:3px;">
+                        <table>
+                        <tr>
+                            <td>
+                                <label id="percentage_upload" style="float:left; height:20px;"></label>
+                            </td>
+                            <td>
+                                <label id="uplaod_status" style="float:left; height:20px;"></label>
+                            </td>
+                        </tr>
+                    </table>
+                        </div>
+                </div>
+                <div class="TabbedPanelsContent">
+                    <div class="content_left">
+                        <button id="btn_rebbot" onclick="sys_setting_reboot()">
+                        <script>document.write(str_system_restart);</script>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+	</div>
+    <div id="view_ctr_ctr" style="float:top; margin-top:0px; margin-left:7px;">
+			<img id="view_control" src="image/display.png" style="float:left; margin-top:0px; margin-left:10px;" onclick="view_ctr()"/>
+	</div>
+</div>
+<script type="text/javascript">
+	var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+var TabbedPanels2 = new Spry.Widget.TabbedPanels("TabbedPanels2");
+var TabbedPanels3 = new Spry.Widget.TabbedPanels("TabbedPanels3");
+var TabbedPanels4 = new Spry.Widget.TabbedPanels("TabbedPanels4");
+var TabbedPanels5 = new Spry.Widget.TabbedPanels("TabbedPanels5");
+var TabbedPanels6 = new Spry.Widget.TabbedPanels("TabbedPanels6");
+var TabbedPanels7 = new Spry.Widget.TabbedPanels("TabbedPanels7");
+</script>
+</body>
+</html>

@@ -553,10 +553,10 @@ void *osd_ttf_task(void)
         }
 //        strcat(timestr," ");
 //        string_to_bmp(timestr        strcpy(runSystemCfg.ntpCfg.AI_str, timestr);
-	printf("str is %s\n", timestr);
-	printf("AI_str is %s\n", runSystemCfg.ntpCfg.AI_str);
+//	printf("str is %s\n", timestr);
+//	printf("AI_str is %s\n", runSystemCfg.ntpCfg.AI_str);
 	strcpy(runSystemCfg.ntpCfg.AI_str, timestr);
-       SystemCfgPrint();
+//       SystemCfgPrint();
 
 
         memset(timestr, 0, 720);

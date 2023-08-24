@@ -2497,6 +2497,9 @@ function rtsp_set()
         window.vxgplayer('vxg_media_player1').stop();
         window.vxgplayer('vxg_media_player1').src(rtsp_url);
         window.vxgplayer('vxg_media_player1').play();
+	sys_sync_time_zone_save();
+        sys_sync_pc_time();
+
 }
 
 
@@ -3391,6 +3394,57 @@ function sys_manage_time(id)
 				
 			}
 		});
+}
+
+
+function ai_save()
+{              
+	var auth = "Basic " + base64.encode(g_usr+':'+g_pwd);
+
+        $.ajax({
+                        type:"GET",
+                        url:dvr_url + '/cgi-bin/settime',
+                        dataType:"json",
+                        beforeSend : function(req){
+                                req .setRequestHeader('Authorization', auth);
+                },
+                        error:function(XMLHttpRequest, textStatus, errorThrown){
+                                tipInfoShow("e="+textStatus);
+                                setTimeout("tipInfoHide()",hide_delay_ms);
+                                $('#str_plat_ip').val(str_plat_url);
+                        },
+                        success:function(data){
+                                $('#device_local_time').val(data.localTime);
+                                console.log('Time:%s\n',device_local_time);
+                                $('#select_time_zone').val(data.timeZone);
+                                if(data.ntpCfg_enable=='0')
+                                        $('#RG_NTPControl_0').attr("checked","true");
+                                else
+                                        $('#RG_NTPControl_1').attr("checked","true");
+                                $('#NTP_Server').val(data.ntpCfg_serverDomain);
+                                if(data.plat_addr_val && typeof data.plat_addr_val != "undefined"){
+                                        $('#str_plat_ip').val(data.plat_addr_val);
+                                }else{
+                                        $('#str_plat_ip').val(str_plat_url);
+                                }
+
+                                if(data.switch_485=='0')
+                                        $('#RG_switch_0').attr("checked","true");
+                                else
+                                        $('#RG_switch_1').attr("checked","true");
+                                // $('#str_plat_ip').val(data.plat_addr_val);
+                                if (data.AI_enable == '0') {
+                                        $('#AI_switch_0').attr("checked", "true");
+                                        $("#AI_PlatUrl").attr("disabled", "disabled");
+                                } else {
+                                        $('#AI_switch_1').attr("checked", "true");
+                                }
+                                setInterval(sys_sync_time_zone_save());
+                                $('#AI_str').val(data.AI_str);
+                                console.log('AI_str:%s\n',data.AI_str);
+
+                        }
+                });
 }
 
 
