@@ -451,6 +451,7 @@
 							<div id="slider_sharpen_view" style=""></div>
 						</td>
 					</tr>
+
 				</table>
 				<table width="140px" style="margin-left:auto; margin-right:auto;">
 					<tr>
@@ -720,6 +721,49 @@
 									</table>
 									</td>
 								</tr>
+
+                                                                <tr>
+                                                                        <td height="20px" align="right"><script>document.write(str_test);</script><!--测试--></td>
+                                                                        <td height="20px">
+                                                                        <table width="190px">
+                                                                        <tr>
+                                                                        <td width="20px" height="20px">
+                                                                                <img id="bgt_minus" src="image/jian.png" style="cursor:hand;" onclick="slider_singleStep_minus(this.id)" />
+                                                                        </td>
+                                                                        <td width="110px">
+                                                                        <script>
+                                                                        $(function(){
+                                                                                $("#slider_bgt").slider({
+                                                                                        range:"max",
+                                                                                        min:0,
+                                                                                        max:100,
+                                                                                        value:20,
+                                                                                        slide:function(event,ui)
+                                                                                        {
+                                                                                                $("#sliderValue_bgt").val(ui.value);
+                                                                                        },
+                                                                                        stop:function(event,ui)
+                                                                                        {
+                                                                                                image_content_change('slider_bgt');
+                                                                                        }
+                                                                                        });
+                                                                                        $("#sliderValue_bgt").val($("#slider_bgt").slider("value"));
+
+                                                                                });
+                                                                        </script>
+                                                                        <div id="slider_bgt" style=""></div>
+                                                                        </td>
+                                                                        <td width="20px">
+                                                                                <img id="bgt_add" src="image/add.png" style="cursor:hand;" onclick="slider_singleStep_add(this.id)" />
+                                                                        </td>
+                                                                        <td width="20px">
+                                                                                <input name="text" id="sliderValue_bgt" type="Text" style="width:25px" disabled="disabled"/>
+                                                                        </td>
+                                                                        </tr>
+                                                                        </table>
+                                                                        </td>
+                                                                </tr>
+
 								<!--<tr>
 									<td height="20px" align="right"><script>document.write(str_brightness);</script></td>
 									<td height="20px">

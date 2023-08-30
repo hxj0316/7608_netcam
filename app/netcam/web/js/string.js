@@ -162,6 +162,7 @@ var str_close='闭合';
 var str_resolution='分辨率';
 var str_mode='模式';
 var str_brightness='亮度';
+var str_test='测试';
 var str_contrast='对比度';
 var str_outdoor='室外';
 var str_default = '恢复视频缺省值';
